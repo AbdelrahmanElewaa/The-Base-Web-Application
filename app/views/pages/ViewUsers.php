@@ -6,6 +6,7 @@ class ViewUsers extends View {
 	require APPROOT.'/views/inc/header.php';
 	
 	$text = "
+	
 	<div class='jumbotron jumbotron-fluid'>
 	<div class='container' style='background-color: white'>
 		<h1 class='display-4' > ".

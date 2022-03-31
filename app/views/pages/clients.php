@@ -25,7 +25,7 @@
       <td>Otto</td>
       <td>@mdo</td>
       <td><input type="submit" value="Workout"class="btn btn-danger" ></td>
-      <td><input type="submit" value="Nutrition" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-primary">Nutrition</a></td>
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -33,7 +33,7 @@
       <td>Thornton</td>
       <td>@fat</td>
       <td><input type="submit" value="Workout" class="btn btn-danger" ></td>
-      <td><input type="submit" value="Nutrition" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-primary">Nutrition</a></td>
     </tr>
     <tr>
       <th scope="row">3</th>
@@ -41,7 +41,7 @@
       <td>the Bird</td>
       <td>@twitter</td>
       <td><input type="submit" value="Workout" class="btn btn-danger" ></td>
-      <td><input type="submit" value="Nutrition" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-primary">Nutrition</a></td>
     </tr>
   </tbody>
 </table>
@@ -51,4 +51,4 @@
      }
  }
 ?>
-
+ 

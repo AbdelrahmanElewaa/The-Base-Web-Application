@@ -13,7 +13,7 @@
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Email</th>
       <th scope="col">Workout Plan</th>
       <th scope="col">Nutrition Plan</th>
     </tr>

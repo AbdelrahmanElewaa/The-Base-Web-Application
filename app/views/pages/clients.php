@@ -7,15 +7,20 @@
 ?>
 <!-- <img src="<?php echo IMGROOT. 'logo.jpeg';?>" -->
 <br><br>
+ <a class="btn btn-warning"  style="float:right;">Add Client</a>
 <table class="table table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">#id</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Social</th>
       <th scope="col">Workout Plan</th>
       <th scope="col">Nutrition Plan</th>
+      <th scope="col">Modifcation</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -23,25 +28,38 @@
       <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
-      <td>@mdo</td>
-      <td><input type="submit" value="Workout"class="btn btn-danger" ></td>
-      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-primary">Nutrition</a></td>
+      <td>ahmed@fat.com</td>
+      <td>1234</td>
+      
+      <td>twitter</td>
+      <td><input type="submit" value="Workout" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
+      <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
+
     </tr>
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
-      <td>@fat</td>
-      <td><input type="submit" value="Workout" class="btn btn-danger" ></td>
-      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-primary">Nutrition</a></td>
+      <td>jacob@gmail.com</td>
+      <td>3333</td>
+      <td>Facebook</td>
+
+      <td><input type="submit" value="Workout" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
+      <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
     </tr>
     <tr>
       <th scope="row">3</th>
       <td>Larry</td>
       <td>the Bird</td>
+      <td>larry@gmail.com</td>
+      <td>4444</td>
+      
       <td>@twitter</td>
-      <td><input type="submit" value="Workout" class="btn btn-danger" ></td>
-      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-primary">Nutrition</a></td>
+      <td><input type="submit" value="Workout" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
+      <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
     </tr>
   </tbody>
 </table>

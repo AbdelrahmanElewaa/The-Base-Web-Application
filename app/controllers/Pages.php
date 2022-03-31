@@ -25,6 +25,13 @@ class Pages extends Controller
         $contactView = new Contact($this->getModel(), $this);
         $contactView->output();
     }
+    public function clients()
+    {
+        $viewPath = VIEWS_PATH . 'pages/clients.php';
+        require_once $viewPath;
+        $aboutView = new clients($this->getModel(), $this);
+        $aboutView->output();
+    }
 	    public function ViewUsers()
     {
         $viewPath = VIEWS_PATH . 'pages/ViewUsers.php';

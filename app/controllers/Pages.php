@@ -39,6 +39,14 @@ class Pages extends Controller
         $aboutView = new nutrition($this->getModel(), $this);
         $aboutView->output();
     }
+
+    public function addnutrition()
+    {
+        $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
+        require_once $viewPath;
+        $aboutView = new addnutrition($this->getModel(), $this);
+        $aboutView->output();
+    }
 	    public function ViewUsers()
     {
         $viewPath = VIEWS_PATH . 'pages/ViewUsers.php';

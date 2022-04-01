@@ -1,5 +1,5 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-<img width="50" height="30" src="<?php echo IMGROOT. 'logo.jpeg';?>">
+<img style="margin-left:20px;"class="rounded"  width="200" height="90" src="<?php echo IMGROOT. 'logo.jpeg';?>">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">The Base</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

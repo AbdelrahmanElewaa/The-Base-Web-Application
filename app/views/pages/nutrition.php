@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 class nutrition extends view {
 	public function output(){

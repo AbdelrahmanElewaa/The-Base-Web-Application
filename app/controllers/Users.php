@@ -7,9 +7,13 @@ class Users extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Process form
             $registerModel->setName(trim($_POST['name']));
+            // $registerModel->setName(trim($_POST['lastname']));
             $registerModel->setEmail(trim($_POST['email']));
+            $registerModel->setSocial(trim($_POST['social']));
+            $registerModel->setRole(trim($_POST['role']));
             $registerModel->setPassword(trim($_POST['password']));
             $registerModel->setConfirmPassword(trim($_POST['confirm_password']));
+
 
             //validation
             if (empty($registerModel->getName())) {
@@ -20,6 +24,15 @@ class Users extends Controller
             } elseif ($registerModel->emailExist($_POST['email'])) {
                 $registerModel->setEmailErr('Email is already registered');
             }
+            
+            if (empty($registerModel->getSocial())) {
+                $registerModel->setSocialErr('Please enter social media');
+            }
+            if (empty($registerModel->getRole())) {
+                $registerModel->setRoleErr('Please enter a role');
+            }
+
+
             if (empty($registerModel->getPassword())) {
                 $registerModel->setPasswordErr('Please enter a password');
             } elseif (strlen($registerModel->getPassword()) < 4) {
@@ -34,7 +47,9 @@ class Users extends Controller
                 empty($registerModel->getNameErr()) &&
                 empty($registerModel->getEmailErr()) &&
                 empty($registerModel->getPasswordErr()) &&
-                empty($registerModel->getConfirmPasswordErr())
+                empty($registerModel->getConfirmPasswordErr())&&
+                empty($registerModel->getSocialErr())&&
+                empty($registerModel->getRoleErr())
             ) {
                 //Hash Password
                 $registerModel->setPassword(password_hash($registerModel->getPassword(), PASSWORD_DEFAULT));
@@ -75,6 +90,7 @@ class Users extends Controller
             } elseif (strlen($userModel->getPassword()) < 4) {
                 $userModel->setPasswordErr('Password must contain at least 4 characters');
             }
+
 
             // If no errors
             if (

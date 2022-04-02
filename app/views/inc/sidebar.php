@@ -1,5 +1,5 @@
 <!-- <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100%;"> -->
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse" style="height: 100%;">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark  sidebar collapse" style="height: 100%;">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
@@ -60,6 +60,9 @@
               Year-end sale
             </a>
           </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<?php echo URLROOT . 'public'; ?>">Home</a>
+        </li>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php if (isset($_SESSION['user_id'])) {
@@ -69,18 +72,20 @@
             }
             ?>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
             <?php if (isset($_SESSION['user_id'])) : ?>
-              <li><a class="dropdown-item" href="users/logout">Logout</a></li>
+              <li><a class="dropdown-item bg-dark" style="color: rgb(28,90,183);" href="users/logout">Logout</a></li>
             <?php else : ?>
-              <li><a class="dropdown-item" href="<?php echo URLROOT . 'users/login'; ?>">Login</a></li>
-              <li><a class="dropdown-item" href="<?php echo URLROOT . 'users/register'; ?>">Sign Up</a></li>
+              <li><a class="dropdown-item" style="color: rgb(28,90,183);" href="<?php echo URLROOT . 'users/login'; ?>">Login</a></li>
+              <li><a class="dropdown-item" style="color: rgb(28,90,183);" href="<?php echo URLROOT . 'users/register'; ?>">Sign Up</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
             <?php endif; ?>
           </ul>
         </li>
+        
+        
 
         </ul>
         

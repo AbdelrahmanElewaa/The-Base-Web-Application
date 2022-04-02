@@ -32,7 +32,7 @@
       <td>1234</td>
       
       <td>twitter</td>
-      <td><input type="submit" value="Workout" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/workout'; ?>" class="btn btn-primary">Workout</a></td>
       <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
       <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
 
@@ -45,7 +45,7 @@
       <td>3333</td>
       <td>Facebook</td>
 
-      <td><input type="submit" value="Workout" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/workout'; ?>" class="btn btn-primary">Workout </a></td>
       <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
       <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
     </tr>
@@ -57,7 +57,7 @@
       <td>4444</td>
       
       <td>@twitter</td>
-      <td><input type="submit" value="Workout" class="btn btn-primary" ></td>
+      <td><a href="<?php echo URLROOT.'pages/workout'; ?>" class="btn btn-primary">Workout</a></td>
       <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
       <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
     </tr>

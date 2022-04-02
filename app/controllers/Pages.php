@@ -17,41 +17,36 @@ class Pages extends Controller
         $aboutView = new About($this->getModel(), $this);
         $aboutView->output();
     }
-	
-	    public function contact()
+
+    public function login()
+    {
+        $viewPath = VIEWS_PATH . 'pages/login.php';
+        require_once $viewPath;
+        $loginView = new Login($this->getModel(), $this);
+        $loginView->output();
+    }
+
+    public function contact()
     {
         $viewPath = VIEWS_PATH . 'pages/contact.php';
         require_once $viewPath;
         $contactView = new Contact($this->getModel(), $this);
         $contactView->output();
     }
-    public function clients()
+
+    public function plan()
     {
-        $viewPath = VIEWS_PATH . 'pages/clients.php';
+        $viewPath = VIEWS_PATH . 'pages/plan.php';
         require_once $viewPath;
-        $aboutView = new clients($this->getModel(), $this);
-        $aboutView->output();
-    }
-    public function nutrition()
-    {
-        $viewPath = VIEWS_PATH . 'pages/nutrition.php';
-        require_once $viewPath;
-        $aboutView = new nutrition($this->getModel(), $this);
-        $aboutView->output();
+        $planView = new Plan($this->getModel(), $this);
+        $planView->output();
     }
 
-    public function addnutrition()
+    public function work()
     {
-        $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
+        $viewPath = VIEWS_PATH . 'pages/work.php';
         require_once $viewPath;
-        $aboutView = new addnutrition($this->getModel(), $this);
-        $aboutView->output();
-    }
-	    public function ViewUsers()
-    {
-        $viewPath = VIEWS_PATH . 'pages/ViewUsers.php';
-        require_once $viewPath;
-        $ViewUsersView = new ViewUsers($this->getModel(), $this);
-        $ViewUsersView->output();
+        $workView = new Work($this->getModel(), $this);
+        $workView->output();
     }
 }

@@ -1,10 +1,12 @@
 <?php
-require_once 'UserModel.php';
-class ContactModel extends UserModel
+class ContactModel extends model
 {
-
-    public function contact()
-    {
-  
-    }
+	
+	public $title = 'Contact Page';
+	
+	
+	
+	
 }
+
+?>

@@ -1,4 +1,5 @@
 <?php
+// session_start();
  class clients extends view{
      public function output()
      {
@@ -34,7 +35,7 @@
       <td>twitter</td>
       <td><a href="<?php echo URLROOT.'pages/workout'; ?>" class="btn btn-primary">Workout</a></td>
       <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
-      <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
+      <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="" class="btn btn-danger">Delete</a> </td>
 
     </tr>
     <tr>
@@ -47,7 +48,7 @@
 
       <td><a href="<?php echo URLROOT.'pages/workout'; ?>" class="btn btn-primary">Workout </a></td>
       <td><a href="<?php echo URLROOT.'pages/nutrition'; ?>" class="btn btn-success">Nutrition</a></td>
-      <td> <a href="#" class="btn btn-secondary">Edit</a> <a href="#" class="btn btn-danger">Delete</a> </td>
+      <td> <a href="<?php echo URLROOT.'pages/editUser'.'?id='.'1'; ?>" class="btn btn-secondary">Edit</a> <a  class="btn btn-danger">Delete</a> </td>
     </tr>
     <tr>
       <th scope="row">3</th>

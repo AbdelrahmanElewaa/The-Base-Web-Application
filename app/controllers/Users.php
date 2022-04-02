@@ -137,4 +137,7 @@ class Users extends Controller
     {
         return isset($_SESSION['user_id']);
     }
+    public function edit(){
+        
+    }
 }

@@ -7,7 +7,7 @@
 ?>
 <!-- <img src="<?php echo IMGROOT. 'logo.jpeg';?>" -->
 <br><br>
- <a class="btn btn-warning"  style="float:right;">Add Client</a>
+ <a class="btn btn-warning"  style="float:right;" href="<?php echo URLROOT . 'users/register'; ?>">Add Client</a>
 <table class="table table-dark">
   <thead>
     <tr>

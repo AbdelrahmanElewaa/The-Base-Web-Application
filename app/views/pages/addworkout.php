@@ -16,7 +16,7 @@ class addworkout extends view {
   <input type="text"  class="form-control"placeholder="Sets"><br>
   <input type="text" class="form-control" placeholder="Reps"><br>
   <input type="text"  class="form-control"placeholder="Rest Time"><br>
-  <input type="file" class="form-control" placeholder="Video"><br>
+   <input type="text" class="form-control" placeholder="Add Embeded URL Youtube link :"  ><br>
   <input type="text" class="form-control" placeholder="Time"><br>
   <input type="submit" value="Add" class="btn btn-primary">
 </form>

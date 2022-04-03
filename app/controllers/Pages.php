@@ -17,66 +17,29 @@ class Pages extends Controller
         $aboutView = new About($this->getModel(), $this);
         $aboutView->output();
     }
-	
-	    public function contact()
+
+
+    public function contact()
     {
         $viewPath = VIEWS_PATH . 'pages/contact.php';
         require_once $viewPath;
         $contactView = new Contact($this->getModel(), $this);
         $contactView->output();
     }
-    public function clients()
-    {
-        $viewPath = VIEWS_PATH . 'pages/clients.php';
-        require_once $viewPath;
-        $aboutView = new clients($this->getModel(), $this);
-        $aboutView->output();
-    }
-    public function nutrition()
-    {
-        $viewPath = VIEWS_PATH . 'pages/nutrition.php';
-        require_once $viewPath;
-        $aboutView = new nutrition($this->getModel(), $this);
-        $aboutView->output();
-    }
 
-    public function addnutrition()
+ 
+    public function video()
     {
-        $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
+        $viewPath = VIEWS_PATH . 'pages/video.php';
         require_once $viewPath;
-        $aboutView = new addnutrition($this->getModel(), $this);
-        $aboutView->output();
+        $videoView = new Video($this->getModel(), $this);
+        $videoView->output();
     }
-
-    public function workout()
+    public function chat()
     {
-        $viewPath = VIEWS_PATH . 'pages/workout.php';
+        $viewPath = VIEWS_PATH . 'pages/chat.php';
         require_once $viewPath;
-        $aboutView = new workout($this->getModel(), $this);
-        $aboutView->output();
-    }
-
-    public function addworkout()
-    {
-        $viewPath = VIEWS_PATH . 'pages/addworkout.php';
-        require_once $viewPath;
-        $aboutView = new addworkout($this->getModel(), $this);
-        $aboutView->output();
-    }
-
-
-	    public function ViewUsers()
-    {
-        $viewPath = VIEWS_PATH . 'pages/ViewUsers.php';
-        require_once $viewPath;
-        $ViewUsersView = new ViewUsers($this->getModel(), $this);
-        $ViewUsersView->output();
-    }
-    public function editUser()
-    {
-        $viewPath = VIEWS_PATH . 'pages/editUser.php';
-        require_once $viewPath;
-        $ViewUsersView = new editUser($this->getModel(), $this);
-        $ViewUsersView->output();
+        $chatView = new Chat($this->getModel(), $this);
+        $chatView->output();
     }
 }

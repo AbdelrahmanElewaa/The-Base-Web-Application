@@ -1,5 +1,6 @@
 <?php
-$this->ID=$_GET['id'];
+// $this->ID=$_GET['id'];
+$this->model->setID($_GET['id']);
 class editUser extends view
 {
   public function output()
@@ -18,8 +19,9 @@ EOT;
 
   private function printForm()
   {
-    $action = URLROOT . 'users/edituser';
+    $action = URLROOT . 'pages/edituser';
     // $loginUrl = URLROOT . 'users/login';
+    $users = $this->model->ViewUser('1');
 
     $text = <<<EOT
     <div class="row">
@@ -56,7 +58,8 @@ EOT;
   private function printName()
   {
     
-    $val = $this->model->getName($this->model->getID());
+    $val =  $GLOBALS['users']->name;
+   
     $err = $this->model->getNameErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 

@@ -133,6 +133,16 @@ public function setRoleErr($roleerr){
         $this->confirmPasswordErr = $confirmPasswordErr;
     }
 
+    public function ViewUser($ID){
+		
+		$this->dbh->query('SELECT * from users where id= :id');
+        $this->dbh->bind(':id', $ID);
+
+        $record = $this->dbh->resultSet();
+		// return $this->dbh->execute();
+		return $record;
+	}
+
     // public function signup()
     // {
     //     $this->dbh->query("INSERT INTO users (`name`, `email`, `password`, `social`, `role`) VALUES(:uname, :email, :pass, :social, :r)");

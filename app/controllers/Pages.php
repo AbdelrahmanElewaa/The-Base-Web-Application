@@ -79,4 +79,11 @@ class Pages extends Controller
         $ViewUsersView = new editUser($this->getModel(), $this);
         $ViewUsersView->output();
     }
+    public function message()
+    {
+        $viewPath = VIEWS_PATH . 'pages/message.php';
+        require_once $viewPath;
+        $ViewUsersView = new message($this->getModel(), $this);
+        $ViewUsersView->output();
+    }
 }

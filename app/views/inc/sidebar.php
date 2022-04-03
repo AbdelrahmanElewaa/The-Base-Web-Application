@@ -46,7 +46,7 @@
            
           
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  style="color: white;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php if (isset($_SESSION['user_id'])) {
               echo $_SESSION['user_name'];
             } else {
@@ -56,10 +56,10 @@
           </a>
           <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
             <?php if (isset($_SESSION['user_id'])) : ?>
-              <li><a class="dropdown-item bg-dark" style="color: rgb(28,90,183);" href="users/logout">Logout</a></li>
+              <li><a class="dropdown-item bg-dark" style="color: white;" href="users/logout">Logout</a></li>
             <?php else : ?>
-              <li><a class="dropdown-item" style="color: rgb(28,90,183);" href="<?php echo URLROOT . 'users/login'; ?>">Login</a></li>
-              <li><a class="dropdown-item" style="color: rgb(28,90,183);" href="<?php echo URLROOT . 'users/register'; ?>">Sign Up</a></li>
+              <li><a class="dropdown-item" style="color: white;" href="<?php echo URLROOT . 'users/login'; ?>">Login</a></li>
+              <li><a class="dropdown-item" style="color: white;" href="<?php echo URLROOT . 'users/register'; ?>">Sign Up</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>

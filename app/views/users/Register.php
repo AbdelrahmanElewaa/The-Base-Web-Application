@@ -23,7 +23,7 @@ EOT;
     <div class="row">
     <div class="col-md-6 mx-auto">
     <div class="card card-body bg-secondary mt-5">
-    <h2>Sign Up</h2>
+    <h2>Add client</h2>
     <form action="$action" method="post">
 EOT;
     echo $text;
@@ -38,11 +38,11 @@ EOT;
     <div class="container">
       <div class="row mt-4">
         <div class="col">
-          <input type="submit" value="Register" class="form-control btn btn-lg btn-primary btn-block">
+          <input type="submit" value="Add" class="form-control btn btn-lg btn-primary btn-block">
         </div>
-        <div class="col">
-          <a href="$loginUrl" class="form-control btn btn-success btn-block">Current user, login here</a>
-        </div>
+        
+
+
       </div>
       </div>
     </form>
@@ -50,6 +50,9 @@ EOT;
     </div>
     </div>
 EOT;
+// <div class="col">
+//           <a href="$loginUrl" class="form-control btn btn-success btn-block">Current user, login here</a>
+//         </div>
     echo $text;
   }
 

@@ -4,6 +4,7 @@ class ViewUsers extends View {
 		$users = $this->model->ViewUsers();
 	// $users= $this->model->users;
 	require APPROOT.'/views/inc/header.php';
+	// require VIEWS_PATH.'pages/usersearchj.php';
 	
 	$str="<table class='table table-dark' width=100%>
 	
@@ -24,6 +25,10 @@ class ViewUsers extends View {
 		  }
 		//var_dump($Ent[0]->Name);	
 $str.="</table>";
+?>
+<br><br>
+ <a class="btn btn-warning"  style="float:right;" href="<?php echo URLROOT . 'users/register'; ?>">Add Client</a>
+<?php
     echo $str;
 	// for($i=0;$i<2;$i++)
 // print_r($users);

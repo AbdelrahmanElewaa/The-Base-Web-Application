@@ -86,4 +86,22 @@ class Pages extends Controller
         $ViewUsersView = new message($this->getModel(), $this);
         $ViewUsersView->output();
     }
+
+
+    public function usersearchj()
+    {
+        $viewPath = VIEWS_PATH . 'pages/usersearchj.php';
+        require_once $viewPath;
+        $usersearchjView = new Usersearchj($this->getModel(), $this);
+        $usersearchjView->output();
+    }
+    public function usersearch()
+    {
+        $viewPath = VIEWS_PATH . 'pages/usersearch.php';
+        require_once $viewPath;
+        $usersearchjView = new Usersearch($this->getModel(), $this);
+        $usersearchjView->output();
+    }
+
+
 }

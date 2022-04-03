@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/chat.css">
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/"> -->
   <title><?php echo SITENAME; ?></title>
   <style type="text/css">/* Chart.js */

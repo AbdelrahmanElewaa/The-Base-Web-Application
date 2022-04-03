@@ -4,7 +4,7 @@ class ViewUsers extends View {
 		$users = $this->model->ViewUsers();
 	// $users= $this->model->users;
 	require APPROOT.'/views/inc/header.php';
-	// require VIEWS_PATH.'pages/usersearchj.php';
+	require VIEWS_PATH.'pages/usersearchj.php';
 	
 	$str="<table class='table table-dark' width=100%>
 	

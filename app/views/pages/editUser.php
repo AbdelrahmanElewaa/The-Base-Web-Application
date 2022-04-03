@@ -1,5 +1,5 @@
 <?php
-$id=$_GET['id'];
+$this->ID=$_GET['id'];
 class editUser extends view
 {
   public function output()
@@ -55,7 +55,8 @@ EOT;
 
   private function printName()
   {
-    $val = $this->model->getName('1');
+    
+    $val = $this->model->getName($this->model->getID());
     $err = $this->model->getNameErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 

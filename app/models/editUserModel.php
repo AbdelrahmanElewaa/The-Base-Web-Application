@@ -82,7 +82,7 @@ public function setRoleErr($roleerr){
         $this->dbh->query("select name from users where id= :ID");
     // $this->dbh->bind(':social', $social);
     $this->dbh->bind(':ID', $ID);
-    $this->dbh->execute();
+    // $this->dbh->execute();?
     return $this->dbh->single();
         // return $this->name;
     }

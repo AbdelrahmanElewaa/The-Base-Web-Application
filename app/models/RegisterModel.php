@@ -7,10 +7,6 @@ class RegisterModel extends UserModel
     protected $nameErr;
     protected $confirmPassword;
     protected $confirmPasswordErr;
-    protected $social;
-    protected $socialerr;
-    protected $role;
-    protected $roleerr;
 
 
     public function __construct()
@@ -18,38 +14,11 @@ class RegisterModel extends UserModel
         parent::__construct();
         $this->name     = "";
         $this->nameErr = "";
-        $this->socialerr="";
-        $this->social="";
-        $this->role="";
-        $this->roleerr="";
+
         $this->confirmPassword = "";
         $this->confirmPasswordErr = "";
     }
-public function getSocial(){
-    return $this->social;
-}
-public function setSocial($social){
-    $this->social=$social;
-}
-public function getSocialErr(){
-    return $this->socialerr;
-}
-public function setSocialErr($socialerr){
-     $this->socialerr=$socialerr;
-}
 
-public function getRole(){
-    return $this->role;
-}
-public function setRole($role){
-    $this->role=$role;
-}
-public function getRoleErr(){
-    return $this->roleerr;
-}
-public function setRoleErr($roleerr){
-     $this->roleerr=$roleerr;
-}
     public function getName()
     {
         return $this->name;
@@ -90,12 +59,10 @@ public function setRoleErr($roleerr){
 
     public function signup()
     {
-        $this->dbh->query("INSERT INTO users (`name`, `email`, `password`, `social`, `role`) VALUES(:uname, :email, :pass, :social, :r)");
+        $this->dbh->query("INSERT INTO users (`name`, `email`, `password`) VALUES(:uname, :email, :pass)");
         $this->dbh->bind(':uname', $this->name);
         $this->dbh->bind(':email', $this->email);
         $this->dbh->bind(':pass', $this->password);
-        $this->dbh->bind(':social', $this->social);
-        $this->dbh->bind(':r', $this->role);
 
         return $this->dbh->execute();
     }

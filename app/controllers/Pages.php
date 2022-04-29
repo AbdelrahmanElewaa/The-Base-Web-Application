@@ -42,6 +42,30 @@ class Pages extends Controller
 
     public function addnutrition()
     {
+        $addnutritionModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+            $addnutritionModel->setdate(trim($_POST['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addnutritionModel->setmealname(trim($_POST['mealname']));
+            $addnutritionModel->setquantity(trim($_POST['quantity']));
+            $addnutritionModel->setcalories(trim($_POST['calories']));
+            $addnutritionModel->setcarbs(trim($_POST['carbs']));
+            $addnutritionModel->setfats(trim($_POST['fats']));
+            $addnutritionModel->setprotein(trim($_POST['protein']));
+            $addnutritionModel->settime(trim($_POST['time']));
+
+
+
+
+            if ($addnutritionModel->addNut()) {
+                //header('location: ' . URLROOT . 'users/login');
+                flash('register_success', 'nutrition plan is added successfully');
+                redirect('pages/addnutrition.php');
+            } else {
+                die('Error in adding nutrition');
+            }
+        }
         $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
         require_once $viewPath;
         $aboutView = new addnutrition($this->getModel(), $this);

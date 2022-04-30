@@ -14,6 +14,7 @@ class nutrition extends view {
 <div>
  <table class="table table-success table-striped">
   <thead>
+	  <th>Day Name</th>
   <th>Date</th>
 	  <th>Breakfast</th>
 	  <th>Breakfast Description</th>
@@ -26,6 +27,7 @@ class nutrition extends view {
 	foreach($nutrition as $x){
 	 ?>
 	 <tr>
+	 <td><?php echo date("D", strtotime($x->date));?></td>	 
 	 <td><?php echo $x->date;?></td>
 	 <td><?php echo $x->breakfast;?></td>
 	 <td><?php echo $x->bd;?></td>

@@ -3,27 +3,27 @@ require_once 'NutModel.php';
 class addnutritionModel extends NutModel
 {
 	protected $date;
-    protected $mealname;
+    protected $bname;
 
-    protected $quantity;
-    protected $calories;
-    protected $carbs;
-    protected $fats;
-    protected $protein;
-    protected $time;
+    protected $bd;
+    protected $lname;
+    protected $ld;
+    protected $dname;
+    protected $dd;
+    
 
     public function __construct()
     {
         parent::__construct();
         $this->date    = '';
-        $this->mealname = '';
+        $this->bname= '';
 
-        $this->quantity   = '';
-        $this->calories = '';
-        $this->carbs = '';
-        $this->fats = '';
-        $this->protein = '';
-        $this->time = '';
+        $this->bd  = '';
+        $this->lname = '';
+        $this->ld = '';
+        $this->dname = '';
+        $this->dd= '';
+        
     }
 	public function getdate()
     {
@@ -34,65 +34,61 @@ class addnutritionModel extends NutModel
         $this->date = $d;
     }
 
-    public function getmealname()
+
+    public function getbname()
     {
-        return $this->mealname;
+        return $this->bname;
     }
-    public function setmealname($m)
+    public function setbname($b)
     {
-        $this->mealname = $m;
-    }
-    public function getquantity()
-    {
-        return $this->quantity;
-    }
-    public function setquantity($q)
-    {
-        $this->quantity = $q;
-    }
-    public function getcalories()
-    {
-        return $this->calories;
-    }
-    public function setcalories($cal)
-    {
-        $this->calories = $cal;
-    }
-    public function getcarbs()
-    {
-        return $this->carbs;
-    }
-    public function setcarbs($carb)
-    {
-        $this->carbs = $carb;
-    }
-    public function getfats()
-    {
-        return $this->fats;
-    }
-    public function setfats($f)
-    {
-        $this->fats = $f;
+        $this->bname = $b;
     }
 
-    public function getprotein()
+
+    public function getbd()
     {
-        return $this->protein;
+        return $this->bd;
     }
-    public function setprotein($p)
+    public function setbd($b)
     {
-        $this->protein = $p;
+        $this->bd = $b;
     }
 
-    public function gettime()
+    public function getlname()
     {
-        return $this->time;
+        return $this->lname;
     }
-    public function settime($t)
+    public function setlname($l)
     {
-        $this->time = $t;
+        $this->lname = $l;
+    }
+    public function getld()
+    {
+        return $this->ld;
     }
 
+    public function setld($l)
+    {
+        $this->ld = $l;
+    }
+    public function getdname()
+    {
+        return $this->dname;
+    }
+    public function setdname($d)
+    {
+        $this->dname = $d;
+    }
+    public function getdd()
+    {
+        return $this->dd;
+    }
+    public function setdd($d)
+    {
+        $this->dd = $d;
+    }
+
+    
 
 
 
@@ -103,15 +99,14 @@ class addnutritionModel extends NutModel
 	{
 
 		
-		$this->dbh->query('INSERT INTO `nutrition` (`date`,`mealname`,`quantity`,`calories`,`carbs`,`fats`,`protein`,`time`) VALUES ( :date, :mealname, :quantity, :calories, :carbs, :fats, :protein, :time )');
+		$this->dbh->query('INSERT INTO `nutrition` (`date`,`breakfast`,`lunch`,`dinner`,`bd`,`ld`,`dd`) VALUES ( :date, :bname, :lname, :dname, :bd, :ld, :dd)');
 		$this->dbh->bind(':date', $this->date);
-        $this->dbh->bind(':mealname', $this->mealname);
-        $this->dbh->bind(':quantity', $this->quantity);
-		$this->dbh->bind(':calories', $this->calories);
-        $this->dbh->bind(':carbs', $this->carbs);
-        $this->dbh->bind(':fats', $this->fats);
-		$this->dbh->bind(':protein', $this->protein);
-        $this->dbh->bind(':time', $this->time);
+        $this->dbh->bind(':bname', $this->bname);
+        $this->dbh->bind(':lname', $this->lname);
+		$this->dbh->bind(':dname', $this->dname);
+        $this->dbh->bind(':bd', $this->bd);
+        $this->dbh->bind(':ld', $this->ld);
+		$this->dbh->bind(':dd', $this->dd);
          
 		return $this->dbh->execute();
 	}

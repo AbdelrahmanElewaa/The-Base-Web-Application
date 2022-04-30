@@ -2,94 +2,88 @@
 class NutModel extends model
 {
     protected $date;
-    protected $mealname;
+    protected $bname;
 
-    protected $quantity;
-    protected $calories;
-    protected $carbs;
-    protected $fats;
-    protected $protein;
-    protected $time;
+    protected $bd;
+    protected $lname;
+    protected $ld;
+    protected $dname;
+    protected $dd;
+    
 
     public function __construct()
     {
         parent::__construct();
         $this->date    = '';
-        $this->mealname = '';
+        $this->bname= '';
 
-        $this->quantity   = '';
-        $this->calories = '';
-        $this->carbs = '';
-        $this->fats = '';
-        $this->protein = '';
-        $this->time = '';
+        $this->bd  = '';
+        $this->lname = '';
+        $this->ld = '';
+        $this->dname = '';
+        $this->dd= '';
+        
     }
-
-    public function getdate()
+	public function getdate()
     {
         return $this->date;
     }
-    public function setdate($s)
+    public function setdate($d)
     {
         $this->date = $d;
     }
 
-    public function getmealname()
+
+    public function getbname()
     {
-        return $this->mealname;
+        return $this->bname;
     }
-    public function setmealname($m)
+    public function setbname($b)
     {
-        $this->mealname = $m;
-    }
-    public function getquantity()
-    {
-        return $this->quantity;
-    }
-    public function setquantity($q)
-    {
-        $this->quantity = $q;
-    }
-    public function getcalories()
-    {
-        return $this->calories;
-    }
-    public function setcalories($cal)
-    {
-        $this->calories = $cal;
-    }
-    public function getcarbs()
-    {
-        return $this->carbs;
-    }
-    public function setcarbs($carb)
-    {
-        $this->carbs = $carb;
-    }
-    public function getfats()
-    {
-        return $this->fats;
-    }
-    public function setfats($f)
-    {
-        $this->fats = $f;
+        $this->bname = $b;
     }
 
-    public function getprotein()
+
+    public function getbd()
     {
-        return $this->protein;
+        return $this->bd;
     }
-    public function setprotein($p)
+    public function setbd($b)
     {
-        $this->protein = $p;
+        $this->bd = $b;
     }
 
-    public function gettime()
+    public function getlname()
     {
-        return $this->time;
+        return $this->lname;
     }
-    public function set($t)
+    public function setlname($l)
     {
-        $this->time = $t;
+        $this->lname = $l;
+    }
+    public function getld()
+    {
+        return $this->ld;
+    }
+
+    public function setld($l)
+    {
+        $this->ld = $l;
+    }
+    public function getdname()
+    {
+        return $this->dname;
+    }
+    public function setdname($d)
+    {
+        $this->dname = $d;
+    }
+    public function getdd()
+    {
+        return $this->dd;
+    }
+    public function setdd($d)
+    {
+        $this->dd = $d;
     }
  }

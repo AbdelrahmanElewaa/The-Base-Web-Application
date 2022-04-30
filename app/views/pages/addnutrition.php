@@ -12,9 +12,43 @@ class addnutrition extends view {
 <!-- <form action="" method="post"> -->
 	<br><h2>Nutrition Plan</h2>
 	<hr>
+  <input  style="width:200px;" class="form-control" type="date" id="birthday" name="date"><br>
+  <table class="table table-success table-striped">
+  <thead>
+  <th>Meal Type</th>
+	  <th>Meal Name</th>
+	   <th>Description</th>
+	</thead>
+  <tr>
+  
+<td><b>Breakfast</b></td>
+ <td> <textarea  class="form-control" placeholder="Meal Name" name="bname" rows="4" cols="20"></textarea></td>
+ <td> <textarea  class="form-control" placeholder="Meal Name" name="bd" rows="4" cols="20"></textarea></td>
+  </tr>
+  <tr>
+  
+  <td><b>Lunch</b></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="lname" rows="4" cols="20"></textarea></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="ld" rows="4" cols="20"></textarea></td>
+    </tr>
+    <tr>
+  
+  <td><b>Dinner</b></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="dname" rows="4" cols="20"></textarea></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="dd" rows="4" cols="20"></textarea></td>
+    </tr>
+    
+
+  </table>
+  <input type="submit" value="Add" class="btn btn-primary" >
+
+
+
+
+<!--   
   <label for="Date">Day Date:</label>
-  <input  class="form-control" type="date" id="birthday" name="date"><br>
-  <input type="text"  class="form-control" placeholder="Meal Name" name="mealname">
+ <br>
+  
   <br>
   <input type="text"  class="form-control"placeholder="quantity" name="quantity"><br>
   <input type="text"  class="form-control"placeholder="Calories" name="calories"><br>
@@ -22,7 +56,7 @@ class addnutrition extends view {
   <input type="text"  class="form-control"placeholder="Fats" name="fats"><br>
   <input type="text" class="form-control" placeholder="protein" name="protein"><br>
   <input type="text" class="form-control" placeholder="Time" name="time"><br>
-  <input type="submit" value="Add" class="btn btn-primary" >
+  <input type="submit" value="Add" class="btn btn-primary" > -->
 </form>
 
 <?php

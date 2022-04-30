@@ -47,13 +47,13 @@ class Pages extends Controller
             // Process form
             $addnutritionModel->setdate(trim($_POST['date']));
             // $registerModel->setName(trim($_POST['lastname']));
-            $addnutritionModel->setmealname(trim($_POST['mealname']));
-            $addnutritionModel->setquantity(trim($_POST['quantity']));
-            $addnutritionModel->setcalories(trim($_POST['calories']));
-            $addnutritionModel->setcarbs(trim($_POST['carbs']));
-            $addnutritionModel->setfats(trim($_POST['fats']));
-            $addnutritionModel->setprotein(trim($_POST['protein']));
-            $addnutritionModel->settime(trim($_POST['time']));
+            $addnutritionModel->setbname(trim($_POST['bname']));
+            $addnutritionModel->setbd(trim($_POST['bd']));
+            $addnutritionModel->setlname(trim($_POST['lname']));
+            $addnutritionModel->setld(trim($_POST['ld']));
+            $addnutritionModel->setdname(trim($_POST['dname']));
+            $addnutritionModel->setdd(trim($_POST['dd']));
+            
 
 
 

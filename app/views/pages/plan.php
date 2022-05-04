@@ -1,10 +1,331 @@
 <?php
 class Plan extends View
 {
+
+
+
+
+ public function printBreakfast()
+  {
+
+    $r=$_SESSION['array_to_saveB'] ;
+    $DATE=$_SESSION['DATE'] ;
+
+    $output_arrayB=array();
+    for($x=0;$x<7;$x++)
+    $output_arrayB[$x]=" ";
+    $y=0;
+
+    for($x=0;$x<count($r);$x++)
+    {
+  
+      if(date("D", strtotime(  $DATE[$y] ))=='Sun')
+      {
+            $SunBreakfast= $r[$x];
+            $x++;
+            $output_arrayB[0]= $SunBreakfast;
+            $y++; 
+      }
+      if(date("D", strtotime( $DATE[$y] ))=='Mon')
+      {
+            $MonBreakfast= $r[$x];
+            $x++;
+            $output_arrayB[1]= $MonBreakfast;
+            $y++; 
+
+      }
+      if(date("D", strtotime($DATE[$y]  ))=='Tue')
+      {
+          $TueBreakfast= $r[$x];
+          $output_arrayB[2]= $TueBreakfast;
+          $x++;
+          $y++; 
+
+      }
+      if(date("D", strtotime(  $DATE[$y]  ))=='Wed')
+      {
+            $WedBreakfast= $r[$x];
+            $output_arrayB[3]= $WedBreakfast;
+            $x++;
+            $y++; 
+
+      }
+      if(date("D", strtotime( $DATE[$y]  ))=='Thu')
+      {
+            $ThuBreakfast= $r[$y];
+            $output_arrayB[4]= $ThuBreakfast;
+            $x++;
+            $y++; 
+
+      }
+      if(date("D", strtotime( $DATE[$y]  ))=='Fri')
+      {
+            $FriBreakfast= $r[$x];
+            $output_arrayB[5]= $FriBreakfast;
+            $y++;
+            $x++; 
+
+      }
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+
+      }
+      else if(date("D", strtotime( $DATE[$y] ))=='Sat')
+      {
+              $SatBreakfast=$r[$x];
+              $output_arrayB[6]= $SatBreakfast;
+              $y++; 
+              $x++;
+
+      }
+      return $output_arrayB;
+                             // default:
+                                // $sundayBreakfast="none";
+  
+  
+  
+  
+      }
+    }
+  
+
+    public function printLunch()
+    {
+  
+  
+      $r=$_SESSION['array_to_saveL'] ;
+      $DATE=$_SESSION['DATE'] ;
+
+      $output_arrayB=array();
+      for($x=0;$x<7;$x++)
+      $output_arrayB[$x]=" ";
+      $y=0;
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if($y>count($DATE))
+        $y=0;
+        if(date("D", strtotime( $DATE[$y]  ))=='Sun')
+        {
+              $SunBreakfast= $r[$x];
+              $output_arrayB[0]= $SunBreakfast;
+              $y++;
+              $x++;
+
+        }
+        if(date("D", strtotime( $DATE[$y] ))=='Mon')
+        {
+              $MonBreakfast= $r[$x];
+              $output_arrayB[1]= $MonBreakfast;
+              $y++;
+              $x++;
+
+
+  
+        }
+        if(date("D", strtotime(  $DATE[$y] ))=='Tue')
+        {
+            $TueBreakfast= $r[$x];
+            $output_arrayB[2]= $TueBreakfast;
+            $y++;
+            $x++;
+
+
+  
+        }
+        if(date("D", strtotime( $DATE[$y]  ))=='Wed')
+        {
+              $WedBreakfast= $r[$x];
+              $output_arrayB[3]= $WedBreakfast;
+              $y++;
+              $x++;
+
+
+  
+        }
+        if(date("D", strtotime( $DATE[$y]  ))=='Thu')
+        {
+              $ThuBreakfast= $r[$x];
+              $output_arrayB[4]= $ThuBreakfast;
+              $y++;
+              $x++;
+
+
+  
+        }
+        if(date("D", strtotime( $DATE[$y]  ))=='Fri')
+        {
+              $FriBreakfast= $r[$x];
+              $output_arrayB[5]= $FriBreakfast;
+              $y++;
+              $x++;
+
+
+  
+        }
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+
+        }
+        else if(date("D", strtotime( $DATE[$y] ))=='Sat')
+        {
+                $SatBreakfast=$r[$x];
+                $output_arrayB[6]= $SatBreakfast;
+                $y++;
+                $x++;
+
+
+  
+        }
+        return $output_arrayB;
+                                  // default:
+                                  // $sundayBreakfast="none";
+    
+    
+    
+    
+        }
+      }
+    
+
+      public function printDinner()
+      {
+    
+    
+        $r=$_SESSION['array_to_saveD'] ;
+        $DATE=$_SESSION['DATE'] ;
+
+        $output_arrayB=array();
+        for($x=0;$x<7;$x++)
+        $output_arrayB[$x]=" ";
+        $y=0;
+        for($x=0;$x<count($r);$x++)
+        {
+          if(date("D", strtotime($DATE[$y] ))=='Sun')
+          {
+                $SunBreakfast= $r[$x];
+                $output_arrayB[0]= $SunBreakfast;
+                $y++;
+                $x++;
+
+
+          }
+          if(date("D", strtotime(  $DATE[$y]  ))=='Mon')
+          {
+                $MonBreakfast= $r[$x];
+                $output_arrayB[1]= $MonBreakfast;
+                $y++;
+                $x++;
+
+
+    
+          }
+          if(date("D", strtotime( $DATE[$y]  ))=='Tue')
+          {
+              $TueBreakfast= $r[$x];
+              $output_arrayB[2]= $TueBreakfast;
+              $y++;
+              $x++;
+
+
+    
+          }
+          if(date("D", strtotime(  $DATE[$y] ))=='Wed')
+          {
+                $WedBreakfast= $r[$x];
+                $output_arrayB[3]= $WedBreakfast;
+                $y++;
+                $x++;
+
+
+    
+          }
+          if(date("D", strtotime( $DATE[$y]  ))=='Thu')
+          {
+                $ThuBreakfast= $r[$x];
+                $output_arrayB[4]= $ThuBreakfast;
+                $y++;
+                $x++;
+
+
+    
+          }
+          if(date("D", strtotime(  $DATE[$y] ))=='Fri')
+          {
+                $FriBreakfast= $r[$x];
+                $output_arrayB[5]= $FriBreakfast;
+                $y++;
+                $x++;
+
+
+
+
+          }
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+
+          }
+          else if(date("D", strtotime(  $DATE[$y] ))=='Sat'  )
+          {
+                  $SatBreakfast=$r[$x];
+                  $output_arrayB[6]= $SatBreakfast;
+                  $y++;
+                  $x++;
+
+    
+          }
+          return $output_arrayB;
+                                    // default:
+                                    // $sundayBreakfast="none";
+      
+      
+      
+      
+          }
+        }
+      
+  
+
   public function output()
   {
 
     require APPROOT . '/views/inc/header.php';
+    $breakfast_result=$this->printBreakfast();
+    $lunch_result=$this->printLunch();
+    $dinner_result=$this->printDinner();
+
+
+
+// $h=$this->model->getbname();
+
+    // $q = $this->model->plan();
+    // print($q[0]->date);
+    // print($this->model->getdate());
+
+// $ff=$this->model->getdate();
+
+// =$this->printBreakfast();
+
+// print(date("D", strtotime(  $this->model->getdate() )));
+// print($r);
+
+
+// $help=date("D", strtotime($this->model->getdate()));
+// $this->model->setdate(date("D", strtotime($this->model->getdate())));
+// $result =  $this->model->plan();
+$g=$this->model->getdate();
+
+// $hg=$this->model->getdate();
+// print_r($g);
+
+
+
+
+// print_r($hg);
+// print($help);
     $text = <<<EOT
 
     <!DOCTYPE html>
@@ -60,59 +381,47 @@ class Plan extends View
                 <tbody class="u-black u-table-body u-table-body-1">
                   <tr style="height: 66px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">Breakfast</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7"> Greek Yogurt&nbsp;+<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds <br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7"> $breakfast_result[0] <br>
                   <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> $breakfast_result[1]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">$breakfast_result[2]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">$breakfast_result[3]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">Lunch (Pre-Workout meal)</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12">&nbsp;Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12">$lunch_result[0]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13">$lunch_result[1]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> $lunch_result[2]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15">$lunch_result[3]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
-                  <tr style="height: 105px;">
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-16">Post Workout meal</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
-                    </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
-                    </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"><br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"><br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></td>
-                  </tr>
+                  
                   <tr style="height: 46px;">
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">Dinner</td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">$dinner_result[0]<br>
                   <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> $dinner_result[1]<br>
                   <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">$dinner_result[2]<br>
                   <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> $dinner_result[3]<br>
                   <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
                 </tr>
@@ -149,49 +458,38 @@ class Plan extends View
                 <tbody class="u-black u-table-body u-table-body-1">
                   <tr style="height: 66px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-5">Breakfast</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6"> Greek Yogurt&nbsp;+<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">$breakfast_result[4]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">$breakfast_result[5]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> $breakfast_result[6]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">Lunch (Pre-Workout meal)</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">&nbsp;Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">$lunch_result[4]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">$lunch_result[5]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
-                    </td>
-                  </tr>
-                  <tr style="height: 105px;">
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13">Post Workout meal</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
-                    </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
-                    </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-16"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12"> $lunch_result[6]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
+                  
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">Dinner</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">$dinner_result[4]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> $dinner_result[5]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> Greek Yogurt +<br>one medium banana+<br>4 table spoon of oats+<br>1 teaspoon of penut butter or nuts or<br>flaxseeds300<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> $dinner_result[6]<br>
                     <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>

@@ -10,6 +10,7 @@ class addnutritionModel extends NutModel
     protected $ld;
     protected $dname;
     protected $dd;
+    protected $userid;
     
 
     public function __construct()
@@ -23,7 +24,7 @@ class addnutritionModel extends NutModel
         $this->ld = '';
         $this->dname = '';
         $this->dd= '';
-        
+        $this->userid= '';
     }
 	public function getdate()
     {
@@ -88,7 +89,15 @@ class addnutritionModel extends NutModel
         $this->dd = $d;
     }
 
-    
+    public function getuserid()
+    {
+        return $this->userid;
+    }
+    public function setuserid($u)
+    {
+        $this->userid = $u;
+    }
+
 
 
 
@@ -99,7 +108,7 @@ class addnutritionModel extends NutModel
 	{
 
 		
-		$this->dbh->query('INSERT INTO `nutrition` (`date`,`breakfast`,`lunch`,`dinner`,`bd`,`ld`,`dd`) VALUES ( :date, :bname, :lname, :dname, :bd, :ld, :dd)');
+		$this->dbh->query('INSERT INTO `nutrition` (`date`,`breakfast`,`lunch`,`dinner`,`bd`,`ld`,`dd`,`userID`) VALUES ( :date, :bname, :lname, :dname, :bd, :ld, :dd, :userid)');
 		$this->dbh->bind(':date', $this->date);
         $this->dbh->bind(':bname', $this->bname);
         $this->dbh->bind(':lname', $this->lname);
@@ -107,7 +116,7 @@ class addnutritionModel extends NutModel
         $this->dbh->bind(':bd', $this->bd);
         $this->dbh->bind(':ld', $this->ld);
 		$this->dbh->bind(':dd', $this->dd);
-         
+        $this->dbh->bind(':userid', $this->userid);
 		return $this->dbh->execute();
 	}
 	

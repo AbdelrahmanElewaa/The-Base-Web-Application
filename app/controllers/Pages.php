@@ -53,7 +53,7 @@ class Pages extends Controller
             $addnutritionModel->setld(trim($_POST['ld']));
             $addnutritionModel->setdname(trim($_POST['dname']));
             $addnutritionModel->setdd(trim($_POST['dd']));
-            
+            $addnutritionModel->setuserid(trim($_POST['userid']));
 
 
 

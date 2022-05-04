@@ -38,7 +38,7 @@ class addnutrition extends view {
    <td> <textarea  class="form-control" placeholder="Meal Name" name="dd" rows="4" cols="20"></textarea></td>
     </tr>
     
-
+<td style="display:none;"><input type="hidden" value="<?php echo $_GET['id'];?>" name="userid" ></td>
   </table>
   <input type="submit" value="Add" class="btn btn-primary" >
 

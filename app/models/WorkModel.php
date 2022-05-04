@@ -1,8 +1,7 @@
 <?php
-require_once 'WorkModel.php';
-class addworkoutModel extends WorkModel
+class WorkModel extends model
 {
-	protected $date;
+    protected $date;
     protected $name;
 
     protected $sets;
@@ -94,24 +93,4 @@ class addworkoutModel extends WorkModel
         $this->userid = $u;
     }
     
-	
-	public function addWork()
-	{
-
-		
-		$this->dbh->query('INSERT INTO `training` (`date`,`name`,`sets`,`reps`,`weights`,`resttime`,`traininguserid`) VALUES ( :date, :name, :sets, :reps, :weights, :resttime, :userid)');
-		$this->dbh->bind(':date', $this->date);
-        $this->dbh->bind(':name', $this->name);
-        $this->dbh->bind(':sets', $this->sets);
-		$this->dbh->bind(':reps', $this->reps);
-        $this->dbh->bind(':weights', $this->weights);
-        $this->dbh->bind(':resttime', $this->resttime);
-		$this->dbh->bind(':userid', $this->userid);
-		 
-		return $this->dbh->execute();
-	}
-	
-	
-}
-
-?>
+ }

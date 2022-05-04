@@ -82,6 +82,31 @@ class Pages extends Controller
 
     public function addworkout()
     {
+        $addworkoutModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+            $addworkoutModel->setdate(trim($_POST['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addworkoutModel->setname(trim($_POST['name']));
+            $addworkoutModel->setsets(trim($_POST['sets']));
+            $addworkoutModel->setreps(trim($_POST['reps']));
+            $addworkoutModel->setweights(trim($_POST['weights']));
+            $addworkoutModel->setresttime(trim($_POST['resttime']));
+            $addworkoutModel->setuserid(trim($_POST['userid']));
+             
+
+
+
+
+            if ($addworkoutModel->addWork()) {
+                //header('location: ' . URLROOT . 'users/login');
+                flash('register_success', 'workout plan is added successfully');
+                redirect('pages/addworkout.php');
+            } else {
+                die('Error in adding nutrition');
+            }
+        }
+
         $viewPath = VIEWS_PATH . 'pages/addworkout.php';
         require_once $viewPath;
         $aboutView = new addworkout($this->getModel(), $this);

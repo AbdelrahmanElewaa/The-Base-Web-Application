@@ -2,6 +2,7 @@
 <?php
 class workout extends view {
 	public function output(){
+		$workout = $this->model->ViewWorkout();
 	 require APPROOT.'/views/inc/header.php';
 	
 	 ?>
@@ -13,27 +14,33 @@ class workout extends view {
 <div>
  <table class="table table-danger table-striped">
   <thead>
-  <th>Training Date</th>
-	  <th>Training Name</th>
-	  <th>Muscle</th>
+  <th>Day</th>
+  <th>Date</th>
+	  <th>Excercise</th>
       <th>Sets</th>
       <th>Reps</th>
-	  <th>Weights</th>
+	  <th>Type of Resistance</th>
 	  <th>Rest Time</th>
-	  <th>Video</th>
 	</thead>
-	<td>30/1/2021</td>
-	<td>Bensh Press</td>
-	<td>Bench</td>
-	<td>4 </td>
-	<td>15 </td>
-	<td>15 kilo</td>
-	<td>1 minute</td>
-	<td>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/-6oBbHy_zjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-     
-    </td>
+
+
+	<?php
+	foreach($workout as $x){
+	 ?>
+	 <tr>
+	 <td><?php echo date("D", strtotime($x->date));?></td>	 
+	 <td><?php echo $x->date;?></td>
+	 <td><?php echo $x->name;?></td>
+	 <td><?php echo $x->sets;?></td>
+	 <td><?php echo $x->reps;?></td>
+	 <td><?php echo $x->weights;?></td>
+	 <td><?php echo $x->resttime;?></td>
 	 
+	</tr>
+	 <?php
+	}
+	 ?>
+	  
 </table>
 	</div>
 <?php

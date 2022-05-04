@@ -2,23 +2,28 @@
 class addworkout extends view {
 	public function output(){
 	 require APPROOT.'/views/inc/header.php';
-	
+   $action = URLROOT . 'pages/addworkout';
+   $text = <<<EOT
+   <form action="$action" method="post">
+   EOT;
+   echo $text;
+  
 	 ?>
-<form action="/action_page.php" enctype='multipart/form-data' >
+ 
 
 	<br><h2>Add Workout Program</h2>
 	<hr>
   <label for="Date">Day Date:</label>
-  <input  class="form-control" type="date" id="TrainingDate" name="TrainingDate"><br>
-  <input type="text"  class="form-control" placeholder="Training Name">
+  <input  class="form-control" type="date" id="TrainingDate" name="date"><br>
+  <input type="text"  class="form-control" placeholder="Exercise"  name="name">
   <br>
-  <input type="text"  class="form-control"placeholder="Muscle:"><br>
-  <input type="text"  class="form-control"placeholder="Sets"><br>
-  <input type="text" class="form-control" placeholder="Reps"><br>
-  <input type="text"  class="form-control"placeholder="Rest Time"><br>
-   <input type="text" class="form-control" placeholder="Add Embeded URL Youtube link :"  ><br>
-  <input type="text" class="form-control" placeholder="Time"><br>
-  <input type="submit" value="Add" class="btn btn-primary">
+  <input type="text"  class="form-control"placeholder="Sets"  name="sets"><br>
+  <input type="text" class="form-control" placeholder="Reps"  name="reps" ><br>
+  <input type="text"  class="form-control"placeholder="Type of Resistance" name="weights"><br>
+   
+  <input type="text" class="form-control" placeholder="Rest Time" name="resttime">
+  <input type="hidden" value="1"  name="userid"><br>
+  <input type="submit" value="Add" class="btn btn-primary" name="submit">
 </form>
 
 <?php

@@ -7,9 +7,27 @@ class Chat extends View
     // $subtitle = $this->model->subtitle;
     // $user_id = $_SESSION['user_id'];
     // $user_name = $_SESSION['user_name'];
+    $MessageFromAdmin=$this->model->getMessageFromAdmin();
+    $MessageFromClient=$this->model->getMessageFromClient();
 
+    $record=$this->model->chat();
+    $action = URLROOT . 'pages/chat';
+
+
+
+//    if($this->model->getSender()==1)
+//    {
+//     $MessageFromAdmin=$this->model->getMessage();
+//    }
+//    else
+//    {
+//        $MessageFromClient=$this->model->getMessage();
+//    }
+    // Admin -->ID --> 1
+
+    $x=0;
     require APPROOT . '/views/inc/header.php';
-    $text = <<<EOT
+    $text = <<< EOT
  
 
     <div class="container">
@@ -44,7 +62,7 @@ class Chat extends View
                                 <div class="name">Mike Thomas</div>
                                 <div class="status"> <i class="fa fa-circle online"></i> online </div>
                             </div>
-                        </li>                                    
+                        </li>                                  
                         <li class="clearfix">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                             <div class="about">
@@ -90,35 +108,78 @@ class Chat extends View
                     </div>
                     <div class="chat-history">
                         <ul class="m-b-0">
-                            <li class="clearfix">
+EOT;
+for($x=0;$x<count($record);$x++)
+{
+    if($record[$x]->sender==1)
+    {
+                            $loop1=<<<EOT
+
+
+                                <li class="clearfix">
                                 <div class="message-data text-right">
                                     <span class="message-data-time">10:10 AM, Today</span>
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                 </div>
-                                <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
+                                <div class="message other-message float-right"> 
+
+EOT;
+
+
+$loop1=$loop1 .$record[$x]->content;
+$loop11=str_repeat($loop1,1);
+$text =$text. $loop11;
+
+
+
+    }
+
+$loop1=$loop1.<<<EOT
+                                   </div>
                             </li>
-                            <li class="clearfix">
+
+
+EOT;
+
+
+    if($record[$x]->sender!=1)
+    {
+                            $loop2=<<<EOT
+
+                                <li class="clearfix">
                                 <div class="message-data">
                                     <span class="message-data-time">10:12 AM, Today</span>
                                 </div>
-                                <div class="message my-message">Are we meeting today?</div>                                    
-                            </li>                               
-                            <li class="clearfix">
-                                <div class="message-data">
-                                    <span class="message-data-time">10:15 AM, Today</span>
-                                </div>
-                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
-                            </li>
+                                <div class="message my-message"> 
+                                
+EOT;
+$loop2=$loop2 .$record[$x]->content;
+$loop22=str_repeat($loop2,1);
+$text =$text. $loop22;
+
+
+
+    }
+}
+$loop2=$loop2.<<<EOT
+</div>                                    
+                            </li>     
+EOT;
+
+                        $text = $text.<<<EOT
                         </ul>
                     </div>
+                    <form action="$action " method="post">
                     <div class="chat-message clearfix">
                         <div class="input-group mb-0">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                <span class="input-group-text"><i class="fa fa-send"><input type="submit" value="send" > </i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Enter text here...">                                    
+                            <input type="text" class="form-control" placeholder="Enter text here..." name="message">                                    
                         </div>
                     </div>
+                    </form>
+
                 </div>
             </div>
         </div>

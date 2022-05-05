@@ -65,9 +65,9 @@ class Pages extends Controller
 
 
 
-    
 
-        if ($result = $displaynutritionModel->plan()) 
+
+        if ($result = $displaynutritionModel->plan())
         {
             $breakfastArray=array();
             $x=0;
@@ -80,12 +80,19 @@ class Pages extends Controller
             $displaynutritionModel->setbname($result[$x]->breakfast);
             $displaynutritionModel->setlname($result[$x]->lunch);
             $displaynutritionModel->setdname($result[$x]->dinner);
+            $displaynutritionModel->setbd($result[$x]->bd);
+            $displaynutritionModel->setld($result[$x]->Ld);
+            $displaynutritionModel->setdd($result[$x]->dd);
+
+
+
+
 
 
             // $breakfastArray[$x]=$b;
-            $b[$x]=$result[$x]->breakfast;
-            $l[$x]=$result[$x]->lunch;
-            $d[$x]=$result[$x]->dinner;
+            $b[$x]=$result[$x]->breakfast."<br> Details : ".$result[$x]->bd;
+            $l[$x]=$result[$x]->lunch."<br> Details : ".$result[$x]->Ld;
+            $d[$x]=$result[$x]->dinner."<br> Details : ".$result[$x]->dd;
             $DATE[$x]=$result[$x]->date;
 
             // $LunchArray[$x]=$b;
@@ -101,11 +108,14 @@ class Pages extends Controller
 
 
 
+
+
+
             // echo "<h1>$date</h1>";
             //header('location: ' . URLROOT . 'users/login');
             // flash('Nutrition plan_success', 'nutrition plan is viwed successfully');
             // redirect('pages/addnutrition.php');
-            
+
         } else {
             die('Error in adding nutrition');
         }
@@ -117,40 +127,19 @@ class Pages extends Controller
         $planView = new Plan($this->getModel(), $this);
         $planView->output();
 
-        
+
     }
 
 
 
 
 
-public function work()
+    public function work()
     {
-        $workoutdisplaytableModel = $this->getModel();
-
-
-        if ($result = $workoutdisplaytableModel->work()) 
-        {
-            $x=0;
-            $workoutdisplaytableModel->setname($result[$x]->name);
-          
-            $workoutdisplaytableModel->setdate($result[$x]->date);
-            $x++;
-
-            
-        } else {
-            die('Error in display wokout program');
-        }
-
-      
-
         $viewPath = VIEWS_PATH . 'pages/work.php';
         require_once $viewPath;
         $workView = new Work($this->getModel(), $this);
         $workView->output();
-        
-
-        
     }
 
 
@@ -164,6 +153,7 @@ public function work()
         require_once $viewPath;
         $plandisplayView = new Plandisplay($this->getModel(), $this);
         $plandisplayView->output();
+
     }
 
 
@@ -176,9 +166,9 @@ public function work()
         require_once $viewPath;
         $workoutdisplayView = new Workoutdisplay($this->getModel(), $this);
         $workoutdisplayView->output();
-    }  
-    
-    
+    }
+
+
 
 
 
@@ -196,6 +186,57 @@ public function work()
 
     public function chat()
     {
+
+        $viewChatModel = $this->getModel();
+        if($result=$viewChatModel->chat())
+        {
+
+            $x=0;
+            while(isset($result[$x]))
+            {
+            $viewChatModel->setSender($result[$x]->sender);
+            $viewChatModel->setReciever($result[$x]->reciever);
+            if($viewChatModel->getSender()==1)
+            {
+                $viewChatModel->setMessageFromAdmin($result[$x]->content);
+            }
+            else
+            {
+                $viewChatModel->setMessageFromClient($result[$x]->content);
+
+            }
+
+            $x++;
+
+        }
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if(!empty($_POST['message']))
+            {
+            $viewChatModel->setMessage(trim($_POST['message']));
+            $viewChatModel->setSender(2);
+            $viewChatModel->setReciever(1);
+            $viewChatModel->setCreated_at(date('y-m-d h:i:s'));
+            $viewChatModel->setSeen(0);
+
+            if($viewChatModel->send())
+            {
+                header("Refresh:0");
+            }
+            }
+
+
+
+
+
+        }
+
+
+
+
         $viewPath = VIEWS_PATH . 'pages/chat.php';
         require_once $viewPath;
         $chatView = new Chat($this->getModel(), $this);
@@ -219,7 +260,7 @@ public function work()
             $addnutritionModel->setld(trim($_POST['ld']));
             $addnutritionModel->setdname(trim($_POST['dname']));
             $addnutritionModel->setdd(trim($_POST['dd']));
-            
+
 
 
 
@@ -249,13 +290,13 @@ public function work()
     //     require_once $viewPath;
     //     $aboutView = new addnutrition($this->getModel(), $this);
     //     $aboutView->output();
-    
+
     // }
 
 
 
-  
-    
+
+
 
 
 

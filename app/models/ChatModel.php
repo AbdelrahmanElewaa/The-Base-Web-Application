@@ -91,7 +91,9 @@ class ChatModel extends UserModel
 
     public function chat()
     {
-        $this->dbh->query('SELECT DISTINCT sender,reciever,content FROM chat,users  WHERE (`sender` = 1 AND `reciever` = 2) OR (`sender` = 2 AND `reciever` = 1) ORDER BY `created_at` ASC') ;
+        $this->dbh->query('SELECT DISTINCT sender,reciever,content FROM chat,users  WHERE (`sender` = :uid AND `reciever` = 2) OR (`sender` = :uid AND `reciever` = 1) ORDER BY `created_at` ASC') ;
+        $this->dbh->bind(':uid',$_SESSION['user_id'] );
+
 		return $this->dbh->resultSet();
     }
 
@@ -99,8 +101,8 @@ class ChatModel extends UserModel
     {
         $this->dbh->query('INSERT INTO chat (sender, reciever, content, created_at,seen)
         VALUES (:s, :r, :m, :c,:se) ') ;
-		$this->dbh->bind(':s', $this->sender);
-        $this->dbh->bind(':r', $this->reciever);
+		$this->dbh->bind(':s',$_SESSION['user_id'] );
+        $this->dbh->bind(':r', 1);
         $this->dbh->bind(':m', $this->message);
 		$this->dbh->bind(':c', $this->created_at);
         $this->dbh->bind(':se', $this->seen);

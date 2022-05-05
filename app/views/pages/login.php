@@ -9,6 +9,7 @@ class Login extends View
     // $user_name = $_SESSION['user_name'];
 
     require APPROOT . '/views/inc/header.php';
+    $action = URLROOT . 'pages/login';
     $text = <<<EOT
  
     <!DOCTYPE html>
@@ -38,6 +39,7 @@ class Login extends View
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode">
+  <form action="$action" method="post">
     <section class="Login u-align-center u-clearfix u-palette-5-light-2 u-section-1" id="sec-3fb4">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <h1 class="u-text u-text-custom-color-1 u-text-default u-text-1">Login&nbsp;</h1>
@@ -45,11 +47,11 @@ class Login extends View
           <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
             <div class="u-form-group u-form-name u-label-none">
               <label for="name-3b9a" class="u-label u-text-custom-color-1">Email</label>
-              <input type="text" placeholder="Enter a valid email address" id="name-3b9a" name="Email" class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-input u-input-rectangle u-input-1" required="required">
+              <input type="email" placeholder="Enter a valid email address" id="name-3b9a" name="email" class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-input u-input-rectangle " required="required">
             </div>
             <div class="u-form-email u-form-group u-label-none">
               <label for="email-3b9a" class="u-label u-text-custom-color-1">Password</label>
-              <input type="email" placeholder="Password" id="email-3b9a" name="Password" class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-input u-input-rectangle u-input-2" required="">
+              <input type="password" placeholder="Password" id="email-3b9a" name="password" class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-input u-input-rectangle " required="">
             </div>
             <div class="u-align-center u-form-group u-form-submit">
               <a href="#" class="u-border-2 u-border-custom-color-1 u-border-hover-black u-btn u-btn-round u-btn-submit u-button-style u-none u-radius-17 u-btn-1">Submit</a>
@@ -63,7 +65,7 @@ class Login extends View
       </div>
     </section>
     
-    
+    </form>
 
   </body>
 </html>

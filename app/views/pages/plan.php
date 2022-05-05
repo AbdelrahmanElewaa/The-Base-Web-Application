@@ -10,60 +10,83 @@ class Plan extends View
 
     $r=$_SESSION['array_to_saveB'] ;
     $DATE=$_SESSION['DATE'] ;
-
+    // print_r($DATE);
     $output_arrayB=array();
     for($x=0;$x<7;$x++)
     $output_arrayB[$x]=" ";
     $y=0;
-
     for($x=0;$x<count($r);$x++)
     {
-  
-      if(date("D", strtotime(  $DATE[$y] ))=='Sun')
+
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+      }
+      else if(date("D", strtotime(  $DATE[$y] ))=='Sun')
       {
             $SunBreakfast= $r[$x];
             $x++;
             $output_arrayB[0]= $SunBreakfast;
-            $y++; 
+            $y++;
       }
-      if(date("D", strtotime( $DATE[$y] ))=='Mon')
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+      }
+      else if(date("D", strtotime( $DATE[$y] ))=='Mon')
       {
             $MonBreakfast= $r[$x];
             $x++;
             $output_arrayB[1]= $MonBreakfast;
-            $y++; 
+            $y++;
 
       }
-      if(date("D", strtotime($DATE[$y]  ))=='Tue')
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+      }
+      else if(date("D", strtotime($DATE[$y]  ))=='Tue')
       {
           $TueBreakfast= $r[$x];
           $output_arrayB[2]= $TueBreakfast;
           $x++;
-          $y++; 
+          $y++;
 
       }
-      if(date("D", strtotime(  $DATE[$y]  ))=='Wed')
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+      }
+      else if(date("D", strtotime(  $DATE[$y]  ))=='Wed')
       {
             $WedBreakfast= $r[$x];
             $output_arrayB[3]= $WedBreakfast;
             $x++;
-            $y++; 
+            $y++;
 
       }
-      if(date("D", strtotime( $DATE[$y]  ))=='Thu')
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+      }
+      else if(date("D", strtotime( $DATE[$y]  ))=='Thu')
       {
             $ThuBreakfast= $r[$y];
             $output_arrayB[4]= $ThuBreakfast;
             $x++;
-            $y++; 
+            $y++;
 
       }
-      if(date("D", strtotime( $DATE[$y]  ))=='Fri')
+      if(count($DATE) == $y)
+      {
+        $output_arrayB[6]= " ";
+      }
+      else if(date("D", strtotime( $DATE[$y]  ))=='Fri')
       {
             $FriBreakfast= $r[$x];
             $output_arrayB[5]= $FriBreakfast;
             $y++;
-            $x++; 
+            $x++;
 
       }
       if(count($DATE) == $y)
@@ -75,25 +98,27 @@ class Plan extends View
       {
               $SatBreakfast=$r[$x];
               $output_arrayB[6]= $SatBreakfast;
-              $y++; 
+              $y++;
               $x++;
 
       }
+
+
       return $output_arrayB;
                              // default:
                                 // $sundayBreakfast="none";
-  
-  
-  
-  
+
+
+
+
       }
     }
-  
+
 
     public function printLunch()
     {
-  
-  
+
+
       $r=$_SESSION['array_to_saveL'] ;
       $DATE=$_SESSION['DATE'] ;
 
@@ -106,7 +131,11 @@ class Plan extends View
 
         if($y>count($DATE))
         $y=0;
-        if(date("D", strtotime( $DATE[$y]  ))=='Sun')
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+        }
+        else if(date("D", strtotime( $DATE[$y]  ))=='Sun')
         {
               $SunBreakfast= $r[$x];
               $output_arrayB[0]= $SunBreakfast;
@@ -114,7 +143,11 @@ class Plan extends View
               $x++;
 
         }
-        if(date("D", strtotime( $DATE[$y] ))=='Mon')
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+        }
+        else if(date("D", strtotime( $DATE[$y] ))=='Mon')
         {
               $MonBreakfast= $r[$x];
               $output_arrayB[1]= $MonBreakfast;
@@ -122,9 +155,13 @@ class Plan extends View
               $x++;
 
 
-  
+
         }
-        if(date("D", strtotime(  $DATE[$y] ))=='Tue')
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+        }
+        else if(date("D", strtotime(  $DATE[$y] ))=='Tue')
         {
             $TueBreakfast= $r[$x];
             $output_arrayB[2]= $TueBreakfast;
@@ -132,9 +169,13 @@ class Plan extends View
             $x++;
 
 
-  
+
         }
-        if(date("D", strtotime( $DATE[$y]  ))=='Wed')
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+        }
+        else if(date("D", strtotime( $DATE[$y]  ))=='Wed')
         {
               $WedBreakfast= $r[$x];
               $output_arrayB[3]= $WedBreakfast;
@@ -142,9 +183,13 @@ class Plan extends View
               $x++;
 
 
-  
+
         }
-        if(date("D", strtotime( $DATE[$y]  ))=='Thu')
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+        }
+        else if(date("D", strtotime( $DATE[$y]  ))=='Thu')
         {
               $ThuBreakfast= $r[$x];
               $output_arrayB[4]= $ThuBreakfast;
@@ -152,9 +197,13 @@ class Plan extends View
               $x++;
 
 
-  
+
         }
-        if(date("D", strtotime( $DATE[$y]  ))=='Fri')
+        if(count($DATE) == $y)
+        {
+          $output_arrayB[6]= " ";
+        }
+        else if(date("D", strtotime( $DATE[$y]  ))=='Fri')
         {
               $FriBreakfast= $r[$x];
               $output_arrayB[5]= $FriBreakfast;
@@ -162,12 +211,11 @@ class Plan extends View
               $x++;
 
 
-  
+
         }
         if(count($DATE) == $y)
         {
           $output_arrayB[6]= " ";
-
         }
         else if(date("D", strtotime( $DATE[$y] ))=='Sat')
         {
@@ -177,23 +225,23 @@ class Plan extends View
                 $x++;
 
 
-  
+
         }
         return $output_arrayB;
                                   // default:
                                   // $sundayBreakfast="none";
-    
-    
-    
-    
+
+
+
+
         }
       }
-    
+
 
       public function printDinner()
       {
-    
-    
+
+
         $r=$_SESSION['array_to_saveD'] ;
         $DATE=$_SESSION['DATE'] ;
 
@@ -203,7 +251,11 @@ class Plan extends View
         $y=0;
         for($x=0;$x<count($r);$x++)
         {
-          if(date("D", strtotime($DATE[$y] ))=='Sun')
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+          }
+          else if(date("D", strtotime($DATE[$y] ))=='Sun')
           {
                 $SunBreakfast= $r[$x];
                 $output_arrayB[0]= $SunBreakfast;
@@ -212,7 +264,11 @@ class Plan extends View
 
 
           }
-          if(date("D", strtotime(  $DATE[$y]  ))=='Mon')
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+          }
+          else if(date("D", strtotime(  $DATE[$y]  ))=='Mon')
           {
                 $MonBreakfast= $r[$x];
                 $output_arrayB[1]= $MonBreakfast;
@@ -220,9 +276,13 @@ class Plan extends View
                 $x++;
 
 
-    
+
           }
-          if(date("D", strtotime( $DATE[$y]  ))=='Tue')
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+          }
+          else if(date("D", strtotime( $DATE[$y]  ))=='Tue')
           {
               $TueBreakfast= $r[$x];
               $output_arrayB[2]= $TueBreakfast;
@@ -230,9 +290,13 @@ class Plan extends View
               $x++;
 
 
-    
+
           }
-          if(date("D", strtotime(  $DATE[$y] ))=='Wed')
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+          }
+          else if(date("D", strtotime(  $DATE[$y] ))=='Wed')
           {
                 $WedBreakfast= $r[$x];
                 $output_arrayB[3]= $WedBreakfast;
@@ -240,9 +304,13 @@ class Plan extends View
                 $x++;
 
 
-    
+
           }
-          if(date("D", strtotime( $DATE[$y]  ))=='Thu')
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+          }
+          else if(date("D", strtotime( $DATE[$y]  ))=='Thu')
           {
                 $ThuBreakfast= $r[$x];
                 $output_arrayB[4]= $ThuBreakfast;
@@ -250,9 +318,13 @@ class Plan extends View
                 $x++;
 
 
-    
+
           }
-          if(date("D", strtotime(  $DATE[$y] ))=='Fri')
+          if(count($DATE) == $y)
+          {
+            $output_arrayB[6]= " ";
+          }
+          else if(date("D", strtotime(  $DATE[$y] ))=='Fri')
           {
                 $FriBreakfast= $r[$x];
                 $output_arrayB[5]= $FriBreakfast;
@@ -275,19 +347,19 @@ class Plan extends View
                   $y++;
                   $x++;
 
-    
+
           }
           return $output_arrayB;
                                     // default:
                                     // $sundayBreakfast="none";
-      
-      
-      
-      
+
+
+
+
           }
         }
-      
-  
+
+
 
   public function output()
   {
@@ -339,10 +411,10 @@ $g=$this->model->getdate();
         <meta name="page_type" content="np-template-header-footer-from-plugin">
         <title>plan</title>
         <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
-        
-        
-        
-        
+
+
+
+
         <script type="application/ld+json">{
         "@context": "http://schema.org",
         "@type": "Organization",
@@ -382,52 +454,40 @@ $g=$this->model->getdate();
                   <tr style="height: 66px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">Breakfast</td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7"> $breakfast_result[0] <br>
-                  <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> $breakfast_result[1]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">$breakfast_result[2]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">$breakfast_result[3]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">Lunch (Pre-Workout meal)</td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12">$lunch_result[0]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13">$lunch_result[1]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> $lunch_result[2]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15">$lunch_result[3]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
-                  
+
                   <tr style="height: 46px;">
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">Dinner</td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">$dinner_result[0]<br>
-                  <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> $dinner_result[1]<br>
-                  <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">$dinner_result[2]<br>
-                  <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> $dinner_result[3]<br>
-                  <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                   </td>
                 </tr>
                   <tr style="height: 60px;">
-           
-                  
+
+
                 </tr>
 
                 </tbody>
@@ -459,43 +519,34 @@ $g=$this->model->getdate();
                   <tr style="height: 66px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-5">Breakfast</td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">$breakfast_result[4]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">$breakfast_result[5]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> $breakfast_result[6]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">Lunch (Pre-Workout meal)</td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">$lunch_result[4]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">$lunch_result[5]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12"> $lunch_result[6]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
-                  
+
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">Dinner</td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">$dinner_result[4]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> $dinner_result[5]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> $dinner_result[6]<br>
-                    <a href="/MVC/public/pages/plandisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a>
                     </td>
                   </tr>
 
 
-                  
+
 
 
                 </tbody>
@@ -509,24 +560,24 @@ $g=$this->model->getdate();
               <div class="u-repeater u-repeater-1">
                 <div class="u-container-style u-list-item u-repeater-item">
                   <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-icon u-icon-circle u-text-palette-1-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 515.556 515.556" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3aeb"></use></svg><svg class="u-svg-content" viewBox="0 0 515.556 515.556" id="svg-3aeb"><path d="m0 274.226 176.549 176.886 339.007-338.672-48.67-47.997-290.337 290-128.553-128.552z"></path></svg>
-                
-                
+
+
               </span>
                     <p class="u-text u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                   </div>
                 </div>
                 <div class="u-container-style u-list-item u-repeater-item">
                   <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-icon u-icon-circle u-text-palette-1-base u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 515.556 515.556" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-6b12"></use></svg><svg class="u-svg-content" viewBox="0 0 515.556 515.556" id="svg-6b12"><path d="m0 274.226 176.549 176.886 339.007-338.672-48.67-47.997-290.337 290-128.553-128.552z"></path></svg>
-                
-                
+
+
               </span>
                     <p class="u-text u-text-3">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                   </div>
                 </div>
                 <div class="u-container-style u-list-item u-repeater-item">
                   <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-icon u-icon-circle u-text-palette-1-base u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 515.556 515.556" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-75c2"></use></svg><svg class="u-svg-content" viewBox="0 0 515.556 515.556" id="svg-75c2"><path d="m0 274.226 176.549 176.886 339.007-338.672-48.67-47.997-290.337 290-128.553-128.552z"></path></svg>
-                
-                
+
+
               </span>
                     <p class="u-text u-text-3">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                   </div>
@@ -535,13 +586,13 @@ $g=$this->model->getdate();
             </div>
           </div>
         </section>
-        
-        
+
+
 
 
       </body>
     </html>
-   
+
 EOT;
     echo $text;
     require APPROOT . '/views/inc/footer.php';

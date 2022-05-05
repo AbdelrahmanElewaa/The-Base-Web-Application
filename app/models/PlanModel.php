@@ -3,7 +3,7 @@ require_once 'UserModel.php';
 class PlanModel extends UserModel
 {
     public  $title = 'User Login Page';
-	protected $date;
+	  protected $date;
     protected $bname;
 
     protected $bd;
@@ -11,6 +11,7 @@ class PlanModel extends UserModel
     protected $ld;
     protected $dname;
     protected $dd;
+    protected $userID;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class PlanModel extends UserModel
         $this->ld = '';
         $this->dname = '';
         $this->dd= '';
+        $this->userID="";
 
     }
 	public function getdate()
@@ -89,10 +91,22 @@ class PlanModel extends UserModel
     }
 
 
+    public function getuserID()
+    {
+        return $this->userID;
+    }
+    public function setUserID($u)
+    {
+        $this->userID = $u;
+    }
+
+
 
     public function plan()
     {
-	$this->dbh->query('select * from `nutrition`') ;
+	$this->dbh->query('select * from nutrition where userID=:uid') ;
+    $this->dbh->bind(':uid',$_SESSION['user_id']);
+
 		return $this->dbh->resultSet();
 
     }

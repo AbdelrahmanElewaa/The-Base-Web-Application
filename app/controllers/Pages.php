@@ -124,12 +124,33 @@ class Pages extends Controller
 
 
 
-    public function work()
+public function work()
     {
+        $workoutdisplaytableModel = $this->getModel();
+
+
+        if ($result = $workoutdisplaytableModel->work()) 
+        {
+            $x=0;
+            $workoutdisplaytableModel->setname($result[$x]->name);
+          
+            $workoutdisplaytableModel->setdate($result[$x]->date);
+            $x++;
+
+            
+        } else {
+            die('Error in display wokout program');
+        }
+
+      
+
         $viewPath = VIEWS_PATH . 'pages/work.php';
         require_once $viewPath;
         $workView = new Work($this->getModel(), $this);
         $workView->output();
+        
+
+        
     }
 
 

@@ -109,12 +109,34 @@ class Pages extends Controller
 
 
 
+    
     public function work()
     {
+        $work = $this->getModel();
+
+
+       
+        if ($result = $work->work()) 
+        {
+            for($x=0 ; $x<count($result) ; $x++){
+            $work->setname($result[$x]->name);
+          
+            $work->setdate($result[$x]->date);
+            }
+            
+        } else {
+            die('Error in display wokout program');
+        }
+
+      
+
         $viewPath = VIEWS_PATH . 'pages/work.php';
         require_once $viewPath;
         $workView = new Work($this->getModel(), $this);
         $workView->output();
+        
+
+        
     }
 
 

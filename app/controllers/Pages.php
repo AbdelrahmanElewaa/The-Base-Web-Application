@@ -18,13 +18,10 @@ class Pages extends Controller
         $aboutView->output();
     }
 
-    public function login()
-    {
-        $viewPath = VIEWS_PATH . 'pages/login.php';
-        require_once $viewPath;
-        $loginView = new Login($this->getModel(), $this);
-        $loginView->output();
-    }
+    // public function login()
+    // {
+
+    // }
 
     public function contact()
     {
@@ -43,32 +40,9 @@ class Pages extends Controller
     {
         $displaynutritionModel = $this->getModel();
 
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    //     // $displaynutritionModel->getdate();
-    //     // $registerModel->setName(trim($_POST['lastname']));
-    //     // $displaynutritionModel->getbname();
-    //     // $displaynutritionModel->getbd();
-    //     // $displaynutritionModel->getlname();
-    //     // $displaynutritionModel->getld();
-    //     // $displaynutritionModel->getdname();
-    //     // $displaynutritionModel->getdd();
-
-
-
-
-    //     $result =  $displaynutritionModel->plan();
-    //     // $displaynutritionModel->setbname()=$result[0]->breakfast;
-    //     $displaynutritionModel->setdate($result[0]->date);
-
-    //     // $displaynutritionModel->setbname()=$result['breakfast'];
-
-
-
-
-
         if ($result = $displaynutritionModel->plan())
         {
+
             $breakfastArray=array();
             $x=0;
             while(isset($result[$x]->date) )
@@ -81,7 +55,7 @@ class Pages extends Controller
             $displaynutritionModel->setlname($result[$x]->lunch);
             $displaynutritionModel->setdname($result[$x]->dinner);
             $displaynutritionModel->setbd($result[$x]->bd);
-            $displaynutritionModel->setld($result[$x]->Ld);
+            $displaynutritionModel->setld($result[$x]->ld);
             $displaynutritionModel->setdd($result[$x]->dd);
 
 
@@ -91,7 +65,7 @@ class Pages extends Controller
 
             // $breakfastArray[$x]=$b;
             $b[$x]=$result[$x]->breakfast."<br> Details : ".$result[$x]->bd;
-            $l[$x]=$result[$x]->lunch."<br> Details : ".$result[$x]->Ld;
+            $l[$x]=$result[$x]->lunch."<br> Details : ".$result[$x]->ld;
             $d[$x]=$result[$x]->dinner."<br> Details : ".$result[$x]->dd;
             $DATE[$x]=$result[$x]->date;
 
@@ -116,8 +90,9 @@ class Pages extends Controller
             // flash('Nutrition plan_success', 'nutrition plan is viwed successfully');
             // redirect('pages/addnutrition.php');
 
-        } else {
-            die('Error in adding nutrition');
+        }
+         else {
+            die('Error in Viewing Your plan');
         }
     // }
 
@@ -260,6 +235,7 @@ class Pages extends Controller
             $addnutritionModel->setld(trim($_POST['ld']));
             $addnutritionModel->setdname(trim($_POST['dname']));
             $addnutritionModel->setdd(trim($_POST['dd']));
+            $addnutritionModel->setuserid(trim($_POST['userid']));
 
 
 
@@ -280,22 +256,73 @@ class Pages extends Controller
 
 
 
+    public function login()
+    {
+        $userModel = $this->getModel();
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //process form
+            $userModel->setEmail(trim($_POST['email']));
+            $userModel->setPassword(trim($_POST['password']));
 
+            //validate login form
+            if (empty($userModel->getEmail())) {
+                $userModel->setEmailErr('Please enter an email');
+            } elseif (!($userModel->emailExist($_POST['email']))) {
+                $userModel->setEmailErr('No user found');
+            }
 
-    // function displayNut()
-    // {
+            if (empty($userModel->getPassword())) {
+                $userModel->setPasswordErr('Please enter a password');
+            } elseif (strlen($userModel->getPassword()) < 4) {
+                $userModel->setPasswordErr('Password must contain at least 4 characters');
+            }
 
-    //     $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
-    //     require_once $viewPath;
-    //     $aboutView = new addnutrition($this->getModel(), $this);
-    //     $aboutView->output();
+            // If no errors
+            if (
+                empty($userModel->getEmailErr()) &&
+                empty($userModel->getPasswordErr())
+            ) {
+                //Check login is correct
+                $loggedUser = $userModel->login();
+                if ($loggedUser) {
+                    //create related session variables
+                    $this->createUserSession($loggedUser);
+                    die('Success log in User');
+                } else {
+                    $userModel->setPasswordErr('Password is not correct');
+                }
+            }
+        }
+        // Load form
+        //echo 'Load form, Request method: ' . $_SERVER['REQUEST_METHOD'];
+        $viewPath = VIEWS_PATH . 'pages/login.php';
+        require_once $viewPath;
+        $loginView = new Login($this->getModel(), $this);
+        $loginView->output();
+    }
 
-    // }
+    public function createUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_name'] = $user->name;
+        //header('location: ' . URLROOT . 'pages');
+        redirect('pages');
+    }
 
+    public function logout()
+    {
+        echo 'logout called';
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
+        session_destroy();
+        redirect('users/login');
+    }
 
-
-
+    public function isLoggedIn()
+    {
+        return isset($_SESSION['user_id']);
+    }
 
 
 

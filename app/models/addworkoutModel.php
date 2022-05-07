@@ -97,9 +97,38 @@ class addworkoutModel extends WorkModel
 	
 	public function addWork()
 	{
+        $this->dbh->query('select * from training where `date`=:date and `traininguserid`=:userid');
+        $this->dbh->bind(':date', $this->date);
+        $this->dbh->bind(':userid', $this->userid);
+        $q=$this->dbh->resultSet();
+        if($q){
+            foreach($q as $x){
+            $x->name.="$".$this->name;
+            $x->sets.="$".$this->sets;
+            $x->reps.="$".$this->reps;
+            $x->weights.="$".$this->weights;
+            $x->resttime.="$".$this->resttime; 
+            $this->dbh->query('update training  set `name`=:name,`sets`=:sets, `reps`=:reps, `weights`=:weights, `resttime`=:resttime where `date`=:date and `traininguserid`=:userid' );
+            $this->dbh->bind(':date', $this->date);
+            $this->dbh->bind(':name', $x->name);
+            $this->dbh->bind(':sets', $x->sets);
+            $this->dbh->bind(':reps', $x->reps);
+            $this->dbh->bind(':weights', $x->weights);
+            $this->dbh->bind(':resttime', $x->resttime);
+            $this->dbh->bind(':userid', $this->userid);
+            break;
+        }
+            
 
-		
-		$this->dbh->query('INSERT INTO `training` (`date`,`name`,`sets`,`reps`,`weights`,`resttime`,`traininguserid`) VALUES ( :date, :name, :sets, :reps, :weights, :resttime, :userid)');
+           
+             
+            return $this->dbh->execute();
+            
+
+
+        }
+		else{
+            $this->dbh->query('INSERT INTO `training` (`date`,`name`,`sets`,`reps`,`weights`,`resttime`,`traininguserid`) VALUES ( :date, :name, :sets, :reps, :weights, :resttime, :userid)');
 		$this->dbh->bind(':date', $this->date);
         $this->dbh->bind(':name', $this->name);
         $this->dbh->bind(':sets', $this->sets);
@@ -109,6 +138,8 @@ class addworkoutModel extends WorkModel
 		$this->dbh->bind(':userid', $this->userid);
 		 
 		return $this->dbh->execute();
+        }
+		
 	}
 	
 	

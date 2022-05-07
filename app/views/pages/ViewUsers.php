@@ -19,7 +19,7 @@ class ViewUsers extends View {
 				
 			</tr>";
 			foreach($users as $x){
-				$str.="<tr><td>".$x->name."</td><td>".$x->email."</td><td>".$x->social."</td><td>".$x->role."</td>"." <td><a href='".URLROOT.'pages/workout'."' class='btn btn-primary'>Workout</a></td>
+				$str.="<tr><td>".$x->name."</td><td>".$x->email."</td><td>".$x->social."</td><td>".$x->role."</td>"." <td><a href='".URLROOT.'pages/workout?id='.$x->id."' class='btn btn-primary'>Workout</a></td>
 				<td><a href='".URLROOT.'pages/nutrition?id='.$x->id."' class='btn btn-success'>Nutrition</a></td>
 				<td> <a href='#' class='btn btn-secondary'>Edit</a> <a href='' class='btn btn-danger'>Delete</a> </td></tr>";
 		  }

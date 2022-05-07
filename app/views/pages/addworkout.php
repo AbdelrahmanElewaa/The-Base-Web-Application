@@ -22,7 +22,7 @@ class addworkout extends view {
   <input type="text"  class="form-control"placeholder="Type of Resistance" name="weights"><br>
    
   <input type="text" class="form-control" placeholder="Rest Time" name="resttime">
-  <input type="hidden" value="1"  name="userid"><br>
+  <input type="hidden" value="<?php echo $_GET['id'];?>"   name="userid"><br>
   <input type="submit" value="Add" class="btn btn-primary" name="submit">
 </form>
 

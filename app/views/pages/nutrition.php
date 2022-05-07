@@ -35,7 +35,6 @@ class nutrition extends view {
 	 <td><?php echo $x->ld;?></td>
 	 <td><?php echo $x->dinner;?></td>
 	 <td><?php echo $x->dd;?></td>
-	 <td></td>
 	</tr>
 	 <?php
 	}

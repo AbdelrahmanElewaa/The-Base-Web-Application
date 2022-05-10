@@ -2,7 +2,7 @@
 <?php
 class workout extends view {
 	public function output(){
-		$workout = $this->model->ViewWorkout();
+		$workout = $this->model->ViewWorkout($_GET['id']);
 	 require APPROOT.'/views/inc/header.php';
 	
 	 ?>

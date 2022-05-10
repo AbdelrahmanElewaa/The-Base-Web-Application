@@ -6,10 +6,10 @@ class nutritionModel extends model
 	
 	public $nutrition;
 
-	public function ViewNutrition(){
+	public function ViewNutrition($userid){
 		
-		$this->dbh->query('SELECT * from nutrition');
-        // $this->dbh->bind(':email', $this->email);
+		$this->dbh->query('SELECT * from nutrition where userID= :userid');
+        $this->dbh->bind(':userid', $userid);
 
         $record = $this->dbh->resultSet();
 		// return $this->dbh->execute();

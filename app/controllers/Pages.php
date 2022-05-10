@@ -61,7 +61,7 @@ class Pages extends Controller
             if ($addnutritionModel->addNut()) {
                 //header('location: ' . URLROOT . 'users/login');
                 flash('register_success', 'nutrition plan is added successfully');
-                redirect('pages/addnutrition.php');
+                redirect('pages/addnutrition');
             } else {
                 die('Error in adding nutrition');
             }
@@ -101,7 +101,7 @@ class Pages extends Controller
             if ($addworkoutModel->addWork()) {
                 //header('location: ' . URLROOT . 'users/login');
                 flash('register_success', 'workout plan is added successfully');
-                redirect('pages/addworkout.php');
+                redirect('pages/addworkout');
             } else {
                 die('Error in adding nutrition');
             }

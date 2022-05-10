@@ -2,7 +2,7 @@
 <?php
 class nutrition extends view {
 	public function output(){
-		$nutrition = $this->model->ViewNutrition();
+		$nutrition = $this->model->ViewNutrition($_GET['id']);
 	 require APPROOT.'/views/inc/header.php';
 	
 	 ?>

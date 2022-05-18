@@ -156,13 +156,13 @@ class Pages extends Controller
 
 
 
-
-     public function workoutdisplay()
+  public function workoutdisplay()
     {        
-        $workoutdisplaytableModel=$this->get_model();
-
+        $workoutdisplaytableModel=$this->getModel();
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         if ($result = $workoutdisplaytableModel->workdetails()) 
-        {
+        {           
+
             for($x=0 ; $x<count($result) ; $x++){
             $workoutdisplaytableModel->settrainingID($result[$x]->trainingID);           
              $workoutdisplaytableModel->setname($result[$x]->name);
@@ -170,12 +170,13 @@ class Pages extends Controller
              $workoutdisplaytableModel->setsets($result[$x]->sets);
              $workoutdisplaytableModel->setresttime($result[$x]->resttime);
              $workoutdisplaytableModel->setweights($result[$x]->weights);
-            $workoutdisplaytableModel->setdate($result[$x]->date);
+
             }
             
         } else {
             die('Error in display wokout program');
         }
+    // }
 
         $viewPath = VIEWS_PATH . 'pages/workoutdisplay.php';
         require_once $viewPath;

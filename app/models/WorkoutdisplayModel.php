@@ -1,24 +1,36 @@
 <?php
-require_once 'UserModel.php';
+require_once 'UserModel.php';  
+
+
 class WorkoutdisplayModel extends UserModel
 {
+    //  $Date=$_POST['date'];
+
     public  $title = 'User Login Page';
 
-    protected $trainingID()=array();
+    protected $trainingID=array();
     protected $name=array();
     protected $reps=array();
     protected $sets=array();
     protected $resttime=array();
-    protected $date=array();
+    protected $date;
     protected $weights=array();
-    protected $traininguserid=array();
+    protected $traininguserid;
+
     
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->traininguserid = '';
+    }
 
     public function gettrainingID()
     {
-        return $this->trainingID;
+        return $this->traininguserid;
     }
-    public function setname($d)
+    public function settrainingID($d)
     {
         array_push($this->trainingID,$d);
 
@@ -49,7 +61,7 @@ class WorkoutdisplayModel extends UserModel
     {
         return $this->sets;
     }
-    public function setld($d)
+    public function setsets($d)
     {
         array_push($this->sets,$d);
 
@@ -61,8 +73,9 @@ class WorkoutdisplayModel extends UserModel
     }
     public function setdate($d)
     {
-        array_push($this->date,$d);
+        $this->date=$d;
     }
+
     public function getresttime()
     {
         return $this->resttime;
@@ -87,15 +100,19 @@ class WorkoutdisplayModel extends UserModel
     }
     public function settraininguserid($d)
     {
-        array_push($this->traininguserid,$d);
+       $this->traininguserid=$d;
 
     }
     
 
 
-    public function workdetails($d)
+    public function workdetails($Date)
     {
-        $this->dbh->query('select * from `training` where date=$d') ;
-            return $this->dbh->resultSet();
+        $this->dbh->query('select * from `training` where date=:Date and traininguserid=:uid' ) ;
+        $this->dbh->bind(':uid',$_SESSION['user_id']);
+        $this->dbh->bind(':Date',$this->date);
+
+        return $this->dbh->resultSet();
     }
 
+}

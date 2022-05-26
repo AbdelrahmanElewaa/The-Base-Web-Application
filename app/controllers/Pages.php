@@ -263,37 +263,7 @@ class Pages extends Controller
 
 
 
-    public function addnutrition()
-    {
-        $addnutritionModel = $this->getModel();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Process form
-            $addnutritionModel->setdate(trim($_POST['date']));
-            // $registerModel->setName(trim($_POST['lastname']));
-            $addnutritionModel->setbname(trim($_POST['bname']));
-            $addnutritionModel->setbd(trim($_POST['bd']));
-            $addnutritionModel->setlname(trim($_POST['lname']));
-            $addnutritionModel->setld(trim($_POST['ld']));
-            $addnutritionModel->setdname(trim($_POST['dname']));
-            $addnutritionModel->setdd(trim($_POST['dd']));
-            $addnutritionModel->setuserid(trim($_POST['userid']));
 
-
-
-
-            if ($addnutritionModel->addNut()) {
-                //header('location: ' . URLROOT . 'users/login');
-                flash('register_success', 'nutrition plan is added successfully');
-                redirect('pages/addnutrition.php');
-            } else {
-                die('Error in adding nutrition');
-            }
-        }
-        $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
-        require_once $viewPath;
-        $aboutView = new addnutrition($this->getModel(), $this);
-        $aboutView->output();
-    }
 
 
 
@@ -364,6 +334,167 @@ class Pages extends Controller
     {
         return isset($_SESSION['user_id']);
     }
+    
+    
+    
+        public function addworkout()
+    {
+        $addworkoutModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+            $addworkoutModel->setdate(trim($_POST['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addworkoutModel->setname(trim($_POST['name']));
+            $addworkoutModel->setsets(trim($_POST['sets']));
+            $addworkoutModel->setreps(trim($_POST['reps']));
+            $addworkoutModel->setweights(trim($_POST['weights']));
+            $addworkoutModel->setresttime(trim($_POST['resttime']));
+            $addworkoutModel->setuserid(trim($_POST['userid']));
+             
+            if(empty($addworkoutModel->getdate()) || empty($addworkoutModel->getname()) || empty($addworkoutModel->getsets()) || empty($addworkoutModel->getreps()) || empty($addworkoutModel->getweights()) || empty($addworkoutModel->getresttime()) )
+            {
+                if(empty($addworkoutModel->getdate()) )
+                {
+                    $addworkoutModel->setdateErr("*Please Enter a Valid date");
+                }
+                if( empty($addworkoutModel->getname()))
+                {
+                    $addworkoutModel->setnameErr("*Please Enter a Valid Workout Name");
+    
+                }
+                if(empty($addworkoutModel->getsets()) )
+                {
+                    $addworkoutModel-> setsetsErr("*Please Enter a Valid Sets");
+    
+                }
+                if( empty($addworkoutModel->getreps()) )
+                {
+                    $addworkoutModel-> setrepsErr("*Please Enter a Valid reps");
+    
+                }
+                if(empty($addworkoutModel->getweights()))
+                {
+                    $addworkoutModel-> setweightsErr("*Please Enter a Valid weights");
+    
+                }
+                if( empty($addworkoutModel->getresttime()))
+                {
+                    $addworkoutModel-> setresttimeErr("*Please Enter a Valid rest time");
+    
+                }
+
+            }
+            else
+            {
+
+
+
+            if ($addworkoutModel->addWork()) {
+                //header('location: ' . URLROOT . 'users/login');
+                flash('register_success', 'workout plan is added successfully');
+                redirect('pages/addworkout');
+            } else {
+                die('Error in adding nutrition');
+            }
+        }
+
+        }
+
+        $viewPath = VIEWS_PATH . 'pages/addworkout.php';
+        require_once $viewPath;
+        $aboutView = new addworkout($this->getModel(), $this);
+        $aboutView->output();
+    }
+    
+    
+    
+    
+    
+        public function addnutrition()
+    {
+        $addnutritionModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+            $addnutritionModel->setdate(trim($_POST['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addnutritionModel->setbname(trim($_POST['bname']));
+            $addnutritionModel->setbd(trim($_POST['bd']));
+            $addnutritionModel->setlname(trim($_POST['lname']));
+            $addnutritionModel->setld(trim($_POST['ld']));
+            $addnutritionModel->setdname(trim($_POST['dname']));
+            $addnutritionModel->setdd(trim($_POST['dd']));
+            $addnutritionModel->setuserid(trim($_POST['userid']));
+
+
+            // print(trim($_POST['date']));
+            // print("<br>");
+            // print(date('y-m-d'));
+            // print("<br>");
+
+            // print(trim($_POST['date']) > date('y-m-d'));
+
+
+
+
+            if(empty($addnutritionModel->getdate()) || empty($addnutritionModel->getbname()) || empty($addnutritionModel->getlname()) || empty($addnutritionModel->getdname()) || empty($addnutritionModel->getbd()) || empty($addnutritionModel->getld()) || empty($addnutritionModel->getdd()) )
+            {
+                if(empty($addnutritionModel->getdate()) )
+                {
+                    $addnutritionModel->setdateErr("*Please Enter a Valid date");
+                }
+                if( empty($addnutritionModel->getbname()))
+                {
+                    $addnutritionModel->setbnameErr("*Please Enter a Valid Breakfast Name");
+    
+                }
+                if(empty($addnutritionModel->getlname()) )
+                {
+                    $addnutritionModel-> setbdErr("*Please Enter a Valid Lunch Name");
+    
+                }
+                if( empty($addnutritionModel->getdname()) )
+                {
+                    $addnutritionModel-> setlnameErr("*Please Enter a Valid Dinner Name");
+    
+                }
+                if(empty($addnutritionModel->getbd()))
+                {
+                    $addnutritionModel-> setldErr("*Please Enter a Valid Breakfast Description");
+    
+                }
+                if( empty($addnutritionModel->getld()))
+                {
+                    $addnutritionModel-> setdnameErr("*Please Enter a Valid Lunch Description");
+    
+                }
+                if( empty($addnutritionModel->getdd()))
+                {
+                    $addnutritionModel-> setddErr("*Please Enter a Valid Dinner Description");
+    
+                }
+            }
+            else if(trim($_POST['date']) < date('y-m-d') == 1)
+            {
+                $addnutritionModel->setdateErr("*Please Enter a Valid dateee");
+            }
+            else
+            {
+
+            if ($addnutritionModel->addNut()) {
+                //header('location: ' . URLROOT . 'users/login');
+                flash('register_success', 'nutrition plan is added successfully');
+                redirect('pages/addnutrition');
+            } else {
+                die('Error in adding nutrition');
+            }
+        }
+        }
+        $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
+        require_once $viewPath;
+        $aboutView = new addnutrition($this->getModel(), $this);
+        $aboutView->output();
+    }
+
 
 
 

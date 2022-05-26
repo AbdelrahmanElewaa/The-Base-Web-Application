@@ -11,6 +11,24 @@ class addnutritionModel extends NutModel
     protected $dname;
     protected $dd;
     protected $userid;
+
+
+    protected $dateErr;
+    protected $bnameErr;
+
+    protected $bdErr;
+    protected $lnameErr;
+    protected $ldErr;
+    protected $dnameErr;
+
+    protected $ddErr;
+    protected $useridErr;
+
+
+
+
+
+    
     
 
     public function __construct()
@@ -36,6 +54,17 @@ class addnutritionModel extends NutModel
     }
 
 
+    public function getdateErr()
+    {
+        return $this->dateErr;
+    }
+    public function setdateErr($d)
+    {
+        $this->dateErr = $d;
+    }
+
+
+
     public function getbname()
     {
         return $this->bname;
@@ -43,6 +72,15 @@ class addnutritionModel extends NutModel
     public function setbname($b)
     {
         $this->bname = $b;
+    }
+
+    public function getbnameErr()
+    {
+        return $this->bnameErr;
+    }
+    public function setbnameErr($b)
+    {
+        $this->bnameErr = $b;
     }
 
 
@@ -55,6 +93,16 @@ class addnutritionModel extends NutModel
         $this->bd = $b;
     }
 
+
+    public function getbdErr()
+    {
+        return $this->bdErr;
+    }
+    public function setbdErr($b)
+    {
+        $this->bdErr = $b;
+    }
+
     public function getlname()
     {
         return $this->lname;
@@ -63,6 +111,17 @@ class addnutritionModel extends NutModel
     {
         $this->lname = $l;
     }
+
+    public function getlnameErr()
+    {
+        return $this->lnameErr;
+    }
+    public function setlnameErr($l)
+    {
+        $this->lnameErr = $l;
+    }
+
+
     public function getld()
     {
         return $this->ld;
@@ -72,6 +131,18 @@ class addnutritionModel extends NutModel
     {
         $this->ld = $l;
     }
+
+    public function getldErr()
+    {
+        return $this->ldErr;
+    }
+
+    public function setldErr($l)
+    {
+        $this->ldErr = $l;
+    }
+
+
     public function getdname()
     {
         return $this->dname;
@@ -80,6 +151,19 @@ class addnutritionModel extends NutModel
     {
         $this->dname = $d;
     }
+
+    public function getdnameErr()
+    {
+        return $this->dnameErr;
+    }
+    public function setdnameErr($d)
+    {
+        $this->dnameErr = $d;
+    }
+
+
+
+
     public function getdd()
     {
         return $this->dd;
@@ -89,6 +173,17 @@ class addnutritionModel extends NutModel
         $this->dd = $d;
     }
 
+
+    public function getddErr()
+    {
+        return $this->ddErr;
+    }
+    public function setddErr($d)
+    {
+        $this->ddErr = $d;
+    }
+
+
     public function getuserid()
     {
         return $this->userid;
@@ -96,6 +191,16 @@ class addnutritionModel extends NutModel
     public function setuserid($u)
     {
         $this->userid = $u;
+    }
+
+
+    public function getuseridErr()
+    {
+        return $this->useridErr;
+    }
+    public function setuseridErr($u)
+    {
+        $this->useridErr = $u;
     }
 
 
@@ -109,14 +214,14 @@ class addnutritionModel extends NutModel
 
 		
 		$this->dbh->query('INSERT INTO `nutrition` (`date`,`breakfast`,`lunch`,`dinner`,`bd`,`ld`,`dd`,`userID`) VALUES ( :date, :bname, :lname, :dname, :bd, :ld, :dd, :userid)');
-		$this->dbh->bind(':date', $this->date);
-        $this->dbh->bind(':bname', $this->bname);
-        $this->dbh->bind(':lname', $this->lname);
-		$this->dbh->bind(':dname', $this->dname);
-        $this->dbh->bind(':bd', $this->bd);
-        $this->dbh->bind(':ld', $this->ld);
-		$this->dbh->bind(':dd', $this->dd);
-        $this->dbh->bind(':userid', $this->userid);
+		$this->dbh->bind(':date',htmlentities( $this->date));
+        $this->dbh->bind(':bname', htmlentities($this->bname));
+        $this->dbh->bind(':lname',htmlentities( $this->lname));
+		$this->dbh->bind(':dname', htmlentities($this->dname));
+        $this->dbh->bind(':bd', htmlentities($this->bd));
+        $this->dbh->bind(':ld',htmlentities( $this->ld));
+		$this->dbh->bind(':dd', htmlentities($this->dd));
+        $this->dbh->bind(':userid',htmlentities( $this->userid));
 		return $this->dbh->execute();
 	}
 	

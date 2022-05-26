@@ -1,3 +1,8 @@
+<script>
+
+</script>
+
+
 <?php
 class addnutrition extends view {
 	public function output(){
@@ -10,9 +15,43 @@ class addnutrition extends view {
 	 ?>
 <!-- <form action="/action_page.php"> -->
 <!-- <form action="" method="post"> -->
+  <html>
+    <head>
+      <style>
+        #v_date{color:red;   font-size: 13px; }
+        #v_bname{color:red;   font-size: 13px; }
+        #v_bd{color:red;   font-size: 13px; }
+        #v_lname{color:red;   font-size: 13px; }
+        #v_ld{color:red;   font-size: 13px; }
+        #v_dname{color:red;   font-size: 13px; }
+        #v_dd{color:red;   font-size: 13px; }
+
+
+
+
+
+
+      </style>
+          <script>
+        window.onload=function(){ document.getElementById("v_date").innerHTML="<?=$this->model->getdateErr()?>";
+        document.getElementById("v_bname").innerHTML="<?=$this->model->getbnameErr()?>";
+        document.getElementById("v_bd").innerHTML="<?=$this->model->getbdErr()?>";
+        document.getElementById("v_lname").innerHTML="<?=$this->model->getlnameErr()?>";
+        document.getElementById("v_ld").innerHTML="<?=$this->model->getldErr()?>";
+        document.getElementById("v_dname").innerHTML="<?=$this->model->getdnameErr()?>";
+        document.getElementById("v_dd").innerHTML="<?=$this->model->getddErr()?>";
+        };
+
+
+   
+    </script>
+    </head>
+
 	<br><h2>Nutrition Plan</h2>
 	<hr>
-  <input  style="width:200px;" class="form-control" type="date" id="birthday" name="date"><br>
+  <input  style="width:200px;" class="form-control" type="date" id="birthday" name="date" require><br>
+  <p id="v_date"> </p><br>
+
   <table class="table table-success table-striped">
   <thead>
   <th>Meal Type</th>
@@ -22,25 +61,26 @@ class addnutrition extends view {
   <tr>
   
 <td><b>Breakfast</b></td>
- <td> <textarea  class="form-control" placeholder="Meal Name" name="bname" rows="4" cols="20"></textarea></td>
- <td> <textarea  class="form-control" placeholder="Meal Name" name="bd" rows="4" cols="20"></textarea></td>
+ <td> <textarea  class="form-control" placeholder="Meal Name" name="bname" rows="4" cols="20" ></textarea> <p id="v_bname"></p></td>
+ <td> <textarea  class="form-control" placeholder="Meal Name" name="bd" rows="4" cols="20" > </textarea><p id="v_bd"></p></td>
   </tr>
   <tr>
   
   <td><b>Lunch</b></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="lname" rows="4" cols="20"></textarea></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="ld" rows="4" cols="20"></textarea></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="lname" rows="4" cols="20" > </textarea><p id="v_lname"></p> </td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="ld" rows="4" cols="20" > </textarea><p id="v_ld"></p></td>
     </tr>
     <tr>
   
   <td><b>Dinner</b></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="dname" rows="4" cols="20"></textarea></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="dd" rows="4" cols="20"></textarea></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="dname" rows="4" cols="20" ></textarea><p id="v_dname"> </p></td>
+   <td> <textarea  class="form-control" placeholder="Meal Name" name="dd" rows="4" cols="20" > </textarea><p id="v_dd"></p></td>
     </tr>
     
 <td style="display:none;"><input type="hidden" value="<?php echo $_GET['id'];?>" name="userid" ></td>
   </table>
   <input type="submit" value="Add" class="btn btn-primary" >
+  </html>
 
 
 

@@ -494,6 +494,86 @@ class Pages extends Controller
         $aboutView = new addnutrition($this->getModel(), $this);
         $aboutView->output();
     }
+    
+        public function deletenutrition()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deletenutritionModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deletenutritionModel->deleteNut());
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+
+            // print($deletenutritionModel->deleteNut());
+
+            // if ($deletenutritionModel->deleteNut())
+            //  {
+            //      print("heree");
+
+
+            //     //header('location: ' . URLROOT . 'users/login');
+            //     flash('register_success', 'nutrition plan deleted successfully');
+            //     redirect('pages/nutrition');
+            // } else {
+            //     die('Error in adding nutrition');
+            // }
+
+
+
+        }
+    
+
+        $viewPath = VIEWS_PATH . 'pages/deletenutrition.php';
+        require_once $viewPath;
+        $deletenutritionView = new deletenutrition($this->getModel(), $this);
+        $deletenutritionView->output();
+    }
+
+
+
+    public function deleteworkout()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deleteworkoutModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deleteworkoutModel->deleteWork());
+
+
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        // {
+
+        //     print($deleteworkoutModel->deleteNut());
+
+        //     if ($deleteworkoutModel->deleteNut())
+        //      {
+        //          print("heree");
+
+
+        //         //header('location: ' . URLROOT . 'users/login');
+        //         flash('register_success', 'workout program had been deleted successfully');
+        //         redirect('pages/workout');
+        //     } else {
+        //         die('Error in deleting workout');
+        //     }
+
+
+
+        // }
+    
+
+        $viewPath = VIEWS_PATH . 'pages/deleteworkout.php';
+        require_once $viewPath;
+        $deleteworkoutView = new deleteworkout($this->getModel(), $this);
+        $deleteworkoutView->output();
+    }
+
+    
 
 
 

@@ -1,3 +1,5 @@
+
+
 <?php
 class Chat extends View
 {
@@ -9,6 +11,16 @@ class Chat extends View
     // $user_name = $_SESSION['user_name'];
     $MessageFromAdmin=$this->model->getMessageFromAdmin();
     $MessageFromClient=$this->model->getMessageFromClient();
+
+
+    $created_at_client= $this->model->getCreated_at_client();
+    $created_at_admin= $this->model->getCretated_at_admin();
+
+
+
+    // print($created_at_client[1]);
+//     print_r($created_at_admin);
+// print(date("h:i:sa A"));
 
     $record=$this->model->chat();
     $action = URLROOT . 'pages/chat';
@@ -24,11 +36,13 @@ class Chat extends View
 //        $MessageFromClient=$this->model->getMessage();
 //    }
     // Admin -->ID --> 1
-
+$loop1=" ";
+$loop2=" ";
     $x=0;
     require APPROOT . '/views/inc/header.php';
     $text = <<< EOT
  
+
 
     <div class="container">
     <div class="row clearfix">
@@ -91,7 +105,6 @@ class Chat extends View
                         <div class="row">
                             <div class="col-lg-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                                 </a>
                                 <div class="chat-about">
                                     <h6 class="m-b-0">Aiden Chavez</h6>
@@ -109,21 +122,26 @@ class Chat extends View
                     <div class="chat-history">
                         <ul class="m-b-0">
 EOT;
+$admin_count=0;
+$client_count=0;
+
 for($x=0;$x<count($record);$x++)
 {
-    if($record[$x]->sender==1)
+    if($record[$x]->sender==1 && $admin_count<=count($created_at_admin))
     {
-                            $loop1=<<<EOT
 
+                            $loop1=<<<EOT
 
                                 <li class="clearfix">
                                 <div class="message-data text-right">
-                                    <span class="message-data-time">10:10 AM, Today</span>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                    <span class="message-data-time"> $created_at_admin[$admin_count] </span>
                                 </div>
+                                
                                 <div class="message other-message float-right"> 
 
 EOT;
+$admin_count++;
+
 
 
 $loop1=$loop1 .$record[$x]->content;
@@ -141,18 +159,22 @@ $loop1=$loop1.<<<EOT
 
 EOT;
 
-
-    if($record[$x]->sender!=1)
+// 10:12 AM, Today
+    if($record[$x]->sender!=1 && $client_count <= count($created_at_client))
     {
                             $loop2=<<<EOT
 
                                 <li class="clearfix">
                                 <div class="message-data">
-                                    <span class="message-data-time">10:12 AM, Today</span>
+                                    <span id="created_at_client" class="message-data-time"> $created_at_client[$client_count]  </span>
                                 </div>
                                 <div class="message my-message"> 
                                 
 EOT;
+$client_count++;
+
+
+
 $loop2=$loop2 .$record[$x]->content;
 $loop22=str_repeat($loop2,1);
 $text =$text. $loop22;
@@ -190,3 +212,5 @@ EOT;
     require APPROOT . '/views/inc/footer.php';
   }
 }
+?>
+

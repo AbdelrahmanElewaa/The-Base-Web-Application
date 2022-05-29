@@ -200,25 +200,39 @@ class Pages extends Controller
 
 
 
-    public function chat()
+   public function chat()
     {
 
         $viewChatModel = $this->getModel();
+        // print_r(   $viewChatModel->chat()  );
         if($result=$viewChatModel->chat())
         {
 
             $x=0;
-            while(isset($result[$x]))
+            while(!empty($result[$x]))
             {
             $viewChatModel->setSender($result[$x]->sender);
             $viewChatModel->setReciever($result[$x]->reciever);
+
+
+
             if($viewChatModel->getSender()==1)
             {
                 $viewChatModel->setMessageFromAdmin($result[$x]->content);
+
+                $viewChatModel->setCreated_at_admin(date("Y-m-d h:i:sa A",strtotime( $result[$x]->created_at)));
+
+                $viewChatModel->setCreated_at_admin($result[$x]->created_at);
+                $viewChatModel->setSeen_admin($result[$x]->seen);
             }
             else
             {
-                $viewChatModel->setMessageFromClient($result[$x]->content);
+                $viewChatModel->setMessageFromClient(   $result[$x]->content);
+
+                $viewChatModel->setCreated_at_client( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at)));
+                // print(   $viewChatModel->getCreated_at_client()  );  
+                // print("<br>");
+                // $viewChatModel->setSeen_client($result[$x]->seen);
 
             }
 
@@ -233,14 +247,19 @@ class Pages extends Controller
             if(!empty($_POST['message']))
             {
             $viewChatModel->setMessage(trim($_POST['message']));
-            $viewChatModel->setSender(2);
+            $viewChatModel->setSender($_SESSION['user_id']);
             $viewChatModel->setReciever(1);
-            $viewChatModel->setCreated_at(date('y-m-d h:i:s'));
-            $viewChatModel->setSeen(0);
+            $viewChatModel->setCreated_at_client(date("Y-m-d h:i:sa A"));
+            $viewChatModel->setSeen_client(0);
 
             if($viewChatModel->send())
             {
-                header("Refresh:0");
+                $_POST['message']="";
+                $viewChatModel->setMessage(trim($_POST['message']));
+                // header("Refresh:0");
+                header("Location: http://localhost/mvc/public/pages/chat");
+
+
             }
             }
 
@@ -258,9 +277,6 @@ class Pages extends Controller
         $chatView = new Chat($this->getModel(), $this);
         $chatView->output();
     }
-
-
-
 
 
 

@@ -120,7 +120,7 @@ class editnutritionModel extends NutModel
         return $dataa;
     }
 	
-    public function update( ){
+    public function updatenutrition( ){
         $this->dbh->query('UPDATE `nutrition` SET `date`=:date , `breakfast`=:bname,`lunch`=:lname ,`dinner`=:dname ,`bd`=:bd ,`ld`= :ld ,`dd`=:dd ,`userID`=:userid Where $nutritionID=:nutritionID');
         $this->dbh->bind(':nutritionID', htmlentities($this->nutritionID ));
 		$this->dbh->bind(':date',htmlentities( $this->date));

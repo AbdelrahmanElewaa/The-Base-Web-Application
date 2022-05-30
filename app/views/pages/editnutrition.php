@@ -2,16 +2,9 @@
 class editnutrition extends view {
 	public function output(){
 
-    // $nutritionID=$this->model->getnutritionID();
-    // $data['row']=$this->model->getRow($nutritionID);
-
-    // header('Location: http://localhost/mvc/public/pages/editnutrition?nutritionID='.$_GET['nutritionID'] );
 
    $row=$this->model->getRow();
-  print_r($row);
-  //for($i=0 ; $i<count($row) ; $i++){
-    print_r( $row->nutritionID);
-  //}
+  
 	 require APPROOT.'/views/inc/header.php';
 	 $action = URLROOT . 'pages/editnutrition/';
    $text = <<<EOT

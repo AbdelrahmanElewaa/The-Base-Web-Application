@@ -204,9 +204,18 @@ class Pages extends Controller
     {
 
         $viewChatModel = $this->getModel();
+
+        
+        // if($viewChatModel->AllClients())
+        // {
+        //  $viewChatModel->setAllClients( $viewChatModel->AllClients() )   ;
+        // }
         // print_r(   $viewChatModel->chat()  );
+
         if($result=$viewChatModel->chat())
         {
+
+            // print($_GET['id']);
 
             $x=0;
             while(!empty($result[$x]))
@@ -219,17 +228,20 @@ class Pages extends Controller
             if($viewChatModel->getSender()==1)
             {
                 $viewChatModel->setMessageFromAdmin($result[$x]->content);
+                $viewChatModel->setCreated_at_admin( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at)) );
+                $viewChatModel->setReciever($_GET['id']);
+                $viewChatModel->setSender(1);
 
-                $viewChatModel->setCreated_at_admin(date("Y-m-d h:i:sa A",strtotime( $result[$x]->created_at)));
 
-                $viewChatModel->setCreated_at_admin($result[$x]->created_at);
-                $viewChatModel->setSeen_admin($result[$x]->seen);
+                
+                // $viewChatModel->setSeen_admin($result[$x]->seen);
             }
             else
             {
                 $viewChatModel->setMessageFromClient(   $result[$x]->content);
-
-                $viewChatModel->setCreated_at_client( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at)));
+                $viewChatModel->setCreated_at_client( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at))  );
+                $viewChatModel->setReciever(1);
+                $viewChatModel->setSender($_SESSION['user_id']);
                 // print(   $viewChatModel->getCreated_at_client()  );  
                 // print("<br>");
                 // $viewChatModel->setSeen_client($result[$x]->seen);
@@ -244,6 +256,9 @@ class Pages extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
+            if($_SESSION['user_id']!=1)/////clientt////
+            {
+
             if(!empty($_POST['message']))
             {
             $viewChatModel->setMessage(trim($_POST['message']));
@@ -252,16 +267,35 @@ class Pages extends Controller
             $viewChatModel->setCreated_at_client(date("Y-m-d h:i:sa A"));
             $viewChatModel->setSeen_client(0);
 
-            if($viewChatModel->send())
+            if($viewChatModel->sendclient())
             {
                 $_POST['message']="";
                 $viewChatModel->setMessage(trim($_POST['message']));
                 // header("Refresh:0");
-                header("Location: http://localhost/mvc/public/pages/chat");
-
+                header("Location: http://localhost/mvc/public/pages/chat?id=".$_GET["id"].'& selected='.$_GET["selected"]);
 
             }
             }
+        }
+        else
+        {
+            if(!empty($_POST['message']))
+            {
+            $viewChatModel->setMessage(trim($_POST['message']));
+            $viewChatModel->setSender($_SESSION['user_id']);
+            $viewChatModel->setReciever($_GET['id']);
+            $viewChatModel->setCreated_at_admin(date("Y-m-d h:i:sa A"));
+            $viewChatModel->setSeen_admin(0);
+
+            if($viewChatModel->sendadmin())
+            {
+                $_POST['message']="";
+                $viewChatModel->setMessage(trim($_POST['message']));
+                // header("Refresh:0");
+                header("Location: http://localhost/mvc/public/pages/chat?id=".$_GET["id"].'& selected='.$_GET["selected"]);
+
+            }
+            }        }
 
 
 

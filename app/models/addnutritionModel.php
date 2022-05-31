@@ -1,126 +1,243 @@
-<script>
-
-</script>
-
-
 <?php
-class addnutrition extends view {
-	public function output(){
-	 require APPROOT.'/views/inc/header.php';
-  //  $count=$this->model->countNut();
-  //  $array = json_decode(json_encode($count), true);
-  //  print_r($array['records']);
+require_once 'NutModel.php';
+class addnutritionModel extends NutModel
+{
+	protected $date;
+    protected $bname;
 
-   if(isset($_GET['id']))
-   {
-	 $action = URLROOT . 'pages/addnutrition?id='.$_GET['id'];
-   }
-   $text = <<<EOT
-   <form action="$action" method="post">
-   EOT;
-   echo $text;
-	 ?>
-<!-- <form action="/action_page.php"> -->
-<!-- <form action="" method="post"> -->
-  <html>
-    <head>
-      <style>
-        #v_date{color:red;   font-size: 13px; }
-        #v_bname{color:red;   font-size: 13px; }
-        #v_bd{color:red;   font-size: 13px; }
-        #v_lname{color:red;   font-size: 13px; }
-        #v_ld{color:red;   font-size: 13px; }
-        #v_dname{color:red;   font-size: 13px; }
-        #v_dd{color:red;   font-size: 13px; }
+    protected $bd;
+    protected $lname;
+    protected $ld;
+    protected $dname;
+    protected $dd;
+    protected $userid;
+
+
+    protected $dateErr;
+    protected $bnameErr;
+
+    protected $bdErr;
+    protected $lnameErr;
+    protected $ldErr;
+    protected $dnameErr;
+
+    protected $ddErr;
+    protected $useridErr;
 
 
 
 
 
-
-      </style>
-          <script>
-        window.onload=function(){ document.getElementById("v_date").innerHTML="<?=$this->model->getdateErr()?>";
-        document.getElementById("v_bname").innerHTML="<?=$this->model->getbnameErr()?>";
-        document.getElementById("v_bd").innerHTML="<?=$this->model->getbdErr()?>";
-        document.getElementById("v_lname").innerHTML="<?=$this->model->getlnameErr()?>";
-        document.getElementById("v_ld").innerHTML="<?=$this->model->getldErr()?>";
-        document.getElementById("v_dname").innerHTML="<?=$this->model->getdnameErr()?>";
-        document.getElementById("v_dd").innerHTML="<?=$this->model->getddErr()?>";
-        };
-
-
-   
-    </script>
-    </head>
-
-	<br><h2>Nutrition Plan</h2>
-	<hr>
-  <input  style="width:200px;" class="form-control" type="date" id="birthday" name="date" require><br>
-  <p id="v_date"> </p><br>
-
-  <table class="table table-success table-striped">
-  <thead>
-  <th>Meal Type</th>
-	  <th>Meal Name</th>
-	   <th>Description</th>
-	</thead>
-  <tr>
-  
-<td><b>Breakfast</b></td>
- <td> <textarea  class="form-control" placeholder="Meal Name" name="bname" rows="4" cols="20" ></textarea> <p id="v_bname"></p></td>
- <td> <textarea  class="form-control" placeholder="Meal Name" name="bd" rows="4" cols="20" > </textarea><p id="v_bd"></p></td>
-  </tr>
-  <tr>
-  
-  <td><b>Lunch</b></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="lname" rows="4" cols="20" > </textarea><p id="v_lname"></p> </td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="ld" rows="4" cols="20" > </textarea><p id="v_ld"></p></td>
-    </tr>
-    <tr>
-  
-  <td><b>Dinner</b></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="dname" rows="4" cols="20" ></textarea><p id="v_dname"> </p></td>
-   <td> <textarea  class="form-control" placeholder="Meal Name" name="dd" rows="4" cols="20" > </textarea><p id="v_dd"></p></td>
-    </tr>
     
-<td style="display:none;"><input type="hidden" value="<?php echo $_GET['id'];?>" name="userid" ></td>
-  </table>
-  <input type="submit" value="Add" class="btn btn-primary" >
-  </html>
+    
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->date    = '';
+        $this->bname= '';
+
+        $this->bd  = '';
+        $this->lname = '';
+        $this->ld = '';
+        $this->dname = '';
+        $this->dd= '';
+        $this->userid= '';
+    }
+	public function getdate()
+    {
+        return $this->date;
+    }
+    public function setdate($d)
+    {
+        $this->date = $d;
+    }
+
+
+    public function getdateErr()
+    {
+        return $this->dateErr;
+    }
+    public function setdateErr($d)
+    {
+        $this->dateErr = $d;
+    }
+
+
+
+    public function getbname()
+    {
+        return $this->bname;
+    }
+    public function setbname($b)
+    {
+        $this->bname = $b;
+    }
+
+    public function getbnameErr()
+    {
+        return $this->bnameErr;
+    }
+    public function setbnameErr($b)
+    {
+        $this->bnameErr = $b;
+    }
+
+
+    public function getbd()
+    {
+        return $this->bd;
+    }
+    public function setbd($b)
+    {
+        $this->bd = $b;
+    }
+
+
+    public function getbdErr()
+    {
+        return $this->bdErr;
+    }
+    public function setbdErr($b)
+    {
+        $this->bdErr = $b;
+    }
+
+    public function getlname()
+    {
+        return $this->lname;
+    }
+    public function setlname($l)
+    {
+        $this->lname = $l;
+    }
+
+    public function getlnameErr()
+    {
+        return $this->lnameErr;
+    }
+    public function setlnameErr($l)
+    {
+        $this->lnameErr = $l;
+    }
+
+
+    public function getld()
+    {
+        return $this->ld;
+    }
+
+    public function setld($l)
+    {
+        $this->ld = $l;
+    }
+
+    public function getldErr()
+    {
+        return $this->ldErr;
+    }
+
+    public function setldErr($l)
+    {
+        $this->ldErr = $l;
+    }
+
+
+    public function getdname()
+    {
+        return $this->dname;
+    }
+    public function setdname($d)
+    {
+        $this->dname = $d;
+    }
+
+    public function getdnameErr()
+    {
+        return $this->dnameErr;
+    }
+    public function setdnameErr($d)
+    {
+        $this->dnameErr = $d;
+    }
 
 
 
 
-<!--   
-  <label for="Date">Day Date:</label>
- <br>
-  
-  <br>
-  <input type="text"  class="form-control"placeholder="quantity" name="quantity"><br>
-  <input type="text"  class="form-control"placeholder="Calories" name="calories"><br>
-  <input type="text" class="form-control" placeholder="Carbs" name="carbs"><br>
-  <input type="text"  class="form-control"placeholder="Fats" name="fats"><br>
-  <input type="text" class="form-control" placeholder="protein" name="protein"><br>
-  <input type="text" class="form-control" placeholder="Time" name="time"><br>
-  <input type="submit" value="Add" class="btn btn-primary" > -->
-</form>
+    public function getdd()
+    {
+        return $this->dd;
+    }
+    public function setdd($d)
+    {
+        $this->dd = $d;
+    }
 
-<?php
-// if(isset($_POST['addnutition']))
-// {
-//   $date=$_POST['date'];
-//   $mealname=$_POST['mealName'];
-//   $quantity=$_POST['quantity'];
-//   $calories=$_POST['calories'];
-//   $carbs=$_POST['carbs'];
-//   $fats=$_POST['fats'];
-//   $protein=$_POST['protein'];
-//   $time=$_POST['time'];
-//   $this->model->addNut($date,$mealname,$quantity,$calories,$carbs,$fats,$protein,$time);
-// }
-	require APPROOT.'/views/inc/footer.php';
+
+    public function getddErr()
+    {
+        return $this->ddErr;
+    }
+    public function setddErr($d)
+    {
+        $this->ddErr = $d;
+    }
+
+
+    public function getuserid()
+    {
+        return $this->userid;
+    }
+    public function setuserid($u)
+    {
+        $this->userid = $u;
+    }
+
+
+    public function getuseridErr()
+    {
+        return $this->useridErr;
+    }
+    public function setuseridErr($u)
+    {
+        $this->useridErr = $u;
+    }
+
+
+
+
+
+	// public $title = 'addnutrition';
+	
+	public function addNut()
+	{
+
+		
+		$this->dbh->query('INSERT INTO `nutrition` (`date`,`breakfast`,`lunch`,`dinner`,`bd`,`ld`,`dd`,`userID`) VALUES ( :date, :bname, :lname, :dname, :bd, :ld, :dd, :userid)');
+		$this->dbh->bind(':date',htmlentities( $this->date));
+        $this->dbh->bind(':bname', htmlentities($this->bname));
+        $this->dbh->bind(':lname',htmlentities( $this->lname));
+		$this->dbh->bind(':dname', htmlentities($this->dname));
+        $this->dbh->bind(':bd', htmlentities($this->bd));
+        $this->dbh->bind(':ld',htmlentities( $this->ld));
+		$this->dbh->bind(':dd', htmlentities($this->dd));
+        $this->dbh->bind(':userid',htmlentities( $this->userid));
+		return $this->dbh->execute();
 	}
+
+    public function countNut()
+	{
+
+		
+		$this->dbh->query('SELECT count( * ) as  records FROM nutrition where userID=:uid');
+        $this->dbh->bind(':uid',htmlentities( $this->userid));
+
+
+		return $this->dbh->single();
+	}
+	
+	
+	
 	
 }
 

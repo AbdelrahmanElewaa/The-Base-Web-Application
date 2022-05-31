@@ -1,3 +1,5 @@
+
+
 <?php
 class ViewUsers extends View {
 	public function output(){
@@ -18,23 +20,44 @@ class ViewUsers extends View {
       <th scope='col'>Modifcation</th>
 				
 			</tr>";
+
+		
 			foreach($users as $x){
 				$str.="<tr><td>".$x->name."</td><td>".$x->email."</td><td>".$x->social."</td><td>".$x->role."</td>"." <td><a href='".URLROOT.'pages/workout?id='.$x->id."' class='btn btn-primary'>Workout</a></td>
 				<td><a href='".URLROOT.'pages/nutrition?id='.$x->id."' class='btn btn-success'>Nutrition</a></td>
-				<td> <a href='#' class='btn btn-secondary'>Edit</a> <a class='btn btn-danger' onclick=\"document.getElementById('id01').style.display='block'\" >Delete</a> </td></tr>";
-		  }
+				<td> <a href='".URLROOT.'pages/edituser?id='.$x->id."' class='btn btn-secondary'>Edit</a> <a  href='".URLROOT.'pages/confirmDelete?id='.$x->id."' class='btn btn-danger'  onclick=\"document.getElementById('id01').style.display='block'\" >Delete</a> </td></tr>";
+		 
+			
+			}
 		//var_dump($Ent[0]->Name);	
 $str.="</table>";
 ?>
-<br><br>
+ 
+
+
+ <br><br>
  <a class="btn btn-warning"  style="float:right;" href="<?php echo URLROOT . 'users/register'; ?>">Add Client</a>
  <body>
+<?php
 
 
+?>
+ <!-- <div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1 style="color: white;">Delete Account</h1>
+      <p style="color: white;">Are you sure you want to delete your account?</p>
+    
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-light">Cancel</button>
+        
+      </div>
+    </div>
+  </form>
+</div>
 
-
-
-</body>
+</body> -->
 <?php
     echo $str;
 	// for($i=0;$i<2;$i++)
@@ -45,26 +68,18 @@ $str.="</table>";
 }
 
 ?>
-<!-- <h2>Delete Modal</h2> -->
+<!-- <h2>Delete Modal</h2>
 
-<!-- <button onclick="document.getElementById('id01').style.display='block'">Open Modal</button> -->
+<button onclick="document.getElementById('id01').style.display='block'">Open Modal</button> -->
 
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1 style="color: white;">Delete Account</h1>
-      <p style="color: white;">Are you sure you want to delete your account?</p>
-    
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
-      </div>
-    </div>
-  </form>
-</div>
+
 
 <script>
+
+
+
+
+
 // Get the modal
 var modal = document.getElementById('id01');
 

@@ -32,6 +32,15 @@ class Pages extends Controller
         $aboutView = new clients($this->getModel(), $this);
         $aboutView->output();
     }
+
+    public function confirmDelete()
+    {
+        $viewPath = VIEWS_PATH . 'pages/confirmDelete.php';
+        require_once $viewPath;
+        $aboutView = new confirmDelete($this->getModel(), $this);
+        $aboutView->output();
+    }
+
     public function nutrition()
     {
         $viewPath = VIEWS_PATH . 'pages/nutrition.php';

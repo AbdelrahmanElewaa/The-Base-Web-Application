@@ -62,7 +62,7 @@ EOT;
     $err = $this->model->getNameErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 
-    $this->printInput('text', 'name', $val, $err, $valid);
+    $this->printInput('text', 'name', $val, $err, $valid,'name');
   }
   private function printEmail()
   {
@@ -70,7 +70,7 @@ EOT;
     $err = $this->model->getEmailErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 
-    $this->printInput('email', 'email', $val, $err, $valid);
+    $this->printInput('email', 'email', $val, $err, $valid,'email');
   }
   private function printSocial()
   {
@@ -78,15 +78,15 @@ EOT;
     $err = $this->model->getSocialErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 
-    $this->printInput('text', 'social', $val, $err, $valid);
+    $this->printInput('text', 'social', $val, $err, $valid,'social');
   }
   private function printRole()
   {
-    $val = $this->model->getRole();
+    $val ="client";
     $err = $this->model->getRoleErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 
-    $this->printInput('text', 'role', $val, $err, $valid);
+    $this->printInput('hidden', 'role', $val, $err, $valid,'');
   }
   private function printPassword()
   {
@@ -94,7 +94,7 @@ EOT;
     $err = $this->model->getPasswordErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 
-    $this->printInput('password', 'password', $val, $err, $valid);
+    $this->printInput('password', 'password', $val, $err, $valid,'password');
   }
   private function printConfirmPassword()
   {
@@ -102,16 +102,16 @@ EOT;
     $err = $this->model->getConfirmPasswordErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
 
-    $this->printInput('password', 'confirm_password', $val, $err, $valid);
+    $this->printInput('password', 'confirm_password', $val, $err, $valid,'confirm password');
   }
 
-  private function printInput($type, $fieldName, $val, $err, $valid)
+  private function printInput($type, $fieldName, $val, $err, $valid,$label)
   {
-    $label = str_replace("_", " ", $fieldName);
+    $label = str_replace("_", " ", $label);
     $label = ucwords($label);
     $text = <<<EOT
     <div class="form-group">
-      <label for="$fieldName"> $label: <sup>*</sup></label>
+      <label for="$fieldName"> $label<sup></sup></label>
       <input type="$type" name="$fieldName" class="form-control form-control-lg $valid" id="$fieldName" value="$val">
       <span class="invalid-feedback">$err</span>
     </div>

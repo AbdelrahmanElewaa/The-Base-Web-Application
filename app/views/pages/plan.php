@@ -7,7 +7,6 @@ class Plan extends View
 
  public function printBreakfast()
   {
-
     $r=$_SESSION['array_to_saveB'] ;
     $DATE=$_SESSION['DATE'] ;
     // print_r($DATE);
@@ -365,9 +364,21 @@ class Plan extends View
   {
 
     require APPROOT . '/views/inc/header.php';
+
+    if(isset($_SESSION['array_to_saveB']))
+    {
     $breakfast_result=$this->printBreakfast();
-    $lunch_result=$this->printLunch();
-    $dinner_result=$this->printDinner();
+    }
+    if(isset($_SESSION['array_to_saveL']))
+    {
+      $lunch_result=$this->printLunch();
+
+    }
+    if(isset($_SESSION['array_to_saveD']))
+    {
+      $dinner_result=$this->printDinner();
+
+    }
 
 
 
@@ -453,36 +464,84 @@ $g=$this->model->getdate();
                 <tbody class="u-black u-table-body u-table-body-1">
                   <tr style="height: 66px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">Breakfast</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7"> $breakfast_result[0] <br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">
+EOT;
+                    if(isset($breakfast_result[0])){ $text=$text.$breakfast_result[0];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> $breakfast_result[1]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> 
+EOT;
+                    if(isset($breakfast_result[1])){ $text=$text.$breakfast_result[1];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">$breakfast_result[2]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">
+EOT;
+                    if(isset($breakfast_result[2])){ $text=$text.$breakfast_result[2];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">$breakfast_result[3]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">
+EOT;
+                    if(isset($breakfast_result[3])){ $text=$text.$breakfast_result[3];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
                   </tr>
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">Lunch (Pre-Workout meal)</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12">$lunch_result[0]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12">
+EOT;
+                    if(isset($lunch_result[0])){ $text=$text.$lunch_result[0];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13">$lunch_result[1]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-13">
+EOT;
+                    if(isset($lunch_result[1])){ $text=$text.$lunch_result[1];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> $lunch_result[2]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-14"> 
+EOT;
+                    if(isset($lunch_result[2])){ $text=$text.$lunch_result[2];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15">$lunch_result[3]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-15">
+EOT;
+                    if(isset($lunch_result[3])){ $text=$text.$lunch_result[3];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
                   </tr>
 
                   <tr style="height: 46px;">
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">Dinner</td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">$dinner_result[0]<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">
+EOT;
+                    if(isset($dinner_result[0])){ $text=$text.$dinner_result[0];}
+                    $text=$text.<<<EOT
+                    <br>
                   </td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> $dinner_result[1]<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19">
+EOT;
+                  if(isset( $dinner_result[1])){ $text=$text.$dinner_result[1];}
+                  $text=$text.<<<EOT
+                  <br>
                   </td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">$dinner_result[2]<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">
+EOT;
+                  if(isset($dinner_result[2])){ $text=$text.$dinner_result[2];}
+                  $text=$text.<<<EOT
+                  <br>
                   </td>
-                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> $dinner_result[3]<br>
+                  <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> 
+EOT;
+                  if(isset($dinner_result[3])){ $text=$text.$dinner_result[2];}
+                  $text=$text.<<<EOT
+                  <br>
                   </td>
                 </tr>
                   <tr style="height: 60px;">
@@ -518,30 +577,66 @@ $g=$this->model->getdate();
                 <tbody class="u-black u-table-body u-table-body-1">
                   <tr style="height: 66px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-5">Breakfast</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">$breakfast_result[4]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">
+EOT;
+                    if(isset($breakfast_result[4])){$text=$text.$breakfast_result[4];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">$breakfast_result[5]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">
+EOT;
+                    if(isset($breakfast_result[5])){$text=$text.$breakfast_result[5];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> $breakfast_result[6]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-8"> 
+EOT;
+                    if(isset($breakfast_result[6])){$text=$text.$breakfast_result[6];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
                   </tr>
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-9">Lunch (Pre-Workout meal)</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">$lunch_result[4]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-10">
+EOT;
+                    if(isset($lunch_result[4])){$text=$text.$lunch_result[4];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">$lunch_result[5]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-11">
+EOT;
+                    if(isset($lunch_result[5])){$text=$text.$lunch_result[5];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12"> $lunch_result[6]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-12"> 
+EOT;
+                    if(isset($lunch_result[6])){$text=$text.$lunch_result[6];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
                   </tr>
 
                   <tr style="height: 46px;">
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-17">Dinner</td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">$dinner_result[4]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-18">
+EOT;
+                    if(isset($dinner_result[4])){$text=$text.$dinner_result[4];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19"> $dinner_result[5]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-19">
+EOT;
+                    if(isset( $dinner_result[5])){$text=$text. $dinner_result[5];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
-                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> $dinner_result[6]<br>
+                    <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">
+EOT;
+                    if(isset(  $dinner_result[6])){$text=$text.  $dinner_result[6];}
+                    $text=$text.<<<EOT
+                    <br>
                     </td>
                   </tr>
 

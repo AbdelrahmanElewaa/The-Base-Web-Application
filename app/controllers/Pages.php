@@ -460,10 +460,20 @@ class Pages extends Controller
     
     
     
-        public function addnutrition()
+     public function addnutrition()
     {
         $addnutritionModel = $this->getModel();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            $addnutritionModel->setuserid($_GET['id']);
+            $count=$addnutritionModel->countNut();
+            $array = json_decode(json_encode($count), true);
+            if($array['records']>7)
+            {
+                print("<script>alert('maximum 7 records per week . You can edit or delete your nutrition plan');</script>");
+            }
+            else
+            {
             // Process form
             $addnutritionModel->setdate(trim($_POST['date']));
             // $registerModel->setName(trim($_POST['lastname']));
@@ -474,16 +484,6 @@ class Pages extends Controller
             $addnutritionModel->setdname(trim($_POST['dname']));
             $addnutritionModel->setdd(trim($_POST['dd']));
             $addnutritionModel->setuserid(trim($_POST['userid']));
-
-
-            // print(trim($_POST['date']));
-            // print("<br>");
-            // print(date('y-m-d'));
-            // print("<br>");
-
-            // print(trim($_POST['date']) > date('y-m-d'));
-
-
 
 
             if(empty($addnutritionModel->getdate()) || empty($addnutritionModel->getbname()) || empty($addnutritionModel->getlname()) || empty($addnutritionModel->getdname()) || empty($addnutritionModel->getbd()) || empty($addnutritionModel->getld()) || empty($addnutritionModel->getdd()) )
@@ -523,28 +523,30 @@ class Pages extends Controller
     
                 }
             }
-            else if(trim($_POST['date']) < date('y-m-d') == 1)
-            {
-                $addnutritionModel->setdateErr("*Please Enter a Valid dateee");
-            }
+            // else if(trim($_POST['date']) < date('y-m-d') == 1)
+            // {
+            //     $addnutritionModel->setdateErr("*Please Enter a Valid dateee");
+            // }
             else
             {
 
             if ($addnutritionModel->addNut()) {
                 //header('location: ' . URLROOT . 'users/login');
                 flash('register_success', 'nutrition plan is added successfully');
-                redirect('pages/addnutrition');
+                redirect('pages/addnutrition?id='.$_GET['id']);
             } else {
                 die('Error in adding nutrition');
             }
         }
+    }
         }
         $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
         require_once $viewPath;
         $aboutView = new addnutrition($this->getModel(), $this);
         $aboutView->output();
     }
-    
+
+
         public function deletenutrition()
     {
         // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );

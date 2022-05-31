@@ -4,29 +4,60 @@ class ChatModel extends UserModel
 {
     public  $title = 'Chat Page';
     protected $sender;
-    protected $reciver;
+    protected $reciever;
     protected $messageFromAdmin=array();
     protected $messageFromClient=array();
     protected $message;
 
     protected $created_at_client=array();
     protected $created_at_admin=array();
+    
 
     protected $seen_client;
     protected $seen_admin;
+
+    protected $record=array();
+
+    protected $allClients;
+    protected $chat=array();
+
+
+    public function setAllClients($c)
+    {
+
+        $this->allClients=$c;
+
+
+    }
+    public function getAllClients()
+    {
+        return $this->allClients;
+    }
+
+
+
+
+    public function getrecord()
+    {
+        return $this->record; 
+    }
+    public function setrecord($s)
+    {
+            $this->record=$s;
+            // array_push($this->record,$s);
+
+    }
 
 
 
     public function getSender()
     {
-        return $this->sender; 
+        return $this->record; 
     }
-    public function setSender($s)
+    public function setSender($r)
     {
-            $this->sender=$s;
+        $this->record=$r;
     }
-
-
 
     public function getMessage()
     {
@@ -73,7 +104,7 @@ class ChatModel extends UserModel
 
     }
 
-    public function getCretated_at_admin()
+    public function getCreated_at_admin()
     {
             return $this->created_at_admin;
     }
@@ -85,13 +116,21 @@ class ChatModel extends UserModel
     }
 
     
-    public function getCreated_at_client()
-    {
-            return $this->created_at_client;
-    }
+
     public function getCreated_at_clientlast()
     {
             return end($this->created_at_client);
+    }
+    
+    public function getCreated_at_adminlast()
+    {
+            return end($this->created_at_admin);
+    }
+
+    
+    public function getCreated_at_client()
+    {
+            return $this->created_at_client;
     }
     public function setCreated_at_client($c)
     {
@@ -126,12 +165,27 @@ class ChatModel extends UserModel
     {
         $this->dbh->query('SELECT DISTINCT sender,reciever,content,created_at ,seen FROM chat,users  WHERE (`sender` = 1 AND `reciever` =:uid ) OR (`sender` = :uid AND `reciever` = 1)  ORDER BY created_at ASC ') ;
         $this->dbh->bind(':uid',$_SESSION['user_id'] );
+        $this->setrecord($this->dbh->resultSet());
 
 
 		return $this->dbh->resultSet();
     }
 
-    public function send()
+    public function chatadmin()
+    {
+        $this->dbh->query('SELECT DISTINCT sender,reciever,content,created_at ,seen FROM chat,users  WHERE (`sender` = :uid AND `reciever` =:sid ) OR (`sender` = :sid AND `reciever` = :uid)  ORDER BY created_at ASC ') ;
+        $this->dbh->bind(':uid',1 );
+        $this->dbh->bind(':sid',$this->getReciever());
+
+
+        
+        // $this->setrecord($this->dbh->resultSet());
+
+
+		return $this->dbh->resultSet();
+    }
+
+    public function sendclient()
     {
         $this->dbh->query('INSERT INTO chat (sender, reciever, content, created_at,seen)
         VALUES (:s, :r, :m, :c,:se) ') ;
@@ -139,11 +193,40 @@ class ChatModel extends UserModel
         $this->dbh->bind(':r', 1);
         $this->dbh->bind(':m', $this->message);
 		$this->dbh->bind(':c', $this->getCreated_at_clientlast());
-        $this->dbh->bind(':se', $this->seen_client);
+        $this->dbh->bind(':se', 0);
 
          
 		return $this->dbh->execute();    
     }
 
+    public function sendadmin()
+    {
+        $this->dbh->query('INSERT INTO chat (sender, reciever, content, created_at,seen)
+        VALUES (:s, :r, :m, :c,:se) ') ;
+		$this->dbh->bind(':s',$_SESSION['user_id'] );
+        $this->dbh->bind(':r', $this->getReciever() ); 
+        $this->dbh->bind(':m', $this->message);
+		$this->dbh->bind(':c', $this->getCreated_at_adminlast());
+        $this->dbh->bind(':se', 0);
+
+         
+		return $this->dbh->execute();    
+    }
+
+
+    public function AllClients()
+    {
+        
+
+        $this->dbh->query('SELECT DISTINCT users.name,chat.sender
+        FROM chat 
+        INNER JOIN users
+        ON   users.id=chat.sender
+        where chat.sender!=1');
+
+		return $this->dbh->resultSet();
+
+
+    }
 
 }

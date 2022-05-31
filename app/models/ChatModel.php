@@ -218,11 +218,7 @@ class ChatModel extends UserModel
     {
         
 
-        $this->dbh->query('SELECT DISTINCT users.name,chat.sender
-        FROM chat 
-        INNER JOIN users
-        ON   users.id=chat.sender
-        where chat.sender!=1');
+        $this->dbh->query('SELECT DISTINCT name,id from users where id!=1');
 
 		return $this->dbh->resultSet();
 

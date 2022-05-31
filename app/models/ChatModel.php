@@ -191,8 +191,8 @@ class ChatModel extends UserModel
         VALUES (:s, :r, :m, :c,:se) ') ;
 		$this->dbh->bind(':s',$_SESSION['user_id'] );
         $this->dbh->bind(':r', 1);
-        $this->dbh->bind(':m', $this->message);
-		$this->dbh->bind(':c', $this->getCreated_at_clientlast());
+        $this->dbh->bind(':m', htmlentities($this->message));
+		$this->dbh->bind(':c', htmlentities($this->getCreated_at_clientlast()));
         $this->dbh->bind(':se', 0);
 
          
@@ -204,9 +204,9 @@ class ChatModel extends UserModel
         $this->dbh->query('INSERT INTO chat (sender, reciever, content, created_at,seen)
         VALUES (:s, :r, :m, :c,:se) ') ;
 		$this->dbh->bind(':s',$_SESSION['user_id'] );
-        $this->dbh->bind(':r', $this->getReciever() ); 
-        $this->dbh->bind(':m', $this->message);
-		$this->dbh->bind(':c', $this->getCreated_at_adminlast());
+        $this->dbh->bind(':r', htmlentities($this->getReciever() )); 
+        $this->dbh->bind(':m', htmlentities($this->message));
+		$this->dbh->bind(':c', htmlentities($this->getCreated_at_adminlast()));
         $this->dbh->bind(':se', 0);
 
          

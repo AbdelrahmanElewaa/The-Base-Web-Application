@@ -442,7 +442,7 @@ class Pages extends Controller
             if ($addworkoutModel->addWork()) {
                 //header('location: ' . URLROOT . 'users/login');
                 flash('register_success', 'workout plan is added successfully');
-                redirect('pages/addworkout');
+                redirect('pages/addworkout?id='.$_GET['id']);
             } else {
                 die('Error in adding nutrition');
             }

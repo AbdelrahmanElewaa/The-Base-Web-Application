@@ -104,7 +104,8 @@ class PlanModel extends UserModel
 
     public function plan()
     {
-	$this->dbh->query('select * from nutrition where userID=:uid') ;
+	$this->dbh->query('SELECT *   FROM nutrition where userID=:uid
+    ORDER by date ASC') ;
     $this->dbh->bind(':uid',$_SESSION['user_id']);
 
 		return $this->dbh->resultSet();

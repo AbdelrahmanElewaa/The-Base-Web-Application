@@ -39,7 +39,8 @@ class Pages extends Controller
     public function plan()
     {
         $displaynutritionModel = $this->getModel();
-
+        if(!empty($displaynutritionModel->plan()) )
+        {
         if ($result = $displaynutritionModel->plan())
         {
 
@@ -57,6 +58,7 @@ class Pages extends Controller
             $displaynutritionModel->setbd($result[$x]->bd);
             $displaynutritionModel->setld($result[$x]->ld);
             $displaynutritionModel->setdd($result[$x]->dd);
+            
 
 
 
@@ -94,6 +96,17 @@ class Pages extends Controller
          else {
             die('Error in Viewing Your plan');
         }
+    }
+    else
+    {
+        unset($_SESSION['array_to_saveB'] );
+        unset($_SESSION['array_to_saveL']);
+        unset(  $_SESSION['array_to_saveD']);
+        unset($_SESSION['DATE'] );
+
+
+
+    }
     // }
 
 

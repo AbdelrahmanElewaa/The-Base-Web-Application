@@ -5,29 +5,15 @@ class Chat extends View
 {
   public function output()
   {
-
-
-
-
-
-
+    
     $MessageFromAdmin=$this->model->getMessageFromAdmin();
     $MessageFromClient=$this->model->getMessageFromClient();
-
 
     $created_at_client= $this->model->getCreated_at_client();
     $created_at_admin= $this->model->getCreated_at_admin();
 
-
-
-
-
     $allclients=$this->model->AllClients();
 
-
-
-
-    
     $clientnames=array();
     $clientids=array();
     for($x=0;$x<count($allclients);$x++)
@@ -45,7 +31,6 @@ class Chat extends View
     else{
         $action = URLROOT . 'pages/chat?id=$ selected=';   
     }
-
 
 $loop1=" ";
 $loop2=" ";
@@ -68,7 +53,7 @@ $loop2=" ";
  
 
 
-    <div  class="container" >
+    <div  class="container"  >
     <div class="row clearfix">
         <div class="col-lg-12">
             <div  class="card chat-app">
@@ -90,7 +75,7 @@ $loop2=" ";
                        
                     </ul>
                 </div>
-                <div class="chat">
+                <div class="chat" >
                     <div class="chat-header clearfix">
                         <div class="row">
                             <div class="col-lg-6">
@@ -105,7 +90,7 @@ $loop2=" ";
                             </div>
                         </div>
                     </div>
-                    <div class="chat-history">
+                    <div class="chat-history" >
                         <ul class="m-b-0">
 EOT;
     
@@ -146,7 +131,6 @@ $loop1=$loop1.<<<EOT
 }
 EOT;
 
-// 10:12 AM, Today
     if($record[$x]->sender!=1 && $client_count <= count($created_at_client))
     {
                             $loop2=<<<EOT
@@ -241,13 +225,13 @@ $sidee=array();
 for($x=0;$x<count($allclients);$x++)
 {
     
-    
+    $clientname=ucfirst($clientnames[$x]);
 $sidee[$x]=<<<EOT
                     <a href="http://localhost/mvc/public/pages/chat?id=$clientids[$x] & selected=$x">
                     <li  class="clearfix">
                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                     <div class="about">
-                        <div class="name"> $clientnames[$x] </div>
+                        <div class="name">$clientname  </div>
                     </div>
                     </li></a><br>
 
@@ -261,7 +245,7 @@ $text=$text.$sidee;
 
 if( is_numeric($_GET['selected'])   )
 {
-    $selected=$clientnames[$_GET['selected']];
+    $selected=ucfirst($clientnames[$_GET['selected']]);
 }
 else
 {
@@ -389,4 +373,3 @@ require APPROOT . '/views/inc/footer.php';
 
 }
 ?>
-

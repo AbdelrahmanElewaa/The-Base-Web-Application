@@ -5,10 +5,7 @@ class Chat extends View
 {
   public function output()
   {
-    // $title = $this->model->title;
-    // $subtitle = $this->model->subtitle;
-    // $user_id = $_SESSION['user_id'];
-    // $user_name = $_SESSION['user_name'];
+
 
 
 
@@ -28,22 +25,7 @@ class Chat extends View
     $allclients=$this->model->AllClients();
 
 
-// print("<br>");
-// $array=[1,2,3]
-// $this->model->setrecord()
 
-
-
-    
-    
-
-
-
-    // print_R($created_at_client);
-//     print_r($created_at_admin);
-// print(date("h:i:sa A"));
-
-    // print_r($this->model->AllClients());
 
     
     $clientnames=array();
@@ -56,7 +38,6 @@ class Chat extends View
     }
 
 
-    // print_r($record);
     if(isset($_GET['id']) && isset($_GET['selected']))
     {
     $action = URLROOT . 'pages/chat?id='.$_GET["id"].'& selected='.$_GET["selected"];
@@ -65,15 +46,7 @@ class Chat extends View
         $action = URLROOT . 'pages/chat?id=$ selected=';   
     }
 
-//    if($this->model->getSender()==1)
-//    {
-//     $MessageFromAdmin=$this->model->getMessage();
-//    }
-//    else
-//    {
-//        $MessageFromClient=$this->model->getMessage();
-//    }
-    // Admin -->ID --> 1
+
 $loop1=" ";
 $loop2=" ";
     $x=0;
@@ -89,8 +62,7 @@ $loop2=" ";
 
     if($_SESSION['user_id']!=1)////////////////clientt ///////////////////////////
     {
-        // $_SESSION['record']=$this->model->chat();
-        // print_r( $_SESSION['record']);
+
         $record=$this->model->chat();
     $text = <<< EOT
  
@@ -235,13 +207,8 @@ EOT;
     {
     $this->model->setReciever($_GET['id']);
     }
-    // print($this->model->getReciever());
     $record=$this->model->chatadmin();
-    // print_r($record);
-    // print_r( $record);
-    // print($this->model->getReciever());
-    // $record=$this->model->getrecord();
-    // print_r( $_SESSION['record']);
+
 
     $text = <<< EOT
  <style>
@@ -287,12 +254,10 @@ $sidee[$x]=<<<EOT
 
 EOT;
 
-// $side=$side.str_repeat($sidee,1);
 
 }
 $sidee= implode(" ",$sidee);
 $text=$text.$sidee;
-// print(htmlentities($text));
 
 if( is_numeric($_GET['selected'])   )
 {
@@ -424,39 +389,4 @@ require APPROOT . '/views/inc/footer.php';
 
 }
 ?>
-<!-- 
-<script>
 
-function myFunction()
-{
-    
-
-        // const url = "http://localhost/mvc/public/pages/chat?id=1";
-        // window.location.href = url;
-        for(var x=0;x<4;x++)
-        {
-            // alert(document.getElementById(x.toString()));
-            // fired_button= document.getElementById(x.toString()).value=x;
-            // alert(fired_button);
-            
-        alert(document.getElementById(  ( 'clientButton'  )  ).value);
-            // if(document.getElementById(  (  x.toString()  ).clicked == true))
-            // {
-            //         console.log("heree");
-            // }
-            // {
-            //     alert("hereee");
-            // }
-
-            // var fired_button = $('button').value; 
-            // alert(fired_button);
-
-
-        }
-
-
- 
-           
-} -->
-
-<!-- </script> -->

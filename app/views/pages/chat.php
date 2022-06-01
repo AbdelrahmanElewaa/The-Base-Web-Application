@@ -5,6 +5,10 @@ class Chat extends View
 {
   public function output()
   {
+    // $title = $this->model->title;
+    // $subtitle = $this->model->subtitle;
+    // $user_id = $_SESSION['user_id'];
+    // $user_name = $_SESSION['user_name'];
 
 
 
@@ -23,6 +27,24 @@ class Chat extends View
 
     $allclients=$this->model->AllClients();
 
+
+// print("<br>");
+// $array=[1,2,3]
+// $this->model->setrecord()
+
+
+
+    
+    
+
+
+
+    // print_R($created_at_client);
+//     print_r($created_at_admin);
+// print(date("h:i:sa A"));
+
+    // print_r($this->model->AllClients());
+
     
     $clientnames=array();
     $clientids=array();
@@ -34,6 +56,7 @@ class Chat extends View
     }
 
 
+    // print_r($record);
     if(isset($_GET['id']) && isset($_GET['selected']))
     {
     $action = URLROOT . 'pages/chat?id='.$_GET["id"].'& selected='.$_GET["selected"];
@@ -42,7 +65,15 @@ class Chat extends View
         $action = URLROOT . 'pages/chat?id=$ selected=';   
     }
 
-
+//    if($this->model->getSender()==1)
+//    {
+//     $MessageFromAdmin=$this->model->getMessage();
+//    }
+//    else
+//    {
+//        $MessageFromClient=$this->model->getMessage();
+//    }
+    // Admin -->ID --> 1
 $loop1=" ";
 $loop2=" ";
     $x=0;
@@ -58,7 +89,8 @@ $loop2=" ";
 
     if($_SESSION['user_id']!=1)////////////////clientt ///////////////////////////
     {
-
+        // $_SESSION['record']=$this->model->chat();
+        // print_r( $_SESSION['record']);
         $record=$this->model->chat();
     $text = <<< EOT
  
@@ -203,8 +235,13 @@ EOT;
     {
     $this->model->setReciever($_GET['id']);
     }
+    // print($this->model->getReciever());
     $record=$this->model->chatadmin();
-
+    // print_r($record);
+    // print_r( $record);
+    // print($this->model->getReciever());
+    // $record=$this->model->getrecord();
+    // print_r( $_SESSION['record']);
 
     $text = <<< EOT
  <style>
@@ -222,13 +259,13 @@ EOT;
     <div class="row clearfix">
         <div class="col-lg-12">
             <div class="card chat-app" >
-                <div id="plist" class="people-list"  style="position:absolute">
+                <div id="plist" class="people-list"  style="">
                     <div class="input-group" >
                         <div class="input-group-prepend">
                         </div>
                     </div>
                     
-                    <ul class="list-unstyled chat-list mt-2 mb-0"  style="position:relative">
+                    <ul class="list-unstyled chat-list mt-2 mb-0"  style="">
 
 
 EOT;
@@ -245,11 +282,12 @@ $sidee[$x]=<<<EOT
                     <div class="about">
                         <div class="name"> $clientnames[$x] </div>
                     </div>
-                    </li></a>
+                    </li></a><br>
 
 
 EOT;
 
+// $side=$side.str_repeat($sidee,1);
 
 }
 $sidee= implode(" ",$sidee);
@@ -271,7 +309,7 @@ $text=$text.<<<EOT
                     </ul>
                 </div>
                 <div class="chat"  >
-                    <div class="chat-header clearfix"style="position:relative;"  >
+                    <div class="chat-header clearfix" style=""  >
                         <div class="row">
                             <div class="col-lg-6" >
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info" >
@@ -386,3 +424,39 @@ require APPROOT . '/views/inc/footer.php';
 
 }
 ?>
+<!-- 
+<script>
+
+function myFunction()
+{
+    
+
+        // const url = "http://localhost/mvc/public/pages/chat?id=1";
+        // window.location.href = url;
+        for(var x=0;x<4;x++)
+        {
+            // alert(document.getElementById(x.toString()));
+            // fired_button= document.getElementById(x.toString()).value=x;
+            // alert(fired_button);
+            
+        alert(document.getElementById(  ( 'clientButton'  )  ).value);
+            // if(document.getElementById(  (  x.toString()  ).clicked == true))
+            // {
+            //         console.log("heree");
+            // }
+            // {
+            //     alert("hereee");
+            // }
+
+            // var fired_button = $('button').value; 
+            // alert(fired_button);
+
+
+        }
+
+
+ 
+           
+} -->
+
+<!-- </script> -->

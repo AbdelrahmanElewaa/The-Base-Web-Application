@@ -227,7 +227,7 @@ for($x=0;$x<count($allclients);$x++)
     
     $clientname=ucfirst($clientnames[$x]);
 $sidee[$x]=<<<EOT
-                    <a href="http://localhost/mvc/public/pages/chat?id=$clientids[$x] & selected=$x">
+                    <a style="color:black;" href="http://localhost/mvc/public/pages/chat?id=$clientids[$x] & selected=$x">
                     <li  class="clearfix">
                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                     <div class="about">

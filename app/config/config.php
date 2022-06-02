@@ -17,7 +17,7 @@ define('APP_VERSION', '1.2');
 
 //public pages path
 define('VIEWS_PATH', '../app/views/');
-define('IMGROOT', 'http://http://137.184.122.185/deploy.php/public/images/');
+define('IMGROOT', 'http://http://137.184.122.185/public/images/');
 
 
 

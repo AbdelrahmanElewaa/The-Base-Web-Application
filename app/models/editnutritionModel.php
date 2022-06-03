@@ -121,20 +121,20 @@ class editnutritionModel extends NutModel
     }
 	
     public function updatenutrition( ){
-        $this->dbh->query('UPDATE `nutrition` SET `date`=:date , `breakfast`=:bname,`lunch`=:lname ,`dinner`=:dname ,`bd`=:bd ,`ld`= :ld ,`dd`=:dd ,`userID`=:userid Where $nutritionID=:nutritionID');
+        $this->dbh->query("UPDATE nutrition SET `date`=:datee , `breakfast`=:bname,`lunch`=:lname ,`dinner`=:dname ,`bd`=:bd ,`ld`= :ld ,`dd`=:dd where nutritionID=:nutritionID");
         $this->dbh->bind(':nutritionID', htmlentities($this->nutritionID ));
-		$this->dbh->bind(':date',htmlentities( $this->date));
+		$this->dbh->bind(':datee',htmlentities( $this->date));
         $this->dbh->bind(':bname', htmlentities($this->bname));
         $this->dbh->bind(':lname',htmlentities( $this->lname));
 		$this->dbh->bind(':dname', htmlentities($this->dname));
         $this->dbh->bind(':bd', htmlentities($this->bd));
         $this->dbh->bind(':ld',htmlentities( $this->ld));
 		$this->dbh->bind(':dd', htmlentities($this->dd));
-        $this->dbh->bind(':userid',htmlentities( $this->userid));
+        // $this->dbh->bind(':userId',htmlentities( $this->userid)); ,`userID`=:userid 
 		return $this->dbh->execute();
+        // print_r('UPDATE nutrition SET `date`='.$this->datee.'  , `breakfast`='.$this->bname.' ,`lunch`='.$this->lname.'  ,`dinner`='.$this->dname.'  ,`bd`='.$this->bd.'  ,`ld`='.$this->ld.'  ,`dd`='.$this->dd.' where nutritionID='.$this->nutritionID);
 
-    }    
-
+    }  
 	
 }
 

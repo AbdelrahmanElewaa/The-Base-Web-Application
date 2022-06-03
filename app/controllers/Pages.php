@@ -638,37 +638,17 @@ class Pages extends Controller
         $deleteworkoutView->output();
     }
 
-     public function editnutrition()
+    
+    public function editnutrition()
     {
         $editnutritionModel = $this->getModel();
         $editnutritionModel->setnutritionID($_GET['nutritionID']);
-        // header('Location: http://localhost/mvc/public/pages/editnutrition?nutritionID='.$_GET['nutritionID'] );
 
-        if($editnutritionModel->getRow()){
-
-            //  $dataa=$editnutritionModel->getRow();
+      
           
-           $viewPath =  VIEWS_PATH . 'pages/editnutrition.php';
-            require_once $viewPath;
-            $editnutritionView = new editnutrition($this->getModel(), $this);
-            $editnutritionView->output();
-        }
-        else{
-            die('Error in Edit nutrition plan');
-        }
-     
-       
-    }
-
-
-
-    public function updatenutrition(){
-
-        $editnutritionModel = $this->getModel();
-
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $editnutritionModel->setnutritionID($_POST['nutritionID']);
+
+            $editnutritionModel->setnutritionID($_GET['nutritionID']);
             $editnutritionModel->setdate(trim($_POST['date']));
             $editnutritionModel->setbname(trim($_POST['bname']));
             $editnutritionModel->setbd(trim($_POST['bd']));
@@ -679,16 +659,22 @@ class Pages extends Controller
             $editnutritionModel->setuserid(trim($_POST['userid']));
 
 
-            if ($editnutritionModel->update()) {
-                flash('register_success', 'Nutrition plan is Updated successfully');
-                redirect('pages/try');
-            } else {
-                die('Error in update nutrition plan');
+            if ($editnutritionModel->updatenutrition()) {
+                flash('register_success', 'Workout Program is Updated successfully');
+                // redirect('pages/editnutrition?nutritionID='.$_GET['nutritionID']);
+                
+            } 
+            else {
+                die('Error in update Workout Program');
             }
 
-        } 
     }
-
+    $viewPath =  VIEWS_PATH . 'pages/editnutrition.php';
+    require_once $viewPath;
+    $editnutritionView = new editnutrition($this->getModel(), $this);
+    $editnutritionView->output(); 
+}
+    
     public function deleteclient()
     {
         $deleteclientModel = $this->getModel();

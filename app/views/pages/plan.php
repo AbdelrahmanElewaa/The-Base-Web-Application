@@ -539,7 +539,7 @@ EOT;
                   </td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> 
 EOT;
-                  if(isset($dinner_result[3])){ $text=$text.$dinner_result[2];}
+                  if(isset($dinner_result[3])){ $text=$text.$dinner_result[3];}
                   $text=$text.<<<EOT
                   <br>
                   </td>

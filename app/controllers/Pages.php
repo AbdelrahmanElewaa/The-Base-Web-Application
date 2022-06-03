@@ -54,15 +54,15 @@ class Pages extends Controller
         $addnutritionModel = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Process form
-//             $addnutritionModel->setdate(trim($_POST['date']));
-//             // $registerModel->setName(trim($_POST['lastname']));
-//             $addnutritionModel->setbname(trim($_POST['bname']));
-//             $addnutritionModel->setbd(trim($_POST['bd']));
-//             $addnutritionModel->setlname(trim($_POST['lname']));
-//             $addnutritionModel->setld(trim($_POST['ld']));
-//             $addnutritionModel->setdname(trim($_POST['dname']));
-//             $addnutritionModel->setdd(trim($_POST['dd']));
-//             $addnutritionModel->setuserid(trim($_POST['userid']));
+            $addnutritionModel->setdate(trim($_POST['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addnutritionModel->setbname(trim($_POST['bname']));
+            $addnutritionModel->setbd(trim($_POST['bd']));
+            $addnutritionModel->setlname(trim($_POST['lname']));
+            $addnutritionModel->setld(trim($_POST['ld']));
+            $addnutritionModel->setdname(trim($_POST['dname']));
+            $addnutritionModel->setdd(trim($_POST['dd']));
+            $addnutritionModel->setuserid(trim($_POST['userid']));
 
 
 

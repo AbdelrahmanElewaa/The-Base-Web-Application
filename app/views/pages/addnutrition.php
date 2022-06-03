@@ -49,8 +49,8 @@ class addnutrition extends view {
 
 	<br><h2>Nutrition Plan</h2>
 	<hr>
-<!--   <input  style="width:200px;" class="form-control" type="date" id="birthday" name="date" require><br> -->
- <select style="width:200px;" class="form-control" id="birthday" name="date" require>
+  <input  style="width:200px;" class="form-control" type="date" id="birthday" name="date" require><br>
+<!--  <select style="width:200px;" class="form-control" id="birthday" name="date" require>
   <option value="" disabled selected>Select your day </option>
     <option>Sun</option>
     <option>Mon</option>
@@ -59,7 +59,7 @@ class addnutrition extends view {
     <option>Thur</option>
     <option>Fri</option>
     <option>Sat</option>
-  </select>
+  </select> -->
   <p id="v_date"> </p><br>
 
   <table class="table table-success table-striped">

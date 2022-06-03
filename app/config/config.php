@@ -9,7 +9,7 @@ define('DB_NAME', 'base');
 //echo dirname(dirname(__FILE__));
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://137.184.122.185/public/');
+define('URLROOT', 'http://localhost/mvc/public/');
 // Site Name
 define('SITENAME', 'MIU Blog MVC');
 

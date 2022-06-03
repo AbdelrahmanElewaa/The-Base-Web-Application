@@ -121,7 +121,40 @@ class Pages extends Controller
 
 
 
+public function editworkout()
+    {
+        $editworkoutModel= $this->getModel();
+        $editworkoutModel->settrainingID($_GET['trainingID']);
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $editworkoutModel->settrainingID($_GET['trainingID']);
+            $editworkoutModel->setdate(trim($_POST['date']));
+            $editworkoutModel->setname(trim($_POST['name']));
+            $editworkoutModel->setsets(trim($_POST['sets']));
+            $editworkoutModel->setreps(trim($_POST['reps']));
+            $editworkoutModel->setweights(trim($_POST['weights']));
+            $editworkoutModel->setresttime(trim($_POST['resttime']));
+            // $editworkoutModel->setuserid(trim($_POST['userid']));
+             
+
+            if ($editworkoutModel->updateworkout()) {
+                flash('register_success', 'workout plan is edit successfully');
+                // redirect('pages/editworkout');
+
+            } 
+            else{
+                print("hhh");
+
+                die('Error in Edit workout program');
+           }
+    }
+        $viewPath =  VIEWS_PATH . 'pages/editworkout.php';
+        require_once $viewPath;
+        $editworkoutView = new editworkout($this->getModel(), $this);
+        $editworkoutView->output();
+       
+    }
+    
     
     public function work()
     {

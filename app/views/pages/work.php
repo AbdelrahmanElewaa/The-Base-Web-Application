@@ -1,10 +1,13 @@
 <?php
-class Work extends View
+class work extends View
 {
+  
   public function sun(){
    
     $r=$this->model->getname();
     $Date=$this->model->getdate();
+    $user_id=$this->model->gettraininguserid();
+
 // print_r($r);
     $output_sun=array();
     
@@ -13,7 +16,7 @@ class Work extends View
       $y=0;
       $sun_count=0;
 
-      
+
       for($x=0;$x<3;$x++)  //loop 3la el names
       $output_sun[$x]=" ";
 
@@ -210,101 +213,220 @@ class Work extends View
       return  $output_Sat;
   }
 
-  // public function printworkoutday()
-  // {
-  //   $r=$this->model->getname();
-  //   $Date=$this->model->getdate();
-  //   $output_day=array();
 
 
 
-  //   for($x=0;$x<7;$x++)  //loop 3la el names
-  //     $output_d[$x]=" ";
 
-  //     $y=0;   //loop 3la elday
-  //     for($x=0;$x<count($r);$x++)
-  //     {
+  public function sunday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+    $user_id=$this->model->gettraininguserid();
 
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
-  //       }
-  //       else if(date("D", strtotime(  $Date[$y] ))=='Sun')
-  //       {
-           
-  //         $output_d[0]= $r[$x];  
-  //         $x++;
-  //         $y++;
-  //       }
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
-  //       }
-  //       else if(date("D", strtotime( $Date[$y] ))=='Mon')
-  //       {
-  //         $output_d[1]= $r[$x];  
-  //         $x++;
-  //         $y++;
+// print_r($r);
+    $output_sunday=array();
+    
+    // for($x=0;$x<7;$x++)  //loop 3la el names
+    //   $output_sun[$x]=" ";
+      $y=0;
+      $sun_count=0;
 
-  //       }
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
-  //       }
-  //       else if(date("D", strtotime($Date[$y]  ))=='Tue')
-  //       {
-  //         $output_d[2]= $r[$x];  
-  //         $x++;
-  //         $y++;
 
-  //       }
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
-  //       }
-  //       else if(date("D", strtotime(  $Date[$y]  ))=='Wed')
-  //       {
-  //         $output_d[3]= $r[$x];  
-  //         $x++;
-  //         $y++;
+      for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_sunday[$x]=" ";
 
-  //       }
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
-  //       }
-  //       else if(date("D", strtotime( $Date[$y]  ))=='Thu')
-  //       {
-  //         $output_d[4]= $r[$x];  
-  //         $x++;
-  //         $y++;
 
-  //       }
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
-  //       }
-  //       else if(date("D", strtotime( $Date[$y]  ))=='Fri')
-  //       {
-  //         $output_d[5]= $r[$x];  
-  //         $x++;
-  //         $y++;
-  //       }
-  //       if(count($Date) == $y)
-  //       {
-  //         $output_d[6]= " ";
+      $sun=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+        
+         if(date("D", strtotime(  $Date[$x] ))=='Sun')
+        {
+          
+          $output_sunday[$sun]= $Date[$x];
+          $sun++;
+          // $y++;
 
-  //       }
-  //       else if(date("D", strtotime( $Date[$y] ))=='Sat')
-  //       {
-  //         $output_d[6]= $r[$x];  
-  //         $x++;
-  //         $y++;
+        }
+      } 
+      //  if(date("D", strtotime(  $Date[$y] ))=='Sun'){
+ 
+      //  for($x=0; $x<$sun_count ; $x++) {
+      //    $output_sun[$x]= $r[$x];
 
-  //     }      
 
-  //     }
-  //   }
+      //  }}           
+       //print($sun_count);
+      //  print("sun");
+      //  print_r($output_sun);
+
+      return $output_sunday;
+  }
+  public function Monday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
+    $output_Monday=array();
+
+    for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_Monday[$x]=" ";
+
+      $Mon=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if(date("D", strtotime(  $Date[$x] ))=='Mon')
+        {
+          
+          $output_Monday[$Mon]= $Date[$x];
+          $Mon++;
+        }         
+
+      }  
+      // print("Mon");
+      // print_r($output_Mon);
+
+      
+      return $output_Monday;
+  }
+  public function Tueday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
+    $output_Tueday=array();
+    //print_r($r);
+
+    for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_Tueday[$x]=" ";
+
+      $Tue=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if(date("D", strtotime(  $Date[$x] ))=='Tue')
+        {
+          
+          $output_Tueday[$Tue]= $Date[$x];
+          $Tue++;
+        }      
+
+      }  
+      // print("Tue");
+      // print_r($output_Tue);
+
+      return $output_Tueday;
+  }
+  public function Wedday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
+    $output_Wedday=array();
+
+    for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_Wedday[$x]=" ";
+
+      $Wed=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if(date("D", strtotime(  $Date[$x] ))=='Wed')
+        {
+          
+          $output_Wedday[$Wed]= $Date[$x];
+          $Wed++;
+        }      
+
+      }
+      // print("Wed");
+      // print_r($output_Wed);
+
+      return $output_Wedday;
+  }
+  public function Thuday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
+    $output_Thuday=array();
+   // print_r($r);
+
+    for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_Thuday[$x]=" ";
+
+      $Thu=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if(date("D", strtotime(  $Date[$x] ))=='Thu')
+        {
+          
+          $output_Thuday[$Thu]= $Date[$x];
+          $Thu++;
+        }        
+
+      } 
+      // print("Thu");
+      // print_r($output_Thu);
+ 
+      return $output_Thuday;
+  }
+  public function Friday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
+    $output_Friday=array();
+
+    for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_Friday[$x]=" ";
+
+      $Fri=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if(date("D", strtotime(  $Date[$x] ))=='Fri')
+        {
+          
+          $output_Friday[$Fri]= $Date[$x];
+          $Fri++;
+        }     
+
+      }  
+      // print("Fri");
+      // print_r($output_Fri);
+
+      return $output_Friday;
+  }
+  public function Satday(){
+   
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
+    $output_Satday=array();
+
+    for($x=0;$x<3;$x++)  //loop 3la el names
+      $output_Satday[$x]=" ";
+
+      $Sat=0;   //loop 3la elday
+      for($x=0;$x<count($r);$x++)
+      {
+
+        if(date("D", strtotime(  $Date[$x] ))=='Sat')
+        {
+          
+          $output_Satday[$Sat]= $Date[$x];
+          $Sat++;
+        }       
+
+      }  
+      // print("Sat");
+      // print_r($output_Sat);
+
+      return  $output_Satday;
+  }
 
 
   public function output()
@@ -315,6 +437,10 @@ class Work extends View
     // $user_name = $_SESSION['user_name'];
     require APPROOT . '/views/inc/header.php';
 
+    
+    $r=$this->model->getname();
+    $Date=$this->model->getdate();
+
     $workout_sun=$this->sun();
     $workout_Mon=$this->Mon();
     $workout_Tue=$this->Tue();
@@ -322,6 +448,14 @@ class Work extends View
     $workout_Thu=$this->Thu();
     $workout_Fri=$this->Fri();
     $workout_Sat=$this->Sat();
+
+    $day_sun=$this->sunday();
+    $day_Mon=$this->Monday();
+    $day_Tue=$this->Tueday();
+    $day_Wed=$this->Wedday();
+    $day_Thu=$this->Thuday();
+    $day_Fri=$this->Friday();
+    $day_Sat=$this->Satday();
 
     // $output_d = printworkoutday();
     $text = <<<EOT
@@ -357,7 +491,6 @@ class Work extends View
         <section class="u-align-center u-clearfix u-image u-shading u-section-13" id="carousel_dbf3" data-image-width="1600" data-image-height="1067">
           <div class="u-clearfix u-sheet u-sheet-1">
             <h2 class="u-custom-font u-font-source-sans-pro u-text u-text-1">Workout Program</h2>
-            <p class="u-text u-text-2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla</p>
             <div class="u-expanded-width u-table u-table-responsive u-table-1">
               <table class="u-table-entity">
                 <colgroup>
@@ -391,7 +524,8 @@ class Work extends View
     // $items=$items .$work[$x]->content; //ToDO: 
     $text=$text.<<<EOT
     <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
-    <center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
+    <center><a  href="/MVC/public/pages/workoutdisplay?day=sun" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
+
   </td>            
 </tr>
 
@@ -401,29 +535,27 @@ class Work extends View
 
 
 EOT;
-//ToDO: try to remove the array that appear before the word
 $items1 ;
 for($i=0 ; $i< count($workout_Mon); $i++){
 $items1=<<<EOT
 <td class='u-border-1 u-border-paltte-5-dark-1 u-table-cell u-table-cell-17'>$workout_Mon[$i]</td>
+
 EOT;
 $text =$text. $items1;  
 
 }
-// $items=$items .$work[$x]->content; //ToDO: 
 $text=$text.<<<EOT
 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
-<center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
+<center><a href="/MVC/public/pages/workoutdisplay?date=".$day_Mon[0]" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
 </td>            
 </tr>
-
 <tr style="height: 50px;">
                     
 <th class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-cell-2">Tuesday</th>
 
 
+
 EOT;
-//ToDO: try to remove the array that appear before the word
 $items2 ;
 for($i=0 ; $i< count($workout_Tue); $i++){
 $items2=<<<EOT
@@ -432,7 +564,6 @@ EOT;
 $text =$text. $items2;  
 
 }
-// $items=$items .$work[$x]->content; //ToDO: 
 $text=$text.<<<EOT
 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
 <center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
@@ -441,11 +572,10 @@ $text=$text.<<<EOT
 
 <tr style="height: 50px;">
                     
-<th class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-cell-2">Wednsday</th>
+<th class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-1 u-table-cell u-table-cell-2">Wednesday</th>
 
 
 EOT;
-//ToDO: try to remove the array that appear before the word
 $items3;
 for($i=0 ; $i< count($workout_Wed); $i++){
 $items3=<<<EOT
@@ -454,7 +584,6 @@ EOT;
 $text =$text. $items3;  
 
 }
-// $items=$items .$work[$x]->content; //ToDO: 
 $text=$text.<<<EOT
 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
 <center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
@@ -468,7 +597,6 @@ $text=$text.<<<EOT
 
 
 EOT;
-//ToDO: try to remove the array that appear before the word
 $items5;
 for($i=0 ; $i< count($workout_Thu); $i++){
 $items5=<<<EOT
@@ -477,7 +605,6 @@ EOT;
 $text =$text. $items5;  
 
 }
-// $items=$items .$work[$x]->content; //ToDO: 
 $text=$text.<<<EOT
 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
 <center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
@@ -492,7 +619,6 @@ $text=$text.<<<EOT
 
 
 EOT;
-//ToDO: try to remove the array that appear before the word
 $items6 ;
 for($i=0 ; $i< count($workout_Fri); $i++){
 $items6=<<<EOT
@@ -501,7 +627,6 @@ EOT;
 $text =$text. $items6;  
 
 }
-// $items=$items .$work[$x]->content; //ToDO: 
 $text=$text.<<<EOT
 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
 <center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
@@ -515,7 +640,6 @@ $text=$text.<<<EOT
 
 
 EOT;
-//ToDO: try to remove the array that appear before the word
 $items7;
 for($i=0 ; $i< count($workout_Sat); $i++){
 $items7=<<<EOT
@@ -524,13 +648,11 @@ EOT;
 $text =$text. $items7;  
 
 }
-// $items=$items .$work[$x]->content; //ToDO: 
 $text=$text.<<<EOT
-<td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18">
+<td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-18"> 
 <center><a href="/MVC/public/pages/workoutdisplay" class="u-btn u-btn-rectangle u-button-style u-palette-1-base u-btn-3">Details</a></center>
 </td>            
 </tr>
-
 </tbody>
 </table>
 </div>

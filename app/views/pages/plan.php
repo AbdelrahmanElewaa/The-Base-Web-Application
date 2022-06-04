@@ -7,356 +7,304 @@ class Plan extends View
 
  public function printBreakfast()
   {
-    $r=$_SESSION['array_to_saveB'] ;
-    $DATE=$_SESSION['DATE'] ;
-    // print_r($DATE);
-    $output_arrayB=array();
-    for($x=0;$x<7;$x++)
-    $output_arrayB[$x]=" ";
-    $y=0;
-    for($x=0;$x<count($r);$x++)
+ 
+
+    for($x=0; $x<count($this->model->plan()); $x++)
     {
 
-      if(count($DATE) == $y)
+     
+       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Sun'  )  
       {
-        $output_arrayB[6]= " ";
-      }
-      else if(date("D", strtotime(  $DATE[$y] ))=='Sun')
-      {
-            $SunBreakfast= $r[$x];
-            $x++;
+
+        if(date('Y-m-d', strtotime('sunday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[0]=" ";}
+        else
+        {
+        
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
             $output_arrayB[0]= $SunBreakfast;
-            $y++;
+        }   
+
+        
+
       }
-      if(count($DATE) == $y)
+      if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Mon'  )  
       {
-        $output_arrayB[6]= " ";
-      }
-      else if(date("D", strtotime( $DATE[$y] ))=='Mon')
+        if(date('Y-m-d', strtotime('monday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[1]=" ";}
+        else{
+
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
+            $output_arrayB[1]= $SunBreakfast;
+        }
+
+        
+
+      }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Tue'  )  
       {
-            $MonBreakfast= $r[$x];
-            $x++;
-            $output_arrayB[1]= $MonBreakfast;
-            $y++;
+        if(date('Y-m-d', strtotime('tuesday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[2]=" ";}
+        else{
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
+            $output_arrayB[2]= $SunBreakfast;
+            }       
 
-      }
-      if(count($DATE) == $y)
+        
+
+      }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Wed'  )  
       {
-        $output_arrayB[6]= " ";
-      }
-      else if(date("D", strtotime($DATE[$y]  ))=='Tue')
+        if(date('Y-m-d', strtotime('wednesday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[3]=" ";}
+        else{
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
+            $output_arrayB[3]= $SunBreakfast;
+            
+              }
+        
+
+      }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Thu'  )  
       {
-          $TueBreakfast= $r[$x];
-          $output_arrayB[2]= $TueBreakfast;
-          $x++;
-          $y++;
-
+        if(date('Y-m-d', strtotime('thursday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[4]=" ";}
+        else{
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
+            $output_arrayB[4]= $SunBreakfast;
+            
       }
-      if(count($DATE) == $y)
+        
+
+      }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Fri'  )  
       {
-        $output_arrayB[6]= " ";
-      }
-      else if(date("D", strtotime(  $DATE[$y]  ))=='Wed')
+        if(date('Y-m-d', strtotime('friday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[5]=" ";}
+          else{
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
+            $output_arrayB[5]= $SunBreakfast;
+              }       
+
+        
+
+      }      
+       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Sat'  )  
       {
-            $WedBreakfast= $r[$x];
-            $output_arrayB[3]= $WedBreakfast;
-            $x++;
-            $y++;
+        if(date('Y-m-d', strtotime('saturday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[6]=" ";}
+          else{
+            $SunBreakfast= $this->model->plan()[$x]->breakfast ."<br>Details: ".$this->model->plan()[$x]->bd;
+            $output_arrayB[6]= $SunBreakfast;
+            
+              }
+        
 
       }
-      if(count($DATE) == $y)
-      {
-        $output_arrayB[6]= " ";
-      }
-      else if(date("D", strtotime( $DATE[$y]  ))=='Thu')
-      {
-            $ThuBreakfast= $r[$y];
-            $output_arrayB[4]= $ThuBreakfast;
-            $x++;
-            $y++;
-
-      }
-      if(count($DATE) == $y)
-      {
-        $output_arrayB[6]= " ";
-      }
-      else if(date("D", strtotime( $DATE[$y]  ))=='Fri')
-      {
-            $FriBreakfast= $r[$x];
-            $output_arrayB[5]= $FriBreakfast;
-            $y++;
-            $x++;
-
-      }
-      if(count($DATE) == $y)
-      {
-        $output_arrayB[6]= " ";
-
-      }
-      else if(date("D", strtotime( $DATE[$y] ))=='Sat')
-      {
-              $SatBreakfast=$r[$x];
-              $output_arrayB[6]= $SatBreakfast;
-              $y++;
-              $x++;
-
-      }
-
-
-      return $output_arrayB;
-                             // default:
-                                // $sundayBreakfast="none";
+      
 
 
 
 
-      }
+
+      
+    }
+    
+        return $output_arrayB;
+
     }
 
 
-    public function printLunch()
+    public function printDinner()
     {
-
-
-      $r=$_SESSION['array_to_saveL'] ;
-      $DATE=$_SESSION['DATE'] ;
-
-      $output_arrayB=array();
-      for($x=0;$x<7;$x++)
-      $output_arrayB[$x]=" ";
-      $y=0;
-      for($x=0;$x<count($r);$x++)
+   
+  
+      for($x=0; $x<count($this->model->plan()); $x++)
       {
-
-        if($y>count($DATE))
-        $y=0;
-        if(count($DATE) == $y)
+  
+       
+         if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Sun'  )  
         {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime( $DATE[$y]  ))=='Sun')
-        {
-              $SunBreakfast= $r[$x];
+  
+          if(date('Y-m-d', strtotime('sunday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[0]=" ";}
+          else
+          {
+          
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
               $output_arrayB[0]= $SunBreakfast;
-              $y++;
-              $x++;
-
+          }   
+  
+          
+  
         }
-        if(count($DATE) == $y)
+        if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Mon'  )  
         {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime( $DATE[$y] ))=='Mon')
+          if(date('Y-m-d', strtotime('monday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[1]=" ";}
+          else{
+  
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
+              $output_arrayB[1]= $SunBreakfast;
+          }
+  
+          
+  
+        }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Tue'  )  
         {
-              $MonBreakfast= $r[$x];
-              $output_arrayB[1]= $MonBreakfast;
-              $y++;
-              $x++;
-
-
-
-        }
-        if(count($DATE) == $y)
+          if(date('Y-m-d', strtotime('tuesday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[2]=" ";}
+          else{
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
+              $output_arrayB[2]= $SunBreakfast;
+              }       
+  
+          
+  
+        }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Wed'  )  
         {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime(  $DATE[$y] ))=='Tue')
+          if(date('Y-m-d', strtotime('wednesday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[3]=" ";}
+          else{
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
+              $output_arrayB[3]= $SunBreakfast;
+              
+                }
+          
+  
+        }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Thu'  )  
         {
-            $TueBreakfast= $r[$x];
-            $output_arrayB[2]= $TueBreakfast;
-            $y++;
-            $x++;
-
-
-
+          if(date('Y-m-d', strtotime('thursday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[4]=" ";}
+          else{
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
+              $output_arrayB[4]= $SunBreakfast;
+              
         }
-        if(count($DATE) == $y)
+          
+  
+        }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Fri'  )  
         {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime( $DATE[$y]  ))=='Wed')
+          if(date('Y-m-d', strtotime('friday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[5]=" ";}
+            else{
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
+              $output_arrayB[5]= $SunBreakfast;
+                }       
+  
+          
+  
+        }      
+         if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Sat'  )  
         {
-              $WedBreakfast= $r[$x];
-              $output_arrayB[3]= $WedBreakfast;
-              $y++;
-              $x++;
-
-
-
+          if(date('Y-m-d', strtotime('saturday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[6]=" ";}
+            else{
+              $SunBreakfast= $this->model->plan()[$x]->dinner ."<br>Details: ".$this->model->plan()[$x]->dd;
+              $output_arrayB[6]= $SunBreakfast;
+              
+                }
+          
+  
         }
-        if(count($DATE) == $y)
-        {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime( $DATE[$y]  ))=='Thu')
-        {
-              $ThuBreakfast= $r[$x];
-              $output_arrayB[4]= $ThuBreakfast;
-              $y++;
-              $x++;
-
-
-
-        }
-        if(count($DATE) == $y)
-        {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime( $DATE[$y]  ))=='Fri')
-        {
-              $FriBreakfast= $r[$x];
-              $output_arrayB[5]= $FriBreakfast;
-              $y++;
-              $x++;
-
-
-
-        }
-        if(count($DATE) == $y)
-        {
-          $output_arrayB[6]= " ";
-        }
-        else if(date("D", strtotime( $DATE[$y] ))=='Sat')
-        {
-                $SatBreakfast=$r[$x];
-                $output_arrayB[6]= $SatBreakfast;
-                $y++;
-                $x++;
-
-
-
-        }
-        return $output_arrayB;
-                                  // default:
-                                  // $sundayBreakfast="none";
-
-
-
-
-        }
+        
+  
+  
+  
+  
+  
+        
+      }
+      
+          return $output_arrayB;
+  
       }
 
 
-      public function printDinner()
+      public function printLunch()
       {
-
-
-        $r=$_SESSION['array_to_saveD'] ;
-        $DATE=$_SESSION['DATE'] ;
-
-        $output_arrayB=array();
-        for($x=0;$x<7;$x++)
-        $output_arrayB[$x]=" ";
-        $y=0;
-        for($x=0;$x<count($r);$x++)
+     
+    
+        for($x=0; $x<count($this->model->plan()); $x++)
         {
-          if(count($DATE) == $y)
+    
+         
+           if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Sun'  )  
           {
-            $output_arrayB[6]= " ";
-          }
-          else if(date("D", strtotime($DATE[$y] ))=='Sun')
-          {
-                $SunBreakfast= $r[$x];
+    
+            if(date('Y-m-d', strtotime('sunday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[0]=" ";}
+            else
+            {
+            
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
                 $output_arrayB[0]= $SunBreakfast;
-                $y++;
-                $x++;
-
-
+            }   
+    
+            
+    
           }
-          if(count($DATE) == $y)
+          if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Mon'  )  
           {
-            $output_arrayB[6]= " ";
-          }
-          else if(date("D", strtotime(  $DATE[$y]  ))=='Mon')
+            if(date('Y-m-d', strtotime('monday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[1]=" ";}
+            else{
+    
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
+                $output_arrayB[1]= $SunBreakfast;
+            }
+    
+            
+    
+          }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Tue'  )  
           {
-                $MonBreakfast= $r[$x];
-                $output_arrayB[1]= $MonBreakfast;
-                $y++;
-                $x++;
-
-
-
-          }
-          if(count($DATE) == $y)
+            if(date('Y-m-d', strtotime('tuesday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[2]=" ";}
+            else{
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
+                $output_arrayB[2]= $SunBreakfast;
+                }       
+    
+            
+    
+          }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Wed'  )  
           {
-            $output_arrayB[6]= " ";
-          }
-          else if(date("D", strtotime( $DATE[$y]  ))=='Tue')
+            if(date('Y-m-d', strtotime('wednesday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[3]=" ";}
+            else{
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
+                $output_arrayB[3]= $SunBreakfast;
+                
+                  }
+            
+    
+          }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Thu'  )  
           {
-              $TueBreakfast= $r[$x];
-              $output_arrayB[2]= $TueBreakfast;
-              $y++;
-              $x++;
-
-
-
+            if(date('Y-m-d', strtotime('thursday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[4]=" ";}
+            else{
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
+                $output_arrayB[4]= $SunBreakfast;
+                
           }
-          if(count($DATE) == $y)
+            
+    
+          }       if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Fri'  )  
           {
-            $output_arrayB[6]= " ";
-          }
-          else if(date("D", strtotime(  $DATE[$y] ))=='Wed')
+            if(date('Y-m-d', strtotime('friday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[5]=" ";}
+              else{
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
+                $output_arrayB[5]= $SunBreakfast;
+                  }       
+    
+            
+    
+          }      
+           if( date("D", strtotime( $this->model->plan()[$x]->date  ) )=='Sat'  )  
           {
-                $WedBreakfast= $r[$x];
-                $output_arrayB[3]= $WedBreakfast;
-                $y++;
-                $x++;
-
-
-
+            if(date('Y-m-d', strtotime('saturday this week'))!=$this->model->plan()[$x]->date){$output_arrayB[6]=" ";}
+              else{
+                $SunBreakfast= $this->model->plan()[$x]->lunch ."<br>Details: ".$this->model->plan()[$x]->ld;
+                $output_arrayB[6]= $SunBreakfast;
+                
+                  }
+            
+    
           }
-          if(count($DATE) == $y)
-          {
-            $output_arrayB[6]= " ";
-          }
-          else if(date("D", strtotime( $DATE[$y]  ))=='Thu')
-          {
-                $ThuBreakfast= $r[$x];
-                $output_arrayB[4]= $ThuBreakfast;
-                $y++;
-                $x++;
-
-
-
-          }
-          if(count($DATE) == $y)
-          {
-            $output_arrayB[6]= " ";
-          }
-          else if(date("D", strtotime(  $DATE[$y] ))=='Fri')
-          {
-                $FriBreakfast= $r[$x];
-                $output_arrayB[5]= $FriBreakfast;
-                $y++;
-                $x++;
-
-
-
-
-          }
-          if(count($DATE) == $y)
-          {
-            $output_arrayB[6]= " ";
-
-          }
-          else if(date("D", strtotime(  $DATE[$y] ))=='Sat'  )
-          {
-                  $SatBreakfast=$r[$x];
-                  $output_arrayB[6]= $SatBreakfast;
-                  $y++;
-                  $x++;
-
-
-          }
-          return $output_arrayB;
-                                    // default:
-                                    // $sundayBreakfast="none";
-
-
-
-
-          }
+          
+    
+    
+    
+    
+    
+          
         }
+        
+            return $output_arrayB;
+    
+        }
+    
+    
+  
+  
+
 
 
 
@@ -365,50 +313,27 @@ class Plan extends View
 
     require APPROOT . '/views/inc/header.php';
 
-    if(isset($_SESSION['array_to_saveB']))
+
+if($this->model->getuserID()==$_SESSION['user_id'])
+{
+    if(!empty($this->model->getBreakfast()))
     {
     $breakfast_result=$this->printBreakfast();
     }
-    if(isset($_SESSION['array_to_saveL']))
+    if(!empty($this->model->getLunch()))
     {
       $lunch_result=$this->printLunch();
 
     }
-    if(isset($_SESSION['array_to_saveD']))
+    if(!empty($this->model->getDinner()))
     {
       $dinner_result=$this->printDinner();
 
     }
 
+  }
 
 
-// $h=$this->model->getbname();
-
-    // $q = $this->model->plan();
-    // print($q[0]->date);
-    // print($this->model->getdate());
-
-// $ff=$this->model->getdate();
-
-// =$this->printBreakfast();
-
-// print(date("D", strtotime(  $this->model->getdate() )));
-// print($r);
-
-
-// $help=date("D", strtotime($this->model->getdate()));
-// $this->model->setdate(date("D", strtotime($this->model->getdate())));
-// $result =  $this->model->plan();
-$g=$this->model->getdate();
-
-// $hg=$this->model->getdate();
-// print_r($g);
-
-
-
-
-// print_r($hg);
-// print($help);
     $text = <<<EOT
 
     <!DOCTYPE html>
@@ -466,7 +391,7 @@ $g=$this->model->getdate();
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-6">Breakfast</td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">
 EOT;
-                    if(isset($breakfast_result[0])){ $text=$text.$breakfast_result[0];}
+                    if(isset($breakfast_result[0])){ $text=$text. $breakfast_result[0];}
                     $text=$text.<<<EOT
                     <br>
                     </td>
@@ -533,13 +458,13 @@ EOT;
                   </td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">
 EOT;
-                  if(isset($dinner_result[2])){ $text=$text.$dinner_result[2];}
+                  if(isset($dinner_result[2])){ $text=$text. $dinner_result[2];}
                   $text=$text.<<<EOT
                   <br>
                   </td>
                   <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20"> 
 EOT;
-                  if(isset($dinner_result[3])){ $text=$text.$dinner_result[3];}
+                  if(isset($dinner_result[3])){ $text=$text.$dinner_result[2];}
                   $text=$text.<<<EOT
                   <br>
                   </td>
@@ -585,7 +510,7 @@ EOT;
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-7">
 EOT;
-                    if(isset($breakfast_result[5])){$text=$text.$breakfast_result[5];}
+                    if(isset($breakfast_result[5])){$text=$text. $breakfast_result[5];}
                     $text=$text.<<<EOT
                     <br>
                     </td>
@@ -634,7 +559,7 @@ EOT;
                     </td>
                     <td class="u-border-1 u-border-palette-5-dark-1 u-table-cell u-table-cell-20">
 EOT;
-                    if(isset(  $dinner_result[6])){$text=$text.  $dinner_result[6];}
+                    if(isset(  $dinner_result[6])){$text=$text.$dinner_result[6];}
                     $text=$text.<<<EOT
                     <br>
                     </td>

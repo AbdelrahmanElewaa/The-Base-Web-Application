@@ -202,15 +202,18 @@ public function editworkout()
 
 
 
-  public function workoutdisplay()
+  
+     public function workoutdisplay()
     {        
         $workoutdisplaytableModel=$this->getModel();
-        // if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $workoutdisplaytableModel->setdate($_GET['date']);
+
+        // print_r($workoutdisplaytableModel->workdetails());
         if ($result = $workoutdisplaytableModel->workdetails()) 
         {           
 
             for($x=0 ; $x<count($result) ; $x++){
-            $workoutdisplaytableModel->settrainingID($result[$x]->trainingID);           
+             $workoutdisplaytableModel->settrainingID($result[$x]->trainingID);           
              $workoutdisplaytableModel->setname($result[$x]->name);
              $workoutdisplaytableModel->setreps($result[$x]->reps);
              $workoutdisplaytableModel->setsets($result[$x]->sets);
@@ -222,13 +225,14 @@ public function editworkout()
         } else {
             die('Error in display wokout program');
         }
-    // }
+    
 
         $viewPath = VIEWS_PATH . 'pages/workoutdisplay.php';
         require_once $viewPath;
         $workoutdisplayView = new Workoutdisplay($this->getModel(), $this);
         $workoutdisplayView->output();
     } 
+
 
 
 

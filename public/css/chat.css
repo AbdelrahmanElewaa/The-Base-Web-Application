@@ -1,6 +1,7 @@
 body{
     background-color: #f4f7f6;
     margin-top:20px;
+
 }
 .card {
     background: #fff;
@@ -110,6 +111,7 @@ body{
     margin-bottom: 15px
 }
 
+
 .chat .chat-history .message-data img {
     border-radius: 40px;
     width: 40px
@@ -119,6 +121,7 @@ body{
     color: #434651;
     padding-left: 6px
 }
+
 
 .chat .chat-history .message {
     color: #444;
@@ -206,7 +209,9 @@ body{
     font-size: 0;
     content: " ";
     clear: both;
-    height: 0
+    height: 0;
+    display: inline-block;
+    
 }
 
 @media only screen and (max-width: 767px) {
@@ -253,4 +258,12 @@ body{
         height: calc(100vh - 350px);
         overflow-x: auto
     }
+}
+INPUT[type=submit]
+{
+    background-color: transparent ;
+    cursor: pointer;
+    border: none;
+    /* color: black; */
+
 }

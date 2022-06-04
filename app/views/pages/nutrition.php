@@ -10,7 +10,9 @@ class nutrition extends view {
 	<hr>
 	 <br>
  <a href="<?php echo URLROOT.'pages/addnutrition?id='.$_GET['id']; ?>" class="btn btn-success">Add Nutrition Plan</a>
-<br>
+ <a href="<?php echo URLROOT.'pages/deletenutrition?id='.$_GET['id']; ?>" class="btn btn-danger">Delete Nutrition Plan</a>
+
+ <br>
 <div>
  <table class="table table-success table-striped">
   <thead>

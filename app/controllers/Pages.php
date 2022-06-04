@@ -728,6 +728,36 @@ public function editworkout()
         $deleteclientView->output();
     }
 
+    public function editclient()
+    {
+        $editclienttModel= $this->getModel();
+        $editclienttModel->setid($_GET['id']);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $editclienttModel->setid($_GET['id']);
+            $editclienttModel->setname(trim($_POST['name']));
+            $editclienttModel->setemail(trim($_POST['email']));
+            $editclienttModel->setpassword(trim($_POST['password']));
+            $editclienttModel->setsocial(trim($_POST['social']));
+            // $editclienttModel->setrole(trim($_POST['role']));
+             
+
+            if ($editclienttModel->updateclient()) {
+                flash('Edit_success', 'Client Information is edit successfully');
+                // redirect('pages/editclient');
+
+            } 
+            else{
+                die('Error in Edit Client Information');
+           }
+    }
+        $viewPath =  VIEWS_PATH . 'pages/editclient.php';
+        require_once $viewPath;
+        $editclientView = new editclient($this->getModel(), $this);
+        $editclientView->output();
+       
+    }
+
 
 
 

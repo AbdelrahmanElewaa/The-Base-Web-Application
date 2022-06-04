@@ -33,10 +33,7 @@ class Pages extends Controller
 
 
 
-
-
-
-    public function plan()
+  public function plan()
     {
         $displaynutritionModel = $this->getModel();
         if(!empty($displaynutritionModel->plan()) )
@@ -48,49 +45,27 @@ class Pages extends Controller
             $x=0;
             while(isset($result[$x]->date) )
             {
-                // echo"<h1>hello</h1>";
             $displaynutritionModel->setdate($result[$x]->date);
-            // $date=$displaynutritionModel->getdate();
-            // echo"<h1>$date</h1>";
-            $displaynutritionModel->setbname($result[$x]->breakfast);
-            $displaynutritionModel->setlname($result[$x]->lunch);
-            $displaynutritionModel->setdname($result[$x]->dinner);
-            $displaynutritionModel->setbd($result[$x]->bd);
-            $displaynutritionModel->setld($result[$x]->ld);
-            $displaynutritionModel->setdd($result[$x]->dd);
-            
-
-
-
-
-
-
+            $displaynutritionModel->setUserID($result[$x]->userID);
             // $breakfastArray[$x]=$b;
             $b[$x]=$result[$x]->breakfast."<br> Details : ".$result[$x]->bd;
             $l[$x]=$result[$x]->lunch."<br> Details : ".$result[$x]->ld;
             $d[$x]=$result[$x]->dinner."<br> Details : ".$result[$x]->dd;
             $DATE[$x]=$result[$x]->date;
 
-            // $LunchArray[$x]=$b;
-
             $x++;
             }
+
+
             $_SESSION['array_to_saveB'] = $b;
             $_SESSION['array_to_saveL'] = $l;
             $_SESSION['array_to_saveD'] = $d;
             $_SESSION['DATE'] = $DATE;
 
-
-
-
-
-
-
-
-            // echo "<h1>$date</h1>";
-            //header('location: ' . URLROOT . 'users/login');
-            // flash('Nutrition plan_success', 'nutrition plan is viwed successfully');
-            // redirect('pages/addnutrition.php');
+            $displaynutritionModel->setBreakfast( $_SESSION['array_to_saveB']);
+            $displaynutritionModel->setLunch( $_SESSION['array_to_saveL']);
+            $displaynutritionModel->setDinner( $_SESSION['array_to_saveD']);
+            $displaynutritionModel->setDate( $_SESSION['DATE']);
 
         }
          else {
@@ -107,7 +82,6 @@ class Pages extends Controller
 
 
     }
-    // }
 
 
         $viewPath = VIEWS_PATH . 'pages/plan.php';
@@ -119,6 +93,7 @@ class Pages extends Controller
     }
 
 
+   
 
 
 public function editworkout()

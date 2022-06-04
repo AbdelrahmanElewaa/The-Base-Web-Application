@@ -9,7 +9,7 @@ define('DB_NAME', 'defaultdb');
 //echo dirname(dirname(_FILE_));
 define('APPROOT', dirname(dirname(_FILE_)));
 // URL Root
-define('URLROOT', 'http://http://137.184.122.185/');
+define('URLROOT', 'http://137.184.122.185/');
 // Site Name
 define('SITENAME', 'MIU Blog MVC');
 
@@ -17,4 +17,4 @@ define('APP_VERSION', '1.2');
 
 //public pages path
 define('VIEWS_PATH', '../app/views/');
-define('IMGROOT', 'http://http://137.184.122.185/public/images/');
+define('IMGROOT', 'http://137.184.122.185/public/images/');

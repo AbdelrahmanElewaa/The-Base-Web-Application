@@ -13,22 +13,35 @@ class WorkoutdisplayModel extends UserModel
     protected $reps=array();
     protected $sets=array();
     protected $resttime=array();
-    protected $date;
+    protected $date=array();
     protected $weights=array();
     protected $traininguserid;
+    protected $day;
 
     
 
 
-    public function __construct()
+      public function __construct()
     {
         parent::__construct();
+    //     $this->trainingID  = '';
+    //     $this->name= '';
+
+    //     $this->reps = '';
+    //     $this->sets = '';
+    //     $this->resttime= '';
+    //     $this->date = '';
+    //     $this->weights = '';
         $this->traininguserid = '';
+        $this->day = '';
+
+
+
     }
 
     public function gettrainingID()
     {
-        return $this->traininguserid;
+        return $this->trainingID;
     }
     public function settrainingID($d)
     {
@@ -103,15 +116,23 @@ class WorkoutdisplayModel extends UserModel
        $this->traininguserid=$d;
 
     }
-    
-
-
-    public function workdetails($Date)
+    public function getday()
     {
-        $this->dbh->query('select * from `training` where date=:Date and traininguserid=:uid' ) ;
-        $this->dbh->bind(':uid',$_SESSION['user_id']);
-        $this->dbh->bind(':Date',$this->date);
+        return $this->day;
+    }
+    public function setday($d)
+    {
+    $this->day=$d;
 
+    }
+        
+
+
+    public function workdetails()
+    {
+        $this->dbh->query('select * from `training` where date=:datee and traininguserid=:traininguseridd' ) ;
+        $this->dbh->bind(':traininguseridd',$_SESSION['user_id']);
+        $this->dbh->bind(':datee',$this->date);
         return $this->dbh->resultSet();
     }
 

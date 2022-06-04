@@ -156,6 +156,7 @@ public function editworkout()
     }
     
     
+
     public function work()
     {
         $work = $this->getModel();
@@ -165,9 +166,12 @@ public function editworkout()
         if ($result = $work->work()) 
         {
             for($x=0 ; $x<count($result) ; $x++){
+
             $work->setname($result[$x]->name);
           
             $work->setdate($result[$x]->date);
+
+            // Print_r($result);
             }
             
         } else {
@@ -184,7 +188,6 @@ public function editworkout()
 
         
     }
-
 
 
 

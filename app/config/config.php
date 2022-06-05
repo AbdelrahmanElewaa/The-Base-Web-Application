@@ -9,7 +9,7 @@ define('DB_NAME', 'defaultdb');
 //echo dirname(dirname(__FILE__));
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://localhost/mvc/public/');
+define('URLROOT', 'http://octopus-app-anv7e.ondigitalocean.app/public/');
 // Site Name
 define('SITENAME', 'MIU Blog MVC');
 
@@ -17,7 +17,7 @@ define('APP_VERSION', '1.2');
 
 //public pages path
 define('VIEWS_PATH', '../app/views/');
-define('IMGROOT', 'http://localhost/mvc/public/images/');
+define('IMGROOT', 'http://octopus-app-anv7e.ondigitalocean.app/public/images/');
 
 
 

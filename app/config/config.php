@@ -1,9 +1,9 @@
 <?php
 // DB Params
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'base');
+define('DB_HOST', 'db-mysql-sfo3-98166-do-user-11681204-0.b.db.ondigitalocean.com');
+define('DB_USER', 'doadmin');
+define('DB_PASS', 'AVNS_kagIXRxFVPXeH1_ ');
+define('DB_NAME', 'defaultdb');
 
 // App Root
 //echo dirname(dirname(__FILE__));

@@ -24,7 +24,8 @@ class nutrition extends view {
 	  <th>Lunch Description</th>
 	  <th>Dinner</th>
 	  <th>Dinner Description</th>
-	 <th></th>
+	 <th>Modify</th>
+	 <th>Delete</th>
 	</thead>
 	 <?php
 	foreach($nutrition as $x){
@@ -39,6 +40,7 @@ class nutrition extends view {
 	 <td><?php echo $x->dinner;?></td>
 	 <td><?php echo $x->dd;?></td>
 	 <td><a <?php echo "href='".URLROOT.'pages/editnutrition?id='.$x->nutritionID."'";?> class='btn btn-secondary'>Edit</a></td>
+	 <td><a <?php echo "href='".URLROOT.'pages/deletenut?id='.$x->nutritionID."'";?> class='btn btn-danger'>Delete</a></td>
 	</tr>
 	 <?php
 	}

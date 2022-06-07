@@ -5,15 +5,27 @@ class Chat extends View
 {
   public function output()
   {
-    
+
+
+
+
+
     $MessageFromAdmin=$this->model->getMessageFromAdmin();
     $MessageFromClient=$this->model->getMessageFromClient();
+
 
     $created_at_client= $this->model->getCreated_at_client();
     $created_at_admin= $this->model->getCreated_at_admin();
 
+
+
+
+
     $allclients=$this->model->AllClients();
 
+
+
+    
     $clientnames=array();
     $clientids=array();
     for($x=0;$x<count($allclients);$x++)
@@ -24,6 +36,7 @@ class Chat extends View
     }
 
 
+    // print_r($record);
     if(isset($_GET['id']) && isset($_GET['selected']))
     {
     $action = URLROOT . 'pages/chat?id='.$_GET["id"].'& selected='.$_GET["selected"];
@@ -31,6 +44,7 @@ class Chat extends View
     else{
         $action = URLROOT . 'pages/chat?id=$ selected=';   
     }
+
 
 $loop1=" ";
 $loop2=" ";
@@ -193,8 +207,8 @@ EOT;
     }
     $record=$this->model->chatadmin();
 
-
     $text = <<< EOT
+    
  <style>
 
     #clientButton
@@ -216,7 +230,7 @@ EOT;
                         </div>
                     </div>
                     
-                    <ul class="list-unstyled chat-list mt-2 mb-0"  style="">
+                    <ul class="list-unstyled chat-list mt-2 mb-0"  >
 
 
 EOT;
@@ -314,7 +328,6 @@ $loop1=$loop1.<<<EOT
 }
 EOT;
 
-// 10:12 AM, Today
     if($record[$x]->sender==1  )
     {
         $created_at_admin=$record[$x]->created_at;
@@ -350,13 +363,25 @@ EOT;
                     </div>
                     <div class="chat-message clearfix" >
                         <div class="input-group mb-0">
-                            <div class="input-group-prepend">
+EOT;
+if(!empty($_GET['selected']) || !empty($_GET['id'])){
+    $text=$text.<<<EOT
+    <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="btn btn-success"><input type="submit" value="send" > </i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Enter text here..." name="message">                                    
-                        </div>
-                    </div>
-                    </form>
+
+                            <input type="text" class="form-control" placeholder="Enter text here..." name="message" >  
+                            </div>
+                            </div>
+                            </form>
+
+
+
+EOT;
+}
+else
+{
+    $text=$text.<<<EOT
 
                 </div>
             </div>
@@ -364,6 +389,7 @@ EOT;
     </div>
     </div>
 EOT;
+}
     echo $text;
 }
 require APPROOT . '/views/inc/footer.php';

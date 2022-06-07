@@ -25,7 +25,7 @@ class ViewUsers extends View {
 			foreach($users as $x){
 				$str.="<tr><td>".$x->name."</td><td>".$x->email."</td><td>".$x->social."</td><td>".$x->role."</td>"." <td><a href='".URLROOT.'pages/workout?id='.$x->id."' class='btn btn-primary'>Workout</a></td>
 				<td><a href='".URLROOT.'pages/nutrition?id='.$x->id."' class='btn btn-success'>Nutrition</a></td>
-				<td> <a href='".URLROOT.'pages/edituser?id='.$x->id."' class='btn btn-secondary'>Edit</a> <a  href='".URLROOT.'pages/confirmDelete?id='.$x->id."' class='btn btn-danger'  onclick=\"document.getElementById('id01').style.display='block'\" >Delete</a> </td></tr>";
+				<td> <a href='".URLROOT.'pages/edituser?id='.$x->id."' class='btn btn-secondary'>Edit</a> <a  href='".URLROOT.'pages/confirmDelete?id='.$x->id.'&thing=deleteclient'."' class='btn btn-danger'  >Delete</a> </td></tr>";
 		 
 			
 			}
@@ -42,51 +42,17 @@ $str.="</table>";
 
 
 ?>
- <!-- <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1 style="color: white;">Delete Account</h1>
-      <p style="color: white;">Are you sure you want to delete your account?</p>
-    
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-light">Cancel</button>
-        
-      </div>
-    </div>
-  </form>
-</div>
-
-</body> -->
+  
 <?php
     echo $str;
 	// for($i=0;$i<2;$i++)
 // print_r($users);
+?>
+
+<?php
 	require APPROOT.'/views/inc/footer.php';
 	}
 	
 }
 
 ?>
-<!-- <h2>Delete Modal</h2>
-
-<button onclick="document.getElementById('id01').style.display='block'">Open Modal</button> -->
-
-
-
-<script>
-
-
-
-
-
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>

@@ -56,8 +56,8 @@ class Users extends Controller
 
                 if ($registerModel->signup()) {
                     //header('location: ' . URLROOT . 'users/login');
-                    flash('register_success', 'User added successfully');
-                    redirect('users/login');
+                    // flash('register_success', 'User added successfully');
+                    redirect('pages/viewusers');
                 } else {
                     die('Error in sign up');
                 }

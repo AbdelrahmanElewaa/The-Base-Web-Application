@@ -1,6 +1,7 @@
-
-
 <?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(-1);
 class Chat extends View
 {
   public function output()
@@ -315,7 +316,7 @@ $text=$text.<<<EOT
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info" >
                                 </a>
                                 <div  class="chat-about" >
-                                    <h6 class="m-b-0">$selected</h6>
+                                    <h6 class="m-b-0" style="color: black">$selected</h6>
                                 </div>
                             </div>
                             <div class="col-lg-6 hidden-sm text-right">
@@ -340,10 +341,10 @@ for($x=0;$x<count($record);$x++)
 
                                 <li class="clearfix">
                                 <div class="message-data text-right">
-                                    <span class="message-data-time" style="float:right"> $created_at_client </span>
+                                    <span class="message-data-time" style="float:left"> $created_at_client </span>
                                 </div><br><br>
                                 
-                                <div class="message other-message float-right"> 
+                                <div class="message other-message" style="float: left;"> 
 
 EOT;
 $client_count++;
@@ -374,9 +375,9 @@ EOT;
 
                                 <li class="clearfix">
                                 <div class="message-data">
-                                    <span id="created_at_client" class="message-data-time" style="float:left"> $created_at_admin  </span>
+                                    <span id="created_at_client" class="message-data-time" style="float:right "> $created_at_admin  </span>
                                 </div><br><br>
-                                <div class="message my-message"> 
+                                <div class="message my-message" style="float: right;"> 
                                 
 EOT;
 $admin_count++;
@@ -401,13 +402,26 @@ EOT;
                     </div>
                     <div class="chat-message clearfix" >
                         <div class="input-group mb-0">
-                            <div class="input-group-prepend">
+
+EOT;
+if(!empty($_GET['selected']) || !empty($_GET['id'])){
+    $text=$text.<<<EOT
+    <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="btn btn-success"><input type="submit" value="send" > </i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Enter text here..." name="message">                                    
-                        </div>
-                    </div>
-                    </form>
+
+                            <input type="text" class="form-control" placeholder="Enter text here..." name="message" >  
+                            </div>
+                            </div>
+                            </form>
+
+
+
+EOT;
+}
+else
+{
+    $text=$text.<<<EOT
 
                 </div>
             </div>
@@ -415,6 +429,8 @@ EOT;
     </div>
     </div>
 EOT;
+}
+
     echo $text;
 }
 require APPROOT . '/views/inc/footer.php';

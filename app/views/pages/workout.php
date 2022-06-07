@@ -23,8 +23,8 @@ class workout extends view {
       <th>Reps</th>
 	  <th>Type of Resistance</th>
 	  <th>Rest Time</th>
-	  <th>Modify</th>
-	  <th>Delete</th>
+	  <!-- <th>Modify</th>
+	  <th>Delete</th> -->
 	</thead>
 
 
@@ -46,8 +46,7 @@ class workout extends view {
 	 <td><?php echo $r[$i];?></td>
 	 <td><?php echo $w[$i];?></td>
 	 <td><?php echo $rs[$i];?></td>
-	 <td><a <?php echo "href='".URLROOT.'pages/editnut?id='.$x->trainingID."'";?> class='btn btn-secondary'>Edit</a></td>
-	<td><a <?php echo "href='".URLROOT.'pages/deletenut?id='.$x->trainingID."'";?> class='btn btn-danger'>Delete</a></td>
+
 	 
 	</tr>
 	 <?php

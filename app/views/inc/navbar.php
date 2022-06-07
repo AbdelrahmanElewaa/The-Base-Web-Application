@@ -1,25 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<?php echo URLROOT . 'public'; ?>"><?php echo SITENAME; ?></a>
+    <a class="navbar-brand" href="<?php echo URLROOT . 'public'; ?>">The Base</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo URLROOT . 'public'; ?>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT . 'pages/about'; ?>">About Us</a>
-		          
-
-        </li>
-		<li class="nav-item">  <a class="nav-link" href="<?php echo URLROOT . 'pages/contact'; ?>">Contact</a>
-         </li>
-         </li>
-		<li class="nav-item">  <a class="nav-link" href="<?php echo URLROOT . 'pages/viewusers'; ?>">view users</a>
-         </li>
-		 <li class="nav-item dropdown">
+      <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/Index'; ?>" style="padding: 10px 20px;">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/about'; ?>" style="padding: 10px 20px;">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/contact'; ?>" style="padding: 10px 20px;">Contact</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/login'; ?>" style="padding: 10px 20px;">Login</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/w'; ?>" style="padding: 10px 20px;">Workout</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/chat?id=&selected='; ?>" style="padding: 10px 20px;">Chat</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/plan'; ?>" style="padding: 10px 20px;">plan</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/ViewUsers'; ?>" style="padding: 10px 20px;">ViewUsers</a>
+</li>
+<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php if (isset($_SESSION['user_id'])) {
               echo $_SESSION['user_name'];

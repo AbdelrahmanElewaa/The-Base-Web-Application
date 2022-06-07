@@ -486,5 +486,128 @@ class Pages extends Controller
     }
      
     
+    public function plan()
+    {
+        $displaynutritionModel = $this->getModel();
+        if(!empty($displaynutritionModel->plan()) )
+        {
+        if ($result = $displaynutritionModel->plan())
+        {
+
+            $breakfastArray=array();
+            $x=0;
+            while(isset($result[$x]->date) )
+            {
+            $displaynutritionModel->setdate($result[$x]->date);
+            $displaynutritionModel->setUserID($result[$x]->userID);
+            // $breakfastArray[$x]=$b;
+            $b[$x]=$result[$x]->breakfast."<br> Details : ".$result[$x]->bd;
+            $l[$x]=$result[$x]->lunch."<br> Details : ".$result[$x]->ld;
+            $d[$x]=$result[$x]->dinner."<br> Details : ".$result[$x]->dd;
+            $DATE[$x]=$result[$x]->date;
+
+            $x++;
+            }
+
+
+            $_SESSION['array_to_saveB'] = $b;
+            $_SESSION['array_to_saveL'] = $l;
+            $_SESSION['array_to_saveD'] = $d;
+            $_SESSION['DATE'] = $DATE;
+
+            $displaynutritionModel->setBreakfast( $_SESSION['array_to_saveB']);
+            $displaynutritionModel->setLunch( $_SESSION['array_to_saveL']);
+            $displaynutritionModel->setDinner( $_SESSION['array_to_saveD']);
+            $displaynutritionModel->setDate( $_SESSION['DATE']);
+
+        }
+         else {
+            die('Error in Viewing Your plan');
+        }
+    }
+    else
+    {
+        unset($_SESSION['array_to_saveB'] );
+        unset($_SESSION['array_to_saveL']);
+        unset(  $_SESSION['array_to_saveD']);
+        unset($_SESSION['DATE'] );
+
+
+
+    }
+
+
+        $viewPath = VIEWS_PATH . 'pages/plan.php';
+        require_once $viewPath;
+        $planView = new Plan($this->getModel(), $this);
+        $planView->output();
+
+
+    }
+    public function workoutdisplay()
+    {        
+        $workoutdisplaytableModel=$this->getModel();
+        $workoutdisplaytableModel->setdate($_GET['date']);
+
+        // print_r($workoutdisplaytableModel->workdetails());
+        if ($result = $workoutdisplaytableModel->workdetails()) 
+        {           
+
+            for($x=0 ; $x<count($result) ; $x++){
+             $workoutdisplaytableModel->settrainingID($result[$x]->trainingID);           
+             $workoutdisplaytableModel->setname($result[$x]->name);
+             $workoutdisplaytableModel->setreps($result[$x]->reps);
+             $workoutdisplaytableModel->setsets($result[$x]->sets);
+             $workoutdisplaytableModel->setresttime($result[$x]->resttime);
+             $workoutdisplaytableModel->setweights($result[$x]->weights);
+
+            }
+            
+        } else {
+            die('Error in display wokout program');
+        }
+    
+
+        $viewPath = VIEWS_PATH . 'pages/workoutdisplay.php';
+        require_once $viewPath;
+        $workoutdisplayView = new Workoutdisplay($this->getModel(), $this);
+        $workoutdisplayView->output();
+    } 
+
+
+
+    public function w()
+    {
+        $work = $this->getModel();
+
+
+       
+        if ($result = $work->work()) 
+        {
+            for($x=0 ; $x<count($result) ; $x++){
+
+            $work->setname($result[$x]->name);
+          
+            $work->setdate($result[$x]->date);
+
+            // Print_r($result);
+            }
+            
+        } else {
+            die('Error in display wokout program');
+        }
+
+      
+
+        $viewPath = VIEWS_PATH . 'pages/w.php';
+        require_once $viewPath;
+        $workView = new w($this->getModel(), $this);
+        $workView->output();
+        
+
+        
+    }
+
+
 }
 

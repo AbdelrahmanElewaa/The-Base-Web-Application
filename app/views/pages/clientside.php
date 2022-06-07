@@ -3,7 +3,7 @@ class clientside extends View
 {
   public function output()
   {
-    require APPROOT . '/views/inc/loghead.php';
+    require APPROOT . '/views/inc/headerclient.php';
     $text = <<<EOT
     <!DOCTYPE html>
     <html style="font-size: 16px;">
@@ -180,6 +180,6 @@ class clientside extends View
     
 EOT;
     echo $text;
-    require APPROOT . '/views/inc/footer.php';
+    require APPROOT . '/views/inc/footerclient.php';
   }
 }

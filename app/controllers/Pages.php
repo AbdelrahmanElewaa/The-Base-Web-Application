@@ -175,5 +175,13 @@ class Pages extends Controller
         $usersearchjView->output();
     }
 
-
+    public function clientside()
+    {
+        $viewPath = VIEWS_PATH . 'pages/clientside.php';
+        require_once $viewPath;
+        $aboutView = new clientside($this->getModel(), $this);
+        $aboutView->output();
+    }
+    
 }
+

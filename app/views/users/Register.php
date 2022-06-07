@@ -5,7 +5,7 @@ class Register extends view
   {
     $title = $this->model->title;
 
-    require APPROOT . '/views/inc/header.php';
+    require APPROOT . '/views/inc/loghead.php';
     $text = <<<EOT
     
 EOT;
@@ -22,7 +22,7 @@ EOT;
     $text = <<<EOT
     <div class="row">
     <div class="col-md-6 mx-auto">
-    <div class="card card-body bg-secondary mt-5">
+    <div class="card card-body bg-light mt-5">
     <h2>Add client</h2>
     <form action="$action" method="post">
 EOT;

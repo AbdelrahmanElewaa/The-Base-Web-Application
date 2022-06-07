@@ -44,9 +44,7 @@ EOT;
         <div class="col">
           <input type="submit" value="Login" class="form-control btn btn-lg btn-primary btn-block">
         </div>
-        <div class="col">
-          <a href="$registerUrl" class="form-control btn btn-info btn-block">New User, Sign up</a>
-        </div>
+        
       </div>
       </div>
     </form>

@@ -49,6 +49,104 @@ class Pages extends Controller
         $aboutView->output();
     }
 
+
+
+
+    public function editnut()
+    {
+
+        $addnutritionModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            // $addnutritionModel->setuserid($_GET['id']);
+            // $count=$addnutritionModel->countNut();
+            // $array = json_decode(json_encode($count), true);
+            // if($array['records']>7)
+            // {
+            //     print("<script>alert('maximum 7 records per week . You can edit or delete your nutrition plan');</script>");
+            // }
+            // else
+            {
+            // Process form
+            $addnutritionModel->setdate(trim($_POST['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addnutritionModel->setbname(trim($_POST['bname']));
+            $addnutritionModel->setbd(trim($_POST['bd']));
+            $addnutritionModel->setlname(trim($_POST['lname']));
+            $addnutritionModel->setld(trim($_POST['ld']));
+            $addnutritionModel->setdname(trim($_POST['dname']));
+            $addnutritionModel->setdd(trim($_POST['dd']));
+            // $addnutritionModel->setuserid(trim($_POST['userid']));
+
+
+            if(empty($addnutritionModel->getdate()) || empty($addnutritionModel->getbname()) || empty($addnutritionModel->getlname()) || empty($addnutritionModel->getdname()) || empty($addnutritionModel->getbd()) || empty($addnutritionModel->getld()) || empty($addnutritionModel->getdd()) )
+            {
+                if(empty($addnutritionModel->getdate()) )
+                {
+                    $addnutritionModel->setdateErr("*Please Enter a Valid date");
+                }
+                if( empty($addnutritionModel->getbname()))
+                {
+                    $addnutritionModel->setbnameErr("*Please Enter a Valid Breakfast Name");
+    
+                }
+                if(empty($addnutritionModel->getlname()) )
+                {
+                    $addnutritionModel-> setbdErr("*Please Enter a Valid Lunch Name");
+    
+                }
+                if( empty($addnutritionModel->getdname()) )
+                {
+                    $addnutritionModel-> setlnameErr("*Please Enter a Valid Dinner Name");
+    
+                }
+                if(empty($addnutritionModel->getbd()))
+                {
+                    $addnutritionModel-> setldErr("*Please Enter a Valid Breakfast Description");
+    
+                }
+                if( empty($addnutritionModel->getld()))
+                {
+                    $addnutritionModel-> setdnameErr("*Please Enter a Valid Lunch Description");
+    
+                }
+                if( empty($addnutritionModel->getdd()))
+                {
+                    $addnutritionModel-> setddErr("*Please Enter a Valid Dinner Description");
+    
+                }
+            }
+            // else if(trim($_POST['date']) < date('y-m-d') == 1)
+            // {
+            //     $addnutritionModel->setdateErr("*Please Enter a Valid dateee");
+            // }
+            else
+            {
+
+            if ($addnutritionModel->editnut($_GET['id'])) {
+                //header('location: ' . URLROOT . 'users/login');
+                // flash('register_success', 'nutrition plan is added successfully');
+                redirect('pages/editnut?id='.$_GET['id']);
+            } else {
+                die('Error in editing nutrition');
+            }
+        }
+    }
+        }
+
+
+        $viewPath = VIEWS_PATH . 'pages/editnut.php';
+        require_once $viewPath;
+        $ViewUsersView = new editnut($this->getModel(), $this);
+        $ViewUsersView->output();
+    }
+
+    
+
+
+
+
+
     public function addnutrition()
     {
         $addnutritionModel = $this->getModel();
@@ -121,7 +219,7 @@ class Pages extends Controller
 
             if ($addnutritionModel->addNut()) {
                 //header('location: ' . URLROOT . 'users/login');
-                flash('register_success', 'nutrition plan is added successfully');
+                // flash('register_success', 'nutrition plan is added successfully');
                 redirect('pages/addnutrition?id='.$_GET['id']);
             } else {
                 die('Error in adding nutrition');
@@ -143,6 +241,83 @@ class Pages extends Controller
         $aboutView = new workout($this->getModel(), $this);
         $aboutView->output();
     }
+
+
+
+
+    public function editwork(){
+
+        $addworkoutModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+            $addworkoutModel->setdate(trim($_GET['date']));
+            // $registerModel->setName(trim($_POST['lastname']));
+            $addworkoutModel->setname(trim($_POST['name']));
+            $addworkoutModel->setsets(trim($_POST['sets']));
+            $addworkoutModel->setreps(trim($_POST['reps']));
+            $addworkoutModel->setweights(trim($_POST['weights']));
+            $addworkoutModel->setresttime(trim($_POST['resttime']));
+            $addworkoutModel->setuserid(trim($_GET['userid']));
+             
+            if(empty($addworkoutModel->getdate()) || empty($addworkoutModel->getname()) || empty($addworkoutModel->getsets()) || empty($addworkoutModel->getreps()) || empty($addworkoutModel->getweights()) || empty($addworkoutModel->getresttime()) )
+            {
+                if(empty($addworkoutModel->getdate()) )
+                {
+                    $addworkoutModel->setdateErr("*Please Enter a Valid date");
+                }
+                if( empty($addworkoutModel->getname()))
+                {
+                    $addworkoutModel->setnameErr("*Please Enter a Valid Workout Name");
+    
+                }
+                if(empty($addworkoutModel->getsets()) )
+                {
+                    $addworkoutModel-> setsetsErr("*Please Enter a Valid Sets");
+    
+                }
+                if( empty($addworkoutModel->getreps()) )
+                {
+                    $addworkoutModel-> setrepsErr("*Please Enter a Valid reps");
+    
+                }
+                if(empty($addworkoutModel->getweights()))
+                {
+                    $addworkoutModel-> setweightsErr("*Please Enter a Valid weights");
+    
+                }
+                if( empty($addworkoutModel->getresttime()))
+                {
+                    $addworkoutModel-> setresttimeErr("*Please Enter a Valid rest time");
+    
+                }
+
+            }
+            else
+            {
+
+
+
+            if ($addworkoutModel->editwork($_GET['id'])) {
+                //header('location: ' . URLROOT . 'users/login');
+                flash('register_success', 'workout plan is added successfully');
+                redirect('pages/editwork?id='.$_GET['id'].'&userid='.$_GET['userid'].'&date='.$_GET['date']);
+            } else {
+                // print_r($this->model->planCount());
+
+                die('Error in edting work');
+            }
+        }
+
+        }
+
+        
+        $viewPath = VIEWS_PATH . 'pages/editwork.php';
+        require_once $viewPath;
+        $ViewUsersView = new editwork($this->getModel(), $this);
+        $ViewUsersView->output();
+    }
+
+
 
     public function addworkout()
     {
@@ -227,31 +402,32 @@ class Pages extends Controller
         print($deletenutritionModel->deleteNut());
 
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-        {
-
-            // print($deletenutritionModel->deleteNut());
-
-            // if ($deletenutritionModel->deleteNut())
-            //  {
-            //      print("heree");
-
-
-            //     //header('location: ' . URLROOT . 'users/login');
-            //     flash('register_success', 'nutrition plan deleted successfully');
-            //     redirect('pages/nutrition');
-            // } else {
-            //     die('Error in adding nutrition');
-            // }
-
-
-
-        }
+       
     
 
         $viewPath = VIEWS_PATH . 'pages/deletenutrition.php';
         require_once $viewPath;
         $deletenutritionView = new deletenutrition($this->getModel(), $this);
+        $deletenutritionView->output();
+    }
+
+
+    public function deleteclient()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deletenutritionModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deletenutritionModel->deleteclient());
+
+
+       
+    
+
+        $viewPath = VIEWS_PATH . 'pages/deleteclient.php';
+        require_once $viewPath;
+        $deletenutritionView = new deleteclient($this->getModel(), $this);
         $deletenutritionView->output();
     }
 
@@ -372,7 +548,25 @@ class Pages extends Controller
 
 
 
+    public function deletenut()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deleteworkoutModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deleteworkoutModel->deleteNut());
+
+
+        
+        
     
+
+        $viewPath = VIEWS_PATH . 'pages/deletenut.php';
+        require_once $viewPath;
+        $deleteworkoutView = new deletenut($this->getModel(), $this);
+        $deleteworkoutView->output();
+    }
 
 
 
@@ -387,31 +581,33 @@ class Pages extends Controller
         print($deleteworkoutModel->deleteWork());
 
 
-        // if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-        // {
-
-        //     print($deleteworkoutModel->deleteNut());
-
-        //     if ($deleteworkoutModel->deleteNut())
-        //      {
-        //          print("heree");
-
-
-        //         //header('location: ' . URLROOT . 'users/login');
-        //         flash('register_success', 'workout program had been deleted successfully');
-        //         redirect('pages/workout');
-        //     } else {
-        //         die('Error in deleting workout');
-        //     }
-
-
-
-        // }
+        
+        
     
 
         $viewPath = VIEWS_PATH . 'pages/deleteworkout.php';
         require_once $viewPath;
         $deleteworkoutView = new deleteworkout($this->getModel(), $this);
+        $deleteworkoutView->output();
+    }
+
+    public function deletework()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deleteworkoutModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deleteworkoutModel->deleteWork($_GET['id'],$_GET['date'],$_GET['userid']));
+
+
+        
+        
+    
+
+        $viewPath = VIEWS_PATH . 'pages/deletework.php';
+        require_once $viewPath;
+        $deleteworkoutView = new deletework($this->getModel(), $this);
         $deleteworkoutView->output();
     }
 
@@ -421,7 +617,7 @@ class Pages extends Controller
 
 
 
-
+    
 
 
 

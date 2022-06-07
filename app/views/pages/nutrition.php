@@ -10,8 +10,12 @@ class nutrition extends view {
 	<hr>
 	 <br>
  <a href="<?php echo URLROOT.'pages/addnutrition?id='.$_GET['id']; ?>" class="btn btn-success">Add Nutrition Plan</a>
- <a href="<?php echo URLROOT.'pages/deletenutrition?id='.$_GET['id']; ?>" class="btn btn-danger">Delete Nutrition Plan</a>
-
+ <?php if ($nutrition){
+	 ?>
+ <a href="<?php echo URLROOT.'pages/confirmDelete?id='.$_GET['id'].'&thing=deleteallnutrition' ?>" class="btn btn-danger">Delete Nutrition Plan</a>
+ <?php
+ }
+ ?>
  <br>
 <div>
  <table class="table table-success table-striped">
@@ -38,7 +42,8 @@ class nutrition extends view {
 	 <td><?php echo $x->ld;?></td>
 	 <td><?php echo $x->dinner;?></td>
 	 <td><?php echo $x->dd;?></td>
-	 <td><a <?php echo "href='".URLROOT.'pages/editnutrition?id='.$x->nutritionID."'";?> class='btn btn-secondary'>Edit</a></td>
+	 <td><a <?php echo "href='".URLROOT.'pages/editnut?id='.$x->nutritionID."'";?> class='btn btn-secondary'>Edit</a></td>
+	<td><a <?php echo "href='".URLROOT.'pages/confirmDelete?id='.$x->nutritionID.'&userid='.$x->userID.'&thing=deletenutrition'."'";?> class='btn btn-danger'>Delete</a></td>
 	</tr>
 	 <?php
 	}
@@ -46,6 +51,9 @@ class nutrition extends view {
 </table>
 	</div>
 <?php
+if(!$nutrition){
+	echo "no records to show";
+}
 	require APPROOT.'/views/inc/footer.php';
 	}
 	

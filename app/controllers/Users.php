@@ -120,8 +120,16 @@ class Users extends Controller
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->name;
+        $_SESSION['role'] = $user->role;
+        
+        if($_SESSION['role']=="client")
+        {
+            redirect('pages/clientside');
+        }
+        else{
         //header('location: ' . URLROOT . 'pages');
         redirect('pages');
+        }
     }
 
     public function logout()
@@ -129,6 +137,7 @@ class Users extends Controller
         echo 'logout called';
         unset($_SESSION['user_id']);
         unset($_SESSION['user_name']);
+        unset($_SESSION['role']);
         session_destroy();
         redirect('users/login');
     }

@@ -477,5 +477,250 @@ class Pages extends Controller
         $usersearchjView->output();
     }
 
+    public function clientside()
+    {
+        $viewPath = VIEWS_PATH . 'pages/clientside.php';
+        require_once $viewPath;
+        $aboutView = new clientside($this->getModel(), $this);
+        $aboutView->output();
+    }
+     
+    
+    public function plan()
+    {
+        $displaynutritionModel = $this->getModel();
+        if(!empty($displaynutritionModel->plan()) )
+        {
+        if ($result = $displaynutritionModel->plan())
+        {
+
+            $breakfastArray=array();
+            $x=0;
+            while(isset($result[$x]->date) )
+            {
+            $displaynutritionModel->setdate($result[$x]->date);
+            $displaynutritionModel->setUserID($result[$x]->userID);
+            // $breakfastArray[$x]=$b;
+            $b[$x]=$result[$x]->breakfast."<br> Details : ".$result[$x]->bd;
+            $l[$x]=$result[$x]->lunch."<br> Details : ".$result[$x]->ld;
+            $d[$x]=$result[$x]->dinner."<br> Details : ".$result[$x]->dd;
+            $DATE[$x]=$result[$x]->date;
+
+            $x++;
+            }
+
+
+            $_SESSION['array_to_saveB'] = $b;
+            $_SESSION['array_to_saveL'] = $l;
+            $_SESSION['array_to_saveD'] = $d;
+            $_SESSION['DATE'] = $DATE;
+
+            $displaynutritionModel->setBreakfast( $_SESSION['array_to_saveB']);
+            $displaynutritionModel->setLunch( $_SESSION['array_to_saveL']);
+            $displaynutritionModel->setDinner( $_SESSION['array_to_saveD']);
+            $displaynutritionModel->setDate( $_SESSION['DATE']);
+
+        }
+         else {
+            die('Error in Viewing Your plan');
+        }
+    }
+    else
+    {
+        unset($_SESSION['array_to_saveB'] );
+        unset($_SESSION['array_to_saveL']);
+        unset(  $_SESSION['array_to_saveD']);
+        unset($_SESSION['DATE'] );
+
+
+
+    }
+
+
+        $viewPath = VIEWS_PATH . 'pages/plan.php';
+        require_once $viewPath;
+        $planView = new Plan($this->getModel(), $this);
+        $planView->output();
+
+
+    }
+    public function workoutdisplay()
+    {        
+        $workoutdisplaytableModel=$this->getModel();
+        $workoutdisplaytableModel->setdate($_GET['date']);
+
+        // print_r($workoutdisplaytableModel->workdetails());
+        if ($result = $workoutdisplaytableModel->workdetails()) 
+        {           
+
+            for($x=0 ; $x<count($result) ; $x++){
+             $workoutdisplaytableModel->settrainingID($result[$x]->trainingID);           
+             $workoutdisplaytableModel->setname($result[$x]->name);
+             $workoutdisplaytableModel->setreps($result[$x]->reps);
+             $workoutdisplaytableModel->setsets($result[$x]->sets);
+             $workoutdisplaytableModel->setresttime($result[$x]->resttime);
+             $workoutdisplaytableModel->setweights($result[$x]->weights);
+
+            }
+            
+        } else {
+            die('Error in display wokout program');
+        }
+    
+
+        $viewPath = VIEWS_PATH . 'pages/workoutdisplay.php';
+        require_once $viewPath;
+        $workoutdisplayView = new Workoutdisplay($this->getModel(), $this);
+        $workoutdisplayView->output();
+    } 
+
+
+
+    public function w()
+    {
+        $work = $this->getModel();
+
+
+       
+        if ($result = $work->work()) 
+        {
+            for($x=0 ; $x<count($result) ; $x++){
+
+            $work->setname($result[$x]->name);
+          
+            $work->setdate($result[$x]->date);
+
+            // Print_r($result);
+            }
+            
+        } else {
+            die('Error in display wokout program');
+        }
+
+      
+
+        $viewPath = VIEWS_PATH . 'pages/w.php';
+        require_once $viewPath;
+        $workView = new w($this->getModel(), $this);
+        $workView->output();
+        
+
+        
+    }
+
+
+    public function chatclient()
+    {
+
+        $viewChatModel = $this->getModel();
+
+        
+        // if($viewChatModel->AllClients())
+        // {
+        //  $viewChatModel->setAllClients( $viewChatModel->AllClients() )   ;
+        // }
+        // print_r(   $viewChatModel->chat()  );
+
+        if($result=$viewChatModel->chat())
+        {
+
+            // print($_GET['id']);
+
+            $x=0;
+            while(!empty($result[$x]))
+            {
+            $viewChatModel->setSender($result[$x]->sender);
+            $viewChatModel->setReciever($result[$x]->reciever);
+
+
+
+            if($viewChatModel->getSender()==1)
+            {
+                $viewChatModel->setMessageFromAdmin($result[$x]->content);
+                $viewChatModel->setCreated_at_admin( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at)) );
+                $viewChatModel->setReciever($_GET['id']);
+                $viewChatModel->setSender(1);
+
+
+                
+                // $viewChatModel->setSeen_admin($result[$x]->seen);
+            }
+            else
+            {
+                $viewChatModel->setMessageFromClient(   $result[$x]->content);
+                $viewChatModel->setCreated_at_client( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at))  );
+                $viewChatModel->setReciever(1);
+                $viewChatModel->setSender($_SESSION['user_id']);
+                // print(   $viewChatModel->getCreated_at_client()  );  
+                // print("<br>");
+                // $viewChatModel->setSeen_client($result[$x]->seen);
+
+            }
+
+            $x++;
+
+        }
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($_SESSION['user_id']!=1)/////clientt////
+            {
+
+            if(!empty($_POST['message']))
+            {
+            $viewChatModel->setMessage(trim($_POST['message']));
+            $viewChatModel->setSender($_SESSION['user_id']);
+            $viewChatModel->setReciever(1);
+            $viewChatModel->setCreated_at_client(date("Y-m-d h:i:sa A"));
+            $viewChatModel->setSeen_client(0);
+
+            if($viewChatModel->sendclient())
+            {
+                $_POST['message']="";
+                $viewChatModel->setMessage(trim($_POST['message']));
+                // header("Refresh:0");
+                header("Location: http://localhost/mvc/public/pages/chatclient?id=".$_GET["id"].'& selected='.$_GET["selected"]);
+
+            }
+            }
+        }
+        else
+        {
+            if(!empty($_POST['message']))
+            {
+            $viewChatModel->setMessage(trim($_POST['message']));
+            $viewChatModel->setSender($_SESSION['user_id']);
+            $viewChatModel->setReciever($_GET['id']);
+            $viewChatModel->setCreated_at_admin(date("Y-m-d h:i:sa A"));
+            $viewChatModel->setSeen_admin(0);
+
+            if($viewChatModel->sendadmin())
+            {
+                $_POST['message']="";
+                $viewChatModel->setMessage(trim($_POST['message']));
+                // header("Refresh:0");
+                header("Location: http://localhost/mvc/public/pages/chatclient?id=".$_GET["id"].'& selected='.$_GET["selected"]);
+
+            }
+            }        }
+
+
+
+
+
+        }
+
+
+
+
+        $viewPath = VIEWS_PATH . 'pages/chatclient.php';
+        require_once $viewPath;
+        $chatView = new chatclient($this->getModel(), $this);
+        $chatView->output();
+    }
+
 
 }
+

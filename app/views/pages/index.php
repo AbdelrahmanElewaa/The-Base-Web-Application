@@ -7,20 +7,28 @@ class Index extends View
     $subtitle = $this->model->subtitle;
     $user_id = $_SESSION['user_id'];
     $user_name = $_SESSION['user_name'];
-
-    require APPROOT . '/views/inc/header.php';
-    $text = <<<EOT
-    <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4"> $title </h1>
-      <h2 class="lead">$subtitle </h2>
-      <p> User $user_id, $user_name is logged in</p>
-      <hr class="my-4">
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    if(isset($_SESSION['user_id']))
+    {
+      require APPROOT . '/views/inc/header.php';
+      $text = <<<EOT
+      <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4"> $title </h1>
+        <h2 class="lead">$subtitle </h2>
+   
+        <hr class="my-4">
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      </div>
     </div>
-  </div>
-EOT;
-    echo $text;
-    require APPROOT . '/views/inc/footer.php';
+  EOT;
+      echo $text;
+      require APPROOT . '/views/inc/footer.php';
+    }
+    else{
+      redirect('users/login');
+    }
+ 
+
+   
   }
 }

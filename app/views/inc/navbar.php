@@ -8,7 +8,6 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/clientside'; ?>" style="padding: 10px 20px;">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/about'; ?>" style="padding: 10px 20px;">About</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/contact'; ?>" style="padding: 10px 20px;">Contact</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/w'; ?>" style="padding: 10px 20px;">Workout</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/chatclient?id=&selected='; ?>" style="padding: 10px 20px;">Chat</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-5-dark-1 u-text-hover-palette-5-dark-2 u-text-palette-5-light-2" href="<?php echo URLROOT . 'pages/plan'; ?>" style="padding: 10px 20px;">plan</a>

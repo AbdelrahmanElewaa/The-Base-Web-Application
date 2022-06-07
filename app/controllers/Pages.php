@@ -52,7 +52,17 @@ class Pages extends Controller
     public function addnutrition()
     {
         $addnutritionModel = $this->getModel();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            $addnutritionModel->setuserid($_GET['id']);
+            // $count=$addnutritionModel->countNut();
+            // $array = json_decode(json_encode($count), true);
+            // if($array['records']>7)
+            // {
+            //     print("<script>alert('maximum 7 records per week . You can edit or delete your nutrition plan');</script>");
+            // }
+            // else
+            {
             // Process form
             $addnutritionModel->setdate(trim($_POST['date']));
             // $registerModel->setName(trim($_POST['lastname']));
@@ -65,21 +75,66 @@ class Pages extends Controller
             $addnutritionModel->setuserid(trim($_POST['userid']));
 
 
-
+            if(empty($addnutritionModel->getdate()) || empty($addnutritionModel->getbname()) || empty($addnutritionModel->getlname()) || empty($addnutritionModel->getdname()) || empty($addnutritionModel->getbd()) || empty($addnutritionModel->getld()) || empty($addnutritionModel->getdd()) )
+            {
+                if(empty($addnutritionModel->getdate()) )
+                {
+                    $addnutritionModel->setdateErr("*Please Enter a Valid date");
+                }
+                if( empty($addnutritionModel->getbname()))
+                {
+                    $addnutritionModel->setbnameErr("*Please Enter a Valid Breakfast Name");
+    
+                }
+                if(empty($addnutritionModel->getlname()) )
+                {
+                    $addnutritionModel-> setbdErr("*Please Enter a Valid Lunch Name");
+    
+                }
+                if( empty($addnutritionModel->getdname()) )
+                {
+                    $addnutritionModel-> setlnameErr("*Please Enter a Valid Dinner Name");
+    
+                }
+                if(empty($addnutritionModel->getbd()))
+                {
+                    $addnutritionModel-> setldErr("*Please Enter a Valid Breakfast Description");
+    
+                }
+                if( empty($addnutritionModel->getld()))
+                {
+                    $addnutritionModel-> setdnameErr("*Please Enter a Valid Lunch Description");
+    
+                }
+                if( empty($addnutritionModel->getdd()))
+                {
+                    $addnutritionModel-> setddErr("*Please Enter a Valid Dinner Description");
+    
+                }
+            }
+            // else if(trim($_POST['date']) < date('y-m-d') == 1)
+            // {
+            //     $addnutritionModel->setdateErr("*Please Enter a Valid dateee");
+            // }
+            else
+            {
 
             if ($addnutritionModel->addNut()) {
                 //header('location: ' . URLROOT . 'users/login');
                 flash('register_success', 'nutrition plan is added successfully');
-                redirect('pages/addnutrition');
+                redirect('pages/addnutrition?id='.$_GET['id']);
             } else {
                 die('Error in adding nutrition');
             }
+        }
+    }
         }
         $viewPath = VIEWS_PATH . 'pages/addnutrition.php';
         require_once $viewPath;
         $aboutView = new addnutrition($this->getModel(), $this);
         $aboutView->output();
     }
+
 
     public function workout()
     {
@@ -103,17 +158,55 @@ class Pages extends Controller
             $addworkoutModel->setresttime(trim($_POST['resttime']));
             $addworkoutModel->setuserid(trim($_POST['userid']));
              
+            if(empty($addworkoutModel->getdate()) || empty($addworkoutModel->getname()) || empty($addworkoutModel->getsets()) || empty($addworkoutModel->getreps()) || empty($addworkoutModel->getweights()) || empty($addworkoutModel->getresttime()) )
+            {
+                if(empty($addworkoutModel->getdate()) )
+                {
+                    $addworkoutModel->setdateErr("*Please Enter a Valid date");
+                }
+                if( empty($addworkoutModel->getname()))
+                {
+                    $addworkoutModel->setnameErr("*Please Enter a Valid Workout Name");
+    
+                }
+                if(empty($addworkoutModel->getsets()) )
+                {
+                    $addworkoutModel-> setsetsErr("*Please Enter a Valid Sets");
+    
+                }
+                if( empty($addworkoutModel->getreps()) )
+                {
+                    $addworkoutModel-> setrepsErr("*Please Enter a Valid reps");
+    
+                }
+                if(empty($addworkoutModel->getweights()))
+                {
+                    $addworkoutModel-> setweightsErr("*Please Enter a Valid weights");
+    
+                }
+                if( empty($addworkoutModel->getresttime()))
+                {
+                    $addworkoutModel-> setresttimeErr("*Please Enter a Valid rest time");
+    
+                }
 
+            }
+            else
+            {
 
 
 
             if ($addworkoutModel->addWork()) {
                 //header('location: ' . URLROOT . 'users/login');
                 flash('register_success', 'workout plan is added successfully');
-                redirect('pages/addworkout');
+                redirect('pages/addworkout?id='.$_GET['id']);
             } else {
+                // print_r($this->model->planCount());
+
                 die('Error in adding nutrition');
             }
+        }
+
         }
 
         $viewPath = VIEWS_PATH . 'pages/addworkout.php';
@@ -121,6 +214,215 @@ class Pages extends Controller
         $aboutView = new addworkout($this->getModel(), $this);
         $aboutView->output();
     }
+
+
+
+    public function deletenutrition()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deletenutritionModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deletenutritionModel->deleteNut());
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+
+            // print($deletenutritionModel->deleteNut());
+
+            // if ($deletenutritionModel->deleteNut())
+            //  {
+            //      print("heree");
+
+
+            //     //header('location: ' . URLROOT . 'users/login');
+            //     flash('register_success', 'nutrition plan deleted successfully');
+            //     redirect('pages/nutrition');
+            // } else {
+            //     die('Error in adding nutrition');
+            // }
+
+
+
+        }
+    
+
+        $viewPath = VIEWS_PATH . 'pages/deletenutrition.php';
+        require_once $viewPath;
+        $deletenutritionView = new deletenutrition($this->getModel(), $this);
+        $deletenutritionView->output();
+    }
+
+
+    public function chat()
+    {
+
+        $viewChatModel = $this->getModel();
+
+        
+        // if($viewChatModel->AllClients())
+        // {
+        //  $viewChatModel->setAllClients( $viewChatModel->AllClients() )   ;
+        // }
+        // print_r(   $viewChatModel->chat()  );
+
+        if($result=$viewChatModel->chat())
+        {
+
+            // print($_GET['id']);
+
+            $x=0;
+            while(!empty($result[$x]))
+            {
+            $viewChatModel->setSender($result[$x]->sender);
+            $viewChatModel->setReciever($result[$x]->reciever);
+
+
+
+            if($viewChatModel->getSender()==1)
+            {
+                $viewChatModel->setMessageFromAdmin($result[$x]->content);
+                $viewChatModel->setCreated_at_admin( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at)) );
+                $viewChatModel->setReciever($_GET['id']);
+                $viewChatModel->setSender(1);
+
+
+                
+                // $viewChatModel->setSeen_admin($result[$x]->seen);
+            }
+            else
+            {
+                $viewChatModel->setMessageFromClient(   $result[$x]->content);
+                $viewChatModel->setCreated_at_client( date("Y-m-d h:i:sa A",strtotime($result[$x]->created_at))  );
+                $viewChatModel->setReciever(1);
+                $viewChatModel->setSender($_SESSION['user_id']);
+                // print(   $viewChatModel->getCreated_at_client()  );  
+                // print("<br>");
+                // $viewChatModel->setSeen_client($result[$x]->seen);
+
+            }
+
+            $x++;
+
+        }
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if($_SESSION['user_id']!=1)/////clientt////
+            {
+
+            if(!empty($_POST['message']))
+            {
+            $viewChatModel->setMessage(trim($_POST['message']));
+            $viewChatModel->setSender($_SESSION['user_id']);
+            $viewChatModel->setReciever(1);
+            $viewChatModel->setCreated_at_client(date("Y-m-d h:i:sa A"));
+            $viewChatModel->setSeen_client(0);
+
+            if($viewChatModel->sendclient())
+            {
+                $_POST['message']="";
+                $viewChatModel->setMessage(trim($_POST['message']));
+                // header("Refresh:0");
+                header("Location: http://localhost/mvc/public/pages/chat?id=".$_GET["id"].'& selected='.$_GET["selected"]);
+
+            }
+            }
+        }
+        else
+        {
+            if(!empty($_POST['message']))
+            {
+            $viewChatModel->setMessage(trim($_POST['message']));
+            $viewChatModel->setSender($_SESSION['user_id']);
+            $viewChatModel->setReciever($_GET['id']);
+            $viewChatModel->setCreated_at_admin(date("Y-m-d h:i:sa A"));
+            $viewChatModel->setSeen_admin(0);
+
+            if($viewChatModel->sendadmin())
+            {
+                $_POST['message']="";
+                $viewChatModel->setMessage(trim($_POST['message']));
+                // header("Refresh:0");
+                header("Location: http://localhost/mvc/public/pages/chat?id=".$_GET["id"].'& selected='.$_GET["selected"]);
+
+            }
+            }        }
+
+
+
+
+
+        }
+
+
+
+
+        $viewPath = VIEWS_PATH . 'pages/chat.php';
+        require_once $viewPath;
+        $chatView = new Chat($this->getModel(), $this);
+        $chatView->output();
+    }
+
+
+
+
+
+    
+
+
+
+
+    public function deleteworkout()
+    {
+        // print(" DELETE FROM `nutrition` WHERE id=".$_GET['id'] );
+
+        $deleteworkoutModel = $this->getModel();
+        // $deletenutritionModel->deleteNut();
+        // print("hellooo");
+        print($deleteworkoutModel->deleteWork());
+
+
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        // {
+
+        //     print($deleteworkoutModel->deleteNut());
+
+        //     if ($deleteworkoutModel->deleteNut())
+        //      {
+        //          print("heree");
+
+
+        //         //header('location: ' . URLROOT . 'users/login');
+        //         flash('register_success', 'workout program had been deleted successfully');
+        //         redirect('pages/workout');
+        //     } else {
+        //         die('Error in deleting workout');
+        //     }
+
+
+
+        // }
+    
+
+        $viewPath = VIEWS_PATH . 'pages/deleteworkout.php';
+        require_once $viewPath;
+        $deleteworkoutView = new deleteworkout($this->getModel(), $this);
+        $deleteworkoutView->output();
+    }
+
+    
+
+
+
+
+
+
+
 
 
 	    public function ViewUsers()

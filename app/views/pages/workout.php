@@ -10,7 +10,9 @@ class workout extends view {
 	<hr>
 	 <br>
  <a href="<?php echo URLROOT.'pages/addworkout?id='.$_GET['id']; ?>" class="btn btn-success">Add Workout Program</a>
-<br>
+ <a href="<?php echo URLROOT.'pages/deleteworkout?id='.$_GET['id']; ?>" class="btn btn-danger">Delete Workout Plan</a>
+
+ <br>
 <div>
  <table class="table table-danger table-striped">
   <thead>

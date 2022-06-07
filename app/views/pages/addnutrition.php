@@ -7,7 +7,13 @@
 class addnutrition extends view {
 	public function output(){
 	 require APPROOT.'/views/inc/header.php';
-	 $action = URLROOT . 'pages/addnutrition';
+
+   if(isset($_GET['id']))
+   {
+     
+	 $action = URLROOT . 'pages/addnutrition?id='.$_GET['id'];
+   }
+	//  $action = URLROOT . 'pages/addnutrition';
    $text = <<<EOT
    <form action="$action" method="post">
    EOT;

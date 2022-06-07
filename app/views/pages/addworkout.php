@@ -2,7 +2,7 @@
 class addworkout extends view {
 	public function output(){
 	 require APPROOT.'/views/inc/header.php';
-   $action = URLROOT . 'pages/addworkout';
+   $action = URLROOT . 'pages/addworkout?id='.$_GET['id'];
    $text = <<<EOT
    <html>
    <head>
@@ -65,5 +65,7 @@ echo $text;
 	}
 	
 }
+
+
 
 ?>

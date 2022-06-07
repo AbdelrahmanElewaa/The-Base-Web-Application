@@ -484,6 +484,77 @@ class Pages extends Controller
         $aboutView = new clientside($this->getModel(), $this);
         $aboutView->output();
     }
+    public function editnutrition()
+    {
+        $editnutritionModel = $this->getModel();
+        $editnutritionModel->setnutritionID($_GET['nutritionID']);
+
+      
+          
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $editnutritionModel->setnutritionID($_GET['nutritionID']);
+            $editnutritionModel->setdate(trim($_POST['date']));
+            $editnutritionModel->setbname(trim($_POST['bname']));
+            $editnutritionModel->setbd(trim($_POST['bd']));
+            $editnutritionModel->setlname(trim($_POST['lname']));
+            $editnutritionModel->setld(trim($_POST['ld']));
+            $editnutritionModel->setdname(trim($_POST['dname']));
+            $editnutritionModel->setdd(trim($_POST['dd']));
+            $editnutritionModel->setuserid(trim($_POST['userid']));
+
+
+            if ($editnutritionModel->updatenutrition()) {
+                flash('register_success', 'Workout Program is Updated successfully');
+                // redirect('pages/editnutrition?nutritionID='.$_GET['nutritionID']);
+                
+            } 
+            else {
+                die('Error in update Workout Program');
+            }
+
+    }
+    $viewPath =  VIEWS_PATH . 'pages/editnutrition.php';
+    require_once $viewPath;
+    $editnutritionView = new editnutrition($this->getModel(), $this);
+    $editnutritionView->output(); 
+}
+
+
+public function editworkout()
+    {
+        $editworkoutModel= $this->getModel();
+        $editworkoutModel->settrainingID($_GET['trainingID']);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $editworkoutModel->settrainingID($_GET['trainingID']);
+            $editworkoutModel->setdate(trim($_POST['date']));
+            $editworkoutModel->setname(trim($_POST['name']));
+            $editworkoutModel->setsets(trim($_POST['sets']));
+            $editworkoutModel->setreps(trim($_POST['reps']));
+            $editworkoutModel->setweights(trim($_POST['weights']));
+            $editworkoutModel->setresttime(trim($_POST['resttime']));
+            // $editworkoutModel->setuserid(trim($_POST['userid']));
+             
+
+            if ($editworkoutModel->updateworkout()) {
+                flash('register_success', 'workout plan is edit successfully');
+                // redirect('pages/editworkout');
+
+            } 
+            else{
+                print("hhh");
+
+                die('Error in Edit workout program');
+           }
+    }
+        $viewPath =  VIEWS_PATH . 'pages/editworkout.php';
+        require_once $viewPath;
+        $editworkoutView = new editworkout($this->getModel(), $this);
+        $editworkoutView->output();
+       
+    }
+    
     
 }
 

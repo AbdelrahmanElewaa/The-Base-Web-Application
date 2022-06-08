@@ -52,7 +52,7 @@ class workout extends view {
 	 <td><?php echo $w[$i];?></td>
 	 <td><?php echo $rs[$i];?></td>
 	 <td><a <?php echo "href='".URLROOT.'pages/editwork?id='.$i.'&userid='.$_GET['id'].'&date='.$x->date."'";?> class='btn btn-secondary'>Edit</a></td>
-	<td><a <?php echo "href='".URLROOT.'pages/confirmDelete?userid='.$x->trainingID.'&date='.$x->date.'&thing=deleteworkout'.'&id='.$i."'";?> class='btn btn-danger'>Delete</a></td>
+	<td><a <?php echo "href='".URLROOT.'pages/confirmDelete?userid='.$x->traininguserid.'&date='.$x->date.'&thing=deleteworkout'.'&id='.$i."'";?> class='btn btn-danger'>Delete</a></td>
 	 
 	</tr>
 

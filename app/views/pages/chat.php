@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/chat.css">
 <?php
+
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(-1);
@@ -423,9 +424,10 @@ EOT;
 else
 {
     $text=$text.<<<EOT
-
-                </div>
-            </div>
+<div style="  display: flex;
+flex-direction: column;
+min-height: 100vh;">
+</div>
         </div>
     </div>
     </div>

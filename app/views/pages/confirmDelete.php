@@ -20,8 +20,8 @@ $actiondelete="pages/deleteclient?id=".$_GET['id'];
       $actiondelete='pages/deletenutrition?id='.$_GET['id'];
       }
       else{
-        $h1="Delete client's single nutrition meal";
-        $p="Are you sure you want to delete client's single nutrtion meal?";
+        $h1="Delete client's single nutrition day";
+        $p="Are you sure you want to delete client's single nutrtion day?";
         $actioncancel="/pages/nutrition?id=".$_GET['userid'];
         $actiondelete='pages/deletenut?id='.$_GET['id'].'&userid='.$_GET['userid'];
       }
@@ -41,6 +41,9 @@ $actiondelete="pages/deleteclient?id=".$_GET['id'];
     $actioncancel="/pages/workout?id=".$_GET['userid'];
     $actiondelete='pages/deletework?id='.$_GET['id'].'&userid='.$_GET['userid'].'&date='.$_GET['date'];
       }
+    }
+    else{
+      redirect("pages/error?error=urlerror");
     }
      
 

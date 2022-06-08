@@ -58,14 +58,7 @@ class Pages extends Controller
         $addnutritionModel = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
-            // $addnutritionModel->setuserid($_GET['id']);
-            // $count=$addnutritionModel->countNut();
-            // $array = json_decode(json_encode($count), true);
-            // if($array['records']>7)
-            // {
-            //     print("<script>alert('maximum 7 records per week . You can edit or delete your nutrition plan');</script>");
-            // }
-            // else
+            
             {
             // Process form
             $addnutritionModel->setdate(trim($_POST['date']));
@@ -128,7 +121,7 @@ class Pages extends Controller
                 // flash('register_success', 'nutrition plan is added successfully');
                 redirect('pages/editnut?id='.$_GET['id']);
             } else {
-                die('Error in editing nutrition');
+                redirect('pages/error?error=Error in editing nutrition');
             }
         }
     }
@@ -153,13 +146,7 @@ class Pages extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
             $addnutritionModel->setuserid($_GET['id']);
-            // $count=$addnutritionModel->countNut();
-            // $array = json_decode(json_encode($count), true);
-            // if($array['records']>7)
-            // {
-            //     print("<script>alert('maximum 7 records per week . You can edit or delete your nutrition plan');</script>");
-            // }
-            // else
+            
             {
             // Process form
             $addnutritionModel->setdate(trim($_POST['date']));
@@ -210,11 +197,7 @@ class Pages extends Controller
     
                 }
             }
-            // else if(trim($_POST['date']) < date('y-m-d') == 1)
-            // {
-            //     $addnutritionModel->setdateErr("*Please Enter a Valid dateee");
-            // }
-            else
+            
             {
 
             if ($addnutritionModel->addNut()) {
@@ -222,7 +205,7 @@ class Pages extends Controller
                 // flash('register_success', 'nutrition plan is added successfully');
                 redirect('pages/addnutrition?id='.$_GET['id']);
             } else {
-                die('Error in adding nutrition');
+                redirect('pages/error?error=Error in adding nutrition');
             }
         }
     }
@@ -304,7 +287,7 @@ class Pages extends Controller
             } else {
                 // print_r($this->model->planCount());
 
-                die('Error in edting work');
+                redirect('pages/error?error=Error in edtiing work');
             }
         }
 
@@ -378,7 +361,7 @@ class Pages extends Controller
             } else {
                 // print_r($this->model->planCount());
 
-                die('Error in adding nutrition');
+                redirect('pages/error?error=Error in adding workout');
             }
         }
 
@@ -438,11 +421,7 @@ class Pages extends Controller
         $viewChatModel = $this->getModel();
 
         
-        // if($viewChatModel->AllClients())
-        // {
-        //  $viewChatModel->setAllClients( $viewChatModel->AllClients() )   ;
-        // }
-        // print_r(   $viewChatModel->chat()  );
+        
 
         if($result=$viewChatModel->chat())
         {
@@ -718,7 +697,7 @@ class Pages extends Controller
 
         }
          else {
-            die('Error in Viewing Your plan');
+            redirect('pages/error?error=Error in Viewing Your plan');
         }
     }
     else
@@ -760,7 +739,7 @@ class Pages extends Controller
             }
             
         } else {
-            die('Error in display wokout program');
+            redirect('pages/error?error=Error in display wokout program');
         }
     
 
@@ -790,7 +769,7 @@ class Pages extends Controller
             }
             
         } else {
-            die('Error in display wokout program');
+            redirect('pages/error?error=Error in display wokout program');
         }
 
       

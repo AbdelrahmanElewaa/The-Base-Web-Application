@@ -20,9 +20,7 @@ class Usersearch extends view
    $result = mysqli_query($connect, $query);
   if($result){
   
-  // $usersearch = $this->model->SearchUsers($connect,$_POST['query']);
-  // if($usersearch){
-
+  
     $t=<<<EOT
   <div class="table-responsive">
    <table class="table table-dark">
@@ -31,23 +29,14 @@ class Usersearch extends view
 <th>Email</th>
 <th>Social</th>
 <th>Role</th>
+<th scope='col'>Workout Plan</th>
+      <th scope='col'>Nutrition Plan</th>
+      <th scope='col'>Modifcation</th>
 
 
     </tr>
 EOT;
 echo $t;
-// $str='';
-// foreach($usersearch as $x){
-//   $str.="<tr><td>".$x->name."</td><td>".$x->email."</td><td>".$x->social."</td><td>".$x->role."</td></tr>";
-// }
-// $str.="</table>";
-// echo $str;
-// }
-//   else{
-//   echo"data not found";
-// }
-    // require APPROOT . '/views/inc/header.php';
-    // $connect = mysqli_connect("localhost", "root", "", "base");
 
 
    $output='';
@@ -59,6 +48,12 @@ echo $t;
             <td>'.$row['email'].'</td>
             <td>'.$row['social'].'</td>
             <td>'.$row['role'].'</td>
+            <td><a href="'.URLROOT.'pages/workout?id='.$row['id'].'" class="btn btn-primary">Workout</a></td>
+            <td><a href="'.URLROOT.'pages/nutrition?id='.$row['id'].'" class="btn btn-success">Nutrition</a></td>
+            <td>
+            <a href="'.URLROOT.'pages/confirmDelete?id='.$row['id'].'".&thing=deleteclient" class="btn btn-danger">Delete</a></td>
+				
+            
          
 
 
@@ -67,7 +62,7 @@ echo $t;
   ';
 
  }
-
+//  <td><a href="'.URLROOT.'pages/edituser?id='.$row['id'].'" class="btn btn-secondary">Edit</a>
  echo $output;
 }
 }
@@ -79,5 +74,5 @@ else
    
     require APPROOT . '/views/inc/footer.php';
   }
-// }
+
 }

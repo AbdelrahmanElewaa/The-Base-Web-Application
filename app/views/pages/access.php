@@ -42,7 +42,7 @@ class access extends View
 
 EOT;
 // target="_blank"
-        $text.= URLROOT.'pages/viewusers';
+        $text.= URLROOT.'users/login';
         $text.=<<<EOT
         ">Home!</a></h2>
 

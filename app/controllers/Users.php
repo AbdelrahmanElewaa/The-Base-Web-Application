@@ -59,7 +59,7 @@ class Users extends Controller
                     // flash('register_success', 'User added successfully');
                     redirect('pages/viewusers');
                 } else {
-                    die('Error in sign up');
+                    redirect('pages/error?error=Error in sign up');
                 }
             }
         }

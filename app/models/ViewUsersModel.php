@@ -7,11 +7,10 @@ class ViewUsersModel extends model
 	
 	public function ViewUsers(){
 		
-		$this->dbh->query('SELECT * from users');
-        // $this->dbh->bind(':email', $this->email);
+		$this->dbh->query('SELECT * from users where `role`= :a');
+        $this->dbh->bind(':a', 'client');
 
         $record = $this->dbh->resultSet();
-		// return $this->dbh->execute();
 		return $record;
 	}
 	

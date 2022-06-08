@@ -25,10 +25,11 @@ class ViewUsers extends View {
 			foreach($users as $x){
 				$str.="<tr><td>".$x->name."</td><td>".$x->email."</td><td>".$x->social."</td><td>".$x->role."</td>"." <td><a href='".URLROOT.'pages/workout?id='.$x->id."' class='btn btn-primary'>Workout</a></td>
 				<td><a href='".URLROOT.'pages/nutrition?id='.$x->id."' class='btn btn-success'>Nutrition</a></td>
-				<td> <a href='".URLROOT.'pages/edituser?id='.$x->id."' class='btn btn-secondary'>Edit</a> <a  href='".URLROOT.'pages/confirmDelete?id='.$x->id.'&thing=deleteclient'."' class='btn btn-danger'  >Delete</a> </td></tr>";
+				<td>  <a  href='".URLROOT.'pages/confirmDelete?id='.$x->id.'&thing=deleteclient'."' class='btn btn-danger'  >Delete</a> </td></tr>";
 		 
 			
 			}
+			// <a href='".URLROOT.'pages/edituser?id='.$x->id."' class='btn btn-secondary'>Edit</a>
 		//var_dump($Ent[0]->Name);	
 $str.="</table>";
 ?>
@@ -36,6 +37,7 @@ $str.="</table>";
 
 
  <br><br>
+
  <a class="btn btn-warning"  style="float:right;" href="<?php echo URLROOT . 'users/register'; ?>">Add Client</a>
  <body>
 <?php

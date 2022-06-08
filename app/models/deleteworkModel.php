@@ -19,6 +19,7 @@ class deleteworkModel extends WorkModel
 		$r=explode("$",$x->reps);
 		$w=explode("$",$x->weights);
 		$rs=explode("$",$x->resttime);
+        if($id!=0){
         unset($n[intval($id)]);
         unset($s[intval($id)]);
         unset($r[intval($id)]);
@@ -37,6 +38,15 @@ class deleteworkModel extends WorkModel
             $this->dbh->bind(':weights', $x->weights);
             $this->dbh->bind(':resttime', $x->resttime);
             $this->dbh->bind(':userid', $userid);
+        }
+        else{
+            $this->dbh->query('delete from training where `date`=:date and `traininguserid`=:userid' );
+            $this->dbh->bind(':date', $date);
+            $this->dbh->bind(':userid', $userid);
+        }
+
+        
+        
             // break;
         // }
             

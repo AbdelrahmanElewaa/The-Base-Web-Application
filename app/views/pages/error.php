@@ -38,7 +38,9 @@ EOT;
 			<br/>
 			<a href="
 EOT;
-            $text.= URLROOT.'pages/viewusers';
+// href=\"javascript:history.go(-1)\"
+// URLROOT.'pages/viewusers'
+            $text.= "javascript:history.go(-1)";
             $text.=<<<EOT
             ">Go Back</a>
 			or visit here later.</p>
